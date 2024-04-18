@@ -5,7 +5,7 @@ import { TableComponent } from "../job-status.table/job-status.table.component";
 import { EnableDisableAllJobComponent } from "../start-all-Job/start-all-Job.component";
 import { getJobsUsecase } from '../../application/get-jobs.usecase/get-jobs.usecase';
 import { JobStatusTableIdComponent } from "../job-status.table-id/job-status.table-id.component";
-import { IStatus} from '../../domain/interfaces/status';
+import { IStatus, JobAsyncAggregateJobExecution1} from '../../domain/interfaces/status';
 import { StartStopRemoveJobComponent } from '../start-stop-remove-job/start-stop-remove-job.component';
 
 @Component({
@@ -22,6 +22,7 @@ export default class StatusJobComponent implements OnInit {
 
 
   jobsId: IStatus | undefined;
+  refreshJob: JobAsyncAggregateJobExecution1 | undefined;
 
   ngOnInit(): void {
 
