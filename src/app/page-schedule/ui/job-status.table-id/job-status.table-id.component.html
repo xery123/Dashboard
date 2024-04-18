@@ -1,0 +1,25 @@
+<div *ngIf="jobsId; else cargando">
+  <div class="container mt-3">
+      <div class="row">
+        <div class="col-lg-12 mx-auto">
+      <div class="divTable blueTable">
+        @for (job of jobsId.data.jobsSummary| keyvalue; track $index) {
+        <div class="divTableRow">
+          <div class="divTableCell text-center">{{ job.key }}</div>
+          <div class="divTableCell text-center">{{ job.value.moduleStatus }}</div>
+          <div class="divTableCell text-center">
+            <app-enable-disable-job (refreshStart)="onRefresh()" (refreshStop)="onRefresh()"
+            (refreshRemove)="onRefresh()" [jobId]="job.key"></app-enable-disable-job>
+          </div>
+        </div>
+    }
+      </div>
+      </div>
+  </div>
+  </div>
+  </div>
+
+  <ng-template #cargando>
+    <p>Cargando datos...</p>
+  </ng-template>
+

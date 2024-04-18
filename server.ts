@@ -11,7 +11,6 @@ export function app(): express.Express {
   const serverDistFolder = dirname(fileURLToPath(import.meta.url));
   const browserDistFolder = resolve(serverDistFolder, '../browser');
   const indexHtml = join(serverDistFolder, 'index.server.html');
-
   const commonEngine = new CommonEngine();
 
   server.set('view engine', 'html');
@@ -19,15 +18,13 @@ export function app(): express.Express {
 
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
+
   // Serve static files from /browser
-  server.get('*.*', express.static(browserDistFolder, {
-    maxAge: '1y'
-  }));
+  server.get('*.*', express.static(browserDistFolder, { maxAge: '1y' }));
 
   // All regular routes use the Angular engine
   server.get('*', (req, res, next) => {
     const { protocol, originalUrl, baseUrl, headers } = req;
-
     commonEngine
       .render({
         bootstrap,
@@ -44,8 +41,7 @@ export function app(): express.Express {
 }
 
 function run(): void {
-  const port = process.env['PORT'] || 4000;
-
+  const port = 55426; // Cambio de puerto aquí
   // Start up the Node server
   const server = app();
   server.listen(port, () => {

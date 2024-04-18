@@ -1,0 +1,7 @@
+.text2 { text-align:left;
+  margin-bottom:0.2rem;
+  margin-left:3rem;
+  color: rgb(78, 186, 210);
+}
+.unity { display: table-row; }
+.component {  display: table-cell }

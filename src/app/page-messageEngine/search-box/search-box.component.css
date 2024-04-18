@@ -1,0 +1,30 @@
+input.form-control {
+  color: #333; /* Cambia el color del texto del input */
+  background: rgb(247, 241, 228); /* Cambia el color de fondo del input */
+  border-color: rgb(78, 186, 210); /* Cambia el color del borde del input */
+}
+
+/* Estilos para el texto del placeholder */
+input.form-control::placeholder {
+  color: #999; /* Cambia el color del texto del placeholder */
+}
+
+/* Estilos cuando el input tiene foco */
+input.form-control:focus {
+  border-color: #66afe9; /* Cambia el color del borde cuando el input tiene foco */
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(102, 175, 233, 0.25); /* Agrega una sombra suave cuando el input tiene foco */
+}
+.search-box-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px; /* Opcional: agrega un margen inferior para separarlo de otros elementos */
+}
+
+/* Estilos para cambiar el tamaño del input */
+input.form-control {
+  width: 938px; /* Ajusta el ancho del input a 300 píxeles */
+  height: 40px; /* Ajusta la altura del input a 40 píxeles */
+  font-size: 16px; /* Ajusta el tamaño de fuente del texto dentro del input */
+  /* Otros estilos que hayas aplicado anteriormente */
+}

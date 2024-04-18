@@ -1,0 +1,39 @@
+.divTable { display: table;width: 100%; margin-bottom: 20px; }
+.divTableRow { display: table-row; }
+.divTableHeading { background-color: #c24949; display: table-header-group; }
+.divTableCell,.divTableHead { border: 1px solid #63b8e0; display: table-cell; padding: 3px 10px; }
+.divTableHeading { background-color: #74b4e1; display: table-header-group; font-weight: bold; }
+.divTableHead { background-color: rgba(77, 178, 14, 0.1); font-weight: bold; }
+.divTableFoot { background-color: #bbdbf3; display: table-footer-group; font-weight: bold; }
+.divTableBody { display: table-row-group; }
+.divTableText {  display: table-cell; padding: 3px 10px; }
+
+
+.fondo { background: rgb(247, 241, 228); }
+
+.switch {
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 15px;
+  position: relative;
+}
+
+.switch .yes {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  font-weight: bold;
+  color: green;
+}
+
+.switch .no {
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  transform: translateY(-50%);
+  font-weight: bold;
+  color: red;
+}

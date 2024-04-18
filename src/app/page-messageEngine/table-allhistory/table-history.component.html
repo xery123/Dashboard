@@ -1,0 +1,28 @@
+
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-lg-12 offset-lg-0">
+   <div class="divTable blueTable">
+  <div class="divTableHeading">
+    <div class="divTableRow">
+      <div class="divTableHead text-center">Message Id</div>
+      <div class="divTableHead text-center">Started</div>
+      <div class="divTableHead text-center">Executed</div>
+      <div class="divTableHead text-center">Time</div>
+    </div>
+  </div>
+@for (historial of historyT; track $index) {
+    <div class="divTableBody">
+      <div class="divTableRow">
+        <div class="divTableCell text-center">{{historial.messageId}}</div>
+        <div class="divTableCell text-center">{{historial.messageExecutionStartedAt}}</div>
+        <div class="divTableCell text-center">{{historial.messageExecutedAt}}</div>
+        <div class="divTableCell text-center">{{historial.messageExecutionStartedAt| timeDifference: historial.messageExecutedAt }}</div>
+     </div>
+    </div>
+  }
+   </div>
+  </div>
+</div>
+</div>
+
