@@ -10,6 +10,8 @@
             <div class="divTableHead text-center">Next execution</div>
             <div class="divTableHead text-center">Number of runs</div>
             <div class="divTableHead text-center">Status</div>
+            <div class="divTableHead text-center">Job Actions</div>
+            <div class="divTableHead text-center">Module Actions</div>
           </div>
         </div>
         @for(job of jobsId.data.jobsSummary| keyvalue; track $index){
@@ -51,6 +53,13 @@
                 <span *ngIf="job.value.jobStatus === 'DONE'" class="done">DONE</span>
 
             </div>
+            <div class="divTableCell text-center">
+              <app-start-stop-remove-job (refreshStart)="onRefresh()" (refreshStop)="onRefresh()"
+              (refreshRemove)="onRefresh()" [jobId]="job.key" [jobStatus]="job.value.jobStatus"></app-start-stop-remove-job>
+          </div>
+          <div class="divTableCell text-center">
+            <app-enable-disable-job (refreshEnable)="onRefresh()" (refreshDisable)="onRefresh()" [jobId]="job.key" [moduleStatus]="job.value.moduleStatus"></app-enable-disable-job>
+        </div>
           </div>
         </div>
       }

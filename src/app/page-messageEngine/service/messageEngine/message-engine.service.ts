@@ -8,7 +8,7 @@ import { TokenService } from '../token';
 })
 export class MessageEngineService {
 
-  private readonly URL_MESSAGE = 'http://localhost:4200/assets/message-engine.json';
+  private readonly URL_MESSAGE = 'http://localhost:55426/assets/message-engine.json';
 
   http = inject(HttpClient);
 

@@ -9,5 +9,8 @@ export interface Data {
 export interface History {
   jobExecutionStartedAt: string;
   jobExecutedAt:        string;
+  exception:        string;
   jobExecutionFailedAt:        string;
+  jobStoppedFailedAt:        string;
+  executionTimeInMilliseconds: number;
 }

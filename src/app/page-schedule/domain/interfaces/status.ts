@@ -16,7 +16,6 @@ export interface JobAsyncAggregateJobExecution1 {
   moduleStatus: string;
   numberOfRuns: number;
   startedAt:    null | string;
-  status:           string;
   firstRunAt:       string;
   stoppedAt:        null;
   nextExecutionAt:  string;

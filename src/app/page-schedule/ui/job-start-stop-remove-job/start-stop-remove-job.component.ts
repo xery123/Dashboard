@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { startStopRemoveJobsUsecase } from '../../application/start-stop-remove-jobs.usecase/start-stop-remove-jobs.usecase';
+import { startStopRemoveJobsUsecase } from '../../application/usecases/start-stop-remove-jobs.usecase/start-stop-remove-jobs.usecase';
 
 @Component({
-  selector: 'app-enable-disable-job',
+  selector: 'app-start-stop-remove-job',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './start-stop-remove-job.component.html',
@@ -12,6 +12,9 @@ import { startStopRemoveJobsUsecase } from '../../application/start-stop-remove-
 export class StartStopRemoveJobComponent {
   @Input()
   jobId: string = ''
+
+  @Input()
+  jobStatus: string = '';
 
   private startStopRemoveJobsUsecase = inject(startStopRemoveJobsUsecase);
   @Output() refreshStart = new EventEmitter<void>();
@@ -33,15 +36,20 @@ export class StartStopRemoveJobComponent {
         console.log('job disabled:', response);
       },
     });
-    this.refreshStop.emit();
-  }
-
-  removeJob() {
     this.startStopRemoveJobsUsecase.removeJob(this.jobId).subscribe({
       next: response => {
         console.log('job deleted:', response);
       },
     });
-    this.refreshRemove.emit();
+    this.refreshStop.emit();
   }
+
+  // removeJob() {
+  //   this.startStopRemoveJobsUsecase.removeJob(this.jobId).subscribe({
+  //     next: response => {
+  //       console.log('job deleted:', response);
+  //     },
+  //   });
+  //   this.refreshRemove.emit();
+  // }
 }

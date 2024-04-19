@@ -7,7 +7,7 @@ import { Injectable, inject } from '@angular/core';
 export class LateHistoryService {
 
 
-  private readonly URL_HISTORY_LATE = 'http://localhost:4200/assets/';
+  private readonly URL_HISTORY_LATE = 'http://localhost:55426/assets/';
 
   http = inject(HttpClient);
 

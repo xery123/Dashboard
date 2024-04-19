@@ -10,11 +10,14 @@ import { POST_REMOVE_STATUS_API_PROVIDER } from './page-schedule/infrastructure/
 import { POST_STARTALL_STATUS_API_PROVIDER } from './page-schedule/infrastructure/providers/postAllStart-status-api.provider';
 import { POST_START_STATUS_API_PROVIDER } from './page-schedule/infrastructure/providers/postStart-status-api.provider';
 import { POST_STOP_STATUS_API_PROVIDER } from './page-schedule/infrastructure/providers/postStop-status-api.provider';
+
+import { POST_ENABLE_STATUS_API_PROVIDER } from './page-schedule/infrastructure/providers/postEnable-status-api.provider';
+import { POST_DISABLE_STATUS_API_PROVIDER } from './page-schedule/infrastructure/providers/postDisable-status-api.provider';
 import { GET_STATUS_API_PROVIDER } from './page-schedule/infrastructure/providers/get-status-api.provider';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), provideClientHydration(),provideHttpClient(),GET_STATUS_JOB_API_PROVIDER,HISTORY_API_PROVIDER,
     POST_REMOVE_STATUS_API_PROVIDER,POST_STARTALL_STATUS_API_PROVIDER,POST_START_STATUS_API_PROVIDER,POST_STOP_STATUS_API_PROVIDER,
-GET_STATUS_API_PROVIDER
+POST_ENABLE_STATUS_API_PROVIDER,POST_DISABLE_STATUS_API_PROVIDER,GET_STATUS_API_PROVIDER
   ]
 };

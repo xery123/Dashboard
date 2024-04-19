@@ -6,7 +6,7 @@ import { Injectable, inject } from '@angular/core';
 })
 export class HistoryService {
 
-  private readonly URL_HISTORY = 'http://localhost:4200/assets/';
+  private readonly URL_HISTORY = 'http://localhost:55426/assets/';
 
 
   http = inject(HttpClient);

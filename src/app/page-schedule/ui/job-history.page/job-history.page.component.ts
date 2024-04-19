@@ -7,7 +7,7 @@ import { TableHistoryComponent } from "../job-history.table/job-history.table.co
 import { TableComponent } from '../job-status.table/job-status.table.component';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { TokenService } from '../../infrastructure/token';
-import { getIdHistoryUsecase } from '../../application/getId-history.usecase/getId-history.usecase';
+import { getIdHistoryUsecase } from '../../application/usecases/getId-history.usecase/getId-history.usecase';
 
 @Component({
     selector: 'app-history-job',

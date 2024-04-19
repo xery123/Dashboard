@@ -16,7 +16,6 @@ export interface JobAsyncAggregateJobExecution1 {
   readonly moduleStatus: string;
   readonly numberOfRuns: number;
   readonly startedAt:    null | string;
-  readonly status:           string;
   readonly firstRunAt:       string;
   readonly stoppedAt:        null;
   readonly nextExecutionAt:  string;

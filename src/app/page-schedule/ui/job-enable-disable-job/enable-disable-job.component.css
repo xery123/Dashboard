@@ -1,0 +1,29 @@
+.text2 { text-align:left;
+  margin-bottom:0.2rem;
+  margin-left:3rem;
+  color: rgb(78, 186, 210);
+}
+.unity { display: table-row; }
+.component {  display: table-cell }
+/* Estilos para el botón con apariencia de enlace */
+.btn-link {
+  font-weight: 400;
+  color: #007bff; /* Color azul por defecto de Bootstrap */
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.btn-link:hover {
+  color: #0056b3; /* Color más oscuro al pasar el mouse */
+  text-decoration: underline;
+}
+
+/* Estilos para el botón deshabilitado */
+.btn-disabled {
+  color: #6c757d; /* Color gris de Bootstrap */
+  pointer-events: none; /* Evita que se pueda hacer clic en el botón */
+  cursor: not-allowed; /* Cambia el cursor a no permitido */
+  opacity: 0.65; /* Reduce la opacidad del botón */
+}

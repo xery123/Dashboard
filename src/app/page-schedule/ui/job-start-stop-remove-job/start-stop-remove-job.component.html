@@ -1,0 +1,11 @@
+<div class="unity" *ngIf="jobStatus">
+  <button type="button" class="btn btn-link" [disabled]="jobStatus === 'SCHEDULED'">
+  <div class="component" (click)="startJob()">START</div></button>
+  <div class="component">/</div>
+  <button type="button" class="btn btn-link" [disabled]="jobStatus === 'STOPPED'">
+  <div class="component" (click)="stopJob()">STOP</div></button>
+  <!-- <div class="component">/</div>
+  <button type="button" class="btn btn-link">
+  <div class="component" (click)="removeJob()">REMOVE</div></button> -->
+</div>
+

@@ -8,7 +8,7 @@ import { TokenService } from '../token';
 export class ProgressHistoryService {
 
 
-  private readonly URL_HISTORY_PROGRESS = 'http://localhost:4200/assets/';
+  private readonly URL_HISTORY_PROGRESS = 'http://localhost:55426/assets/';
 
   http = inject(HttpClient);
 

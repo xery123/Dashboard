@@ -1,0 +1,9 @@
+<div class="unity" *ngIf="moduleStatus">
+  <button type="button" class="btn btn-link" [disabled]="moduleStatus === 'ENABLED'">
+    <div class="component" (click)="enableJob()">ENABLE</div>
+  </button>
+  <div class="component">/</div>
+  <button type="button" class="btn btn-link" [disabled]="moduleStatus === 'DISABLED'">
+    <div class="component" (click)="disableJob()">DISABLE</div>
+  </button>
+</div>
