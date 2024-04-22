@@ -26,12 +26,24 @@
 }
 
 /* Estilos para el botón deshabilitado */
-.btn-disabled {
-  color: #6c757d;
-  pointer-events: none; /* Evita que se pueda hacer clic en el botón */
-  cursor: not-allowed; /* Cambia el cursor a no permitido */
-  opacity: 0.65; /* Reduce la opacidad del botón */
-}
+
 .loading-cursor {
   cursor: wait; /* Cambia el cursor a un reloj de arena o similar */
+}
+.button-container {
+  display: flex;
+  align-items: center;
+}
+.button-box {
+  padding: 8px;
+  border-radius: 4px;
+}
+.green-box {
+  background-color: rgba(0, 128, 0, 0.2);
+}
+.red-box {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+.disabled-button {
+  opacity: 0.5;
 }

@@ -1,19 +1,41 @@
-<button
-  type="button"
-  class="btn btn-link"
-  [ngClass]="{ 'loading-cursor': isLoading }"
-  [disabled]="moduleStatus === 'ENABLED' || isLoading"
-  (click)="enableJob()"
->
-  <div class="component">ENABLE</div>
-</button>
-<div class="component">/</div>
-<button
-  type="button"
-  class="btn btn-link"
-  [ngClass]="{ 'loading-cursor': isLoading }"
-  [disabled]="moduleStatus === 'DISABLED' || isLoading"
-  (click)="disableJob()"
->
-  <div class="component">DISABLE</div>
-</button>
+<div class="button-container">
+  <div
+    class="button-box"
+    [ngClass]="{ 'green-box': moduleStatus === 'ENABLED' }"
+  >
+    <button
+      type="button"
+      class="btn btn-link"
+      [ngClass]="{
+        'loading-cursor': isLoading,
+        'disabled-button':
+          moduleStatus === 'ENABLED' || isLoading || isButtonDisabled
+      }"
+      [disabled]="moduleStatus === 'ENABLED' || isLoading || isButtonDisabled"
+      (click)="enableJob(); disableButtons()"
+    >
+      <div class="component">ENABLE</div>
+    </button>
+  </div>
+
+  <div class="component">/</div>
+
+  <div
+    class="button-box"
+    [ngClass]="{ 'red-box': moduleStatus === 'DISABLED' }"
+  >
+    <button
+      type="button"
+      class="btn btn-link"
+      [ngClass]="{
+        'loading-cursor': isLoading,
+        'disabled-button':
+          moduleStatus === 'DISABLED' || isLoading || isButtonDisabled
+      }"
+      [disabled]="moduleStatus === 'DISABLED' || isLoading || isButtonDisabled"
+      (click)="disableJob(); disableButtons()"
+    >
+      <div class="component">DISABLE</div>
+    </button>
+  </div>
+</div>

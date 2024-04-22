@@ -18,11 +18,11 @@ export class getStatusJobAdapter implements IGetStatusJobPort {
 
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
-  getStatusJob(id: string): Observable<JobAsyncAggregateJobExecution1> {
+  getStatusJob(id: string): Observable<IStatusJob> {
     const url = `${this.URL_STATUS}${id}`;
     const token = this.tokenService.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     console.log('get statusJob');
-    return this.http.get<JobAsyncAggregateJobExecution1>(url, { headers });
+    return this.http.get<IStatusJob>(url, { headers });
   }
 }

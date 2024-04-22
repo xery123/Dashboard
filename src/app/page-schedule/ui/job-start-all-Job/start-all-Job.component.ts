@@ -19,9 +19,9 @@ export class startAllJobComponent {
     this.startStopRemoveJobsUsecase.startAllJob().subscribe({
       next: (response) => {
         console.log('jobAll enabled:', response);
+        this.refreshAll.emit();
         this.isLoading = false;
       },
     });
-    this.refreshAll.emit();
   }
 }

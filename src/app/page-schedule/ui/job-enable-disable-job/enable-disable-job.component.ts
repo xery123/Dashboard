@@ -26,10 +26,10 @@ export class EnableDisableJobComponent {
     this.enableDisableJobsUsecase.enableJob(this.jobId).subscribe({
       next: (response) => {
         console.log('job enabled:', response);
+        this.refreshEnableDisable.emit();
         this.isLoading = false;
       },
     });
-    this.refreshEnableDisable.emit();
   }
 
   disableJob() {
@@ -37,9 +37,20 @@ export class EnableDisableJobComponent {
     this.enableDisableJobsUsecase.disableJob(this.jobId).subscribe({
       next: (response) => {
         console.log('job disabled:', response);
+        this.refreshEnableDisable.emit();
         this.isLoading = false;
       },
     });
-    this.refreshEnableDisable.emit();
+  }
+  isButtonDisabled = false;
+  disableTimeout: any;
+  disableButtons() {
+    this.isButtonDisabled = true;
+    if (this.disableTimeout) {
+      clearTimeout(this.disableTimeout);
+    }
+    this.disableTimeout = setTimeout(() => {
+      this.isButtonDisabled = false;
+    }, 3000);
   }
 }

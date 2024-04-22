@@ -17,6 +17,9 @@ export class StartStopRemoveJobComponent {
   jobStatus: string = '';
 
   @Input()
+  moduleStatus: string = '';
+
+  @Input()
   jobStarted: string = '';
 
   isLoading = false;
@@ -29,10 +32,10 @@ export class StartStopRemoveJobComponent {
     this.startStopRemoveJobsUsecase.startJob(this.jobId).subscribe({
       next: (response) => {
         console.log('job enabled:', response);
+        this.refresh.emit();
         this.isLoading = false;
       },
     });
-    this.refresh.emit();
   }
 
   stopJob() {
@@ -40,10 +43,10 @@ export class StartStopRemoveJobComponent {
     this.startStopRemoveJobsUsecase.stopJob(this.jobId).subscribe({
       next: (response) => {
         console.log('job disabled:', response);
+        this.refresh.emit();
         this.isLoading = false;
       },
     });
-    this.refresh.emit();
   }
 
   removeJob() {
@@ -51,9 +54,24 @@ export class StartStopRemoveJobComponent {
     this.startStopRemoveJobsUsecase.removeJob(this.jobId).subscribe({
       next: (response) => {
         console.log('job deleted:', response);
+        this.refresh.emit();
         this.isLoading = false;
       },
     });
-    this.refresh.emit();
+  }
+
+  isButtonDisabled = false;
+  disableTimeout: any;
+
+  disableButtons() {
+    this.isButtonDisabled = true;
+
+    if (this.disableTimeout) {
+      clearTimeout(this.disableTimeout);
+    }
+
+    this.disableTimeout = setTimeout(() => {
+      this.isButtonDisabled = false;
+    }, 3000);
   }
 }

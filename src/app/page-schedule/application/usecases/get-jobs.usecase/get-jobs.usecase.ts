@@ -21,7 +21,7 @@ export class getJobsUsecase {
     @Inject(HTTP_GET_STATUS_SERVICE) private IGetStatusPort: IGetStatusPort
   ) {}
 
-  getStatusJob(id: string): Observable<JobAsyncAggregateJobExecution1> {
+  getStatusJob(id: string): Observable<IStatusJob> {
     return this.IGetStatusJobPort.getStatusJob(id);
   }
 

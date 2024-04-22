@@ -34,34 +34,30 @@ export default class StatusJobComponent implements OnInit {
   constructor(private http: HttpClient, private ngZone: NgZone) {}
 
   ngOnInit(): void {
-    this.ngZone.run(() => {
-      this.getJobsUsecase.getStatus().subscribe((respuesta) => {
-        this.jobsId = respuesta;
-      });
+    this.getJobsUsecase.getStatus().subscribe((respuesta) => {
+      this.jobsId = respuesta;
     });
+
     this.startAllJob();
     this.handleJobOperation('refreshJob');
     this.handleJobOperation('enableDisable');
   }
 
   startAllJob() {
-    this.ngZone.run(() => {
-      this.getJobsUsecase.getStatus().subscribe((respuesta) => {
-        this.jobsId = respuesta;
-      });
+    this.getJobsUsecase.getStatus().subscribe((respuesta) => {
+      this.jobsId = respuesta;
     });
   }
 
   handleJobOperation(operation: 'refreshJob' | 'enableDisable') {
-    this.ngZone.run(() => {
-      this.getJobsUsecase.getStatus().subscribe((respuesta) => {
-        this.jobsId = respuesta;
-      });
+    this.getJobsUsecase.getStatus().subscribe((respuesta) => {
+      this.jobsId = respuesta;
     });
+
     // if (this.jobId) {
     //   this.ngZone.run(() => {
     //     this.getJobsUsecase.getStatusJob(this.jobId).subscribe((respuesta) => {
-    //       this.refreshJob = respuesta;
+    //       this.refreshJob = respuesta.dataJob;
     //     });
     //   });
     // }
