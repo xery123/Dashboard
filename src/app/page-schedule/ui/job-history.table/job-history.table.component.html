@@ -1,69 +1,133 @@
-
-  <div class="container mt-3">
-    <div class="row">
-      <div class="col-lg-12 offset-lg-0">
-     <div class="divTable blueTable">
-    <div class="divTableHeading">
-      <div class="divTableRow">
-        <div class="divTableHead text-center">Started</div>
-        <div class="divTableHead text-center">Executed</div>
-        <div class="divTableHead text-center">Status</div>
-        <div class="divTableHead text-center">Time</div>
-      </div>
-    </div>
-    @for (historial of historyT; track $index) {
-      <div class="divTableBody">
-        <div class="divTableRow">
-          <div class="divTableCell text-center"> {{ historial.jobExecutionStartedAt }}</div>
-          <div class="divTableCell text-center"> {{ historial.jobExecutedAt }}</div>
-          <div class="divTableCell text-center">
-            <span [ngStyle]="{'color': (historial.jobExecutionFailedAt || historial.exception || historial.jobStoppedFailedAt ?
-            'red' : (historial.jobExecutionStartedAt && !historial.jobExecutedAt ?
-            'green' : (historial.jobExecutionStartedAt && historial.jobExecutedAt ? 'green' : 'black')))}">
-              {{ historial.jobExecutionFailedAt || historial.exception || historial.jobStoppedFailedAt ?
-              'KO' : (historial.jobExecutionStartedAt && !historial.jobExecutedAt ?
-              'IN PROGRESS' : (historial.jobExecutionStartedAt && historial.jobExecutedAt ? 'OK' : '')) }}
-            </span>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-lg-12 offset-lg-0">
+      <div class="divTable blueTable">
+        <div class="divTableHeading">
+          <div class="divTableRow">
+            <div class="divTableHead text-center">Started</div>
+            <div class="divTableHead text-center">Executed</div>
+            <div class="divTableHead text-center">Status</div>
+            <div class="divTableHead text-center">Time</div>
           </div>
-          <div class="divTableCell text-center">
-            <span *ngIf="!historial.jobExecutionStartedAt && !historial.jobExecutedAt" (click)="showErrorDetails = true" class="error-link">Error</span>
-            <span *ngIf="historial.jobExecutionStartedAt && historial.jobExecutedAt">
-              {{ historial.executionTimeInMilliseconds | millisecondsToTime }}
-            </span>
-            <span *ngIf="historial.jobExecutionStartedAt && !historial.jobExecutedAt">
-              {{ historial.executionTimeInMilliseconds | millisecondsToTime }}
-            </span>
-          </div>
+        </div>
+        @for (historial of historyT; track $index) {
+        <div class="divTableBody">
+          <div class="divTableRow">
+            <div class="divTableCell text-center">
+              {{ historial.jobExecutionStartedAt }}
+            </div>
+            <div class="divTableCell text-center">
+              {{ historial.jobExecutedAt }}
+            </div>
+            <div class="divTableCell text-center">
+              <span
+                [ngStyle]="{
+                  color:
+                    historial.jobExecutionFailedAt ||
+                    historial.exception ||
+                    historial.jobStoppedFailedAt
+                      ? 'red'
+                      : historial.jobExecutionStartedAt &&
+                        !historial.jobExecutedAt
+                      ? 'green'
+                      : historial.jobExecutionStartedAt &&
+                        historial.jobExecutedAt
+                      ? 'green'
+                      : 'black'
+                }"
+              >
+                {{
+                  historial.jobExecutionFailedAt ||
+                  historial.exception ||
+                  historial.jobStoppedFailedAt
+                    ? "KO"
+                    : historial.jobExecutionStartedAt &&
+                      !historial.jobExecutedAt
+                    ? "IN PROGRESS"
+                    : historial.jobExecutionStartedAt && historial.jobExecutedAt
+                    ? "OK"
+                    : ""
+                }}
+              </span>
+            </div>
+            <div class="divTableCell text-center">
+              <span
+                *ngIf="
+                  historial.jobExecutionStartedAt && historial.jobExecutedAt
+                "
+                (click)="showErrorDetails = true"
+                class="error-link"
+                >Error</span
+              >
+              <span
+                *ngIf="
+                  historial.jobExecutionStartedAt && historial.jobExecutedAt
+                "
+              >
+                {{ historial.executionTimeInMilliseconds | millisecondsToTime }}
+              </span>
+              <span
+                *ngIf="
+                  historial.jobExecutionStartedAt && !historial.jobExecutedAt
+                "
+              >
+                {{ historial.executionTimeInMilliseconds | millisecondsToTime }}
+              </span>
+            </div>
 
-          <div *ngIf="showErrorDetails" class="overlay">
-            <div class="divTable error-details">
-              <div class="divTableHeading">
-                <div class="divTableRow">
-                  <div class="divTableHead">Propiedad</div>
-                  <div class="divTableHead">Valor</div>
+            <div *ngIf="showErrorDetails" class="overlay">
+              <div class="container mt-3">
+                <div class="button-container">
+                  <button
+                    class="close-button-X"
+                    (click)="showErrorDetails = false"
+                  >
+                    X
+                  </button>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12 offset-lg-0">
+                    <div class="divTable blueTable">
+                      <div class="divTableHeading">
+                        <div class="divTableRow">
+                          <div class="divTableHead">Propiedad</div>
+
+                          <div class="divTableHead">Valor</div>
+                        </div>
+                      </div>
+                      <div class="divTableBody">
+                        <div class="divTableRow">
+                          <div class="divTableCell">jobStoppedFailedAt</div>
+                          <div class="divTableCell">
+                            {{ historial.jobStoppedFailedAt }}
+                          </div>
+                        </div>
+                        <div class="divTableRow">
+                          <div class="divTableCell">exception</div>
+                          <div class="divTableCell">
+                            {{ historial.exception }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="margin"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="button-container">
+                  <button
+                    class="close-button"
+                    (click)="showErrorDetails = false"
+                  >
+                    Close
+                  </button>
                 </div>
               </div>
-              <div class="divTableBody">
-                <div class="divTableRow">
-                  <div class="divTableCell">jobStoppedFailedAt</div>
-                  <div class="divTableCell">{{ historial.jobStoppedFailedAt }}</div>
-                </div>
-                <div class="divTableRow">
-                  <div class="divTableCell">exception</div>
-                  <div class="divTableCell">{{ historial.exception }}</div>
-                </div>
-              </div>
-              <button (click)="showErrorDetails = false">Cerrar</button>
             </div>
           </div>
-
-       </div>
+        </div>
+        }
       </div>
-  }
-     </div>
     </div>
+  </div>
 </div>
-</div>
-
-
-

@@ -1,19 +1,21 @@
 <div *ngIf="jobsId; else cargando">
-    <div class="textTittle text-center">SCHEDULER</div>
-<hr>
-    <div class="text">
-      <div>Started: {{ jobsId.data.schedulerStats.startedAt }}</div>
-      <div>Min Threads: {{ jobsId.data.schedulerStats.minThreads }}</div>
-      <div>Max Threads: {{ jobsId.data.schedulerStats.maxThreads }}</div>
-    </div>
-<hr>
-<app-start-all-job (refreshAll)="startAllJob()"></app-start-all-job>
-<app-table (startJob)="startJob()" (stopJob)="stopJob()" (enableJob)="enableJob()"
-(disableJob)="disableJob()" (removeJob)="removeJob()" [jobsId]="jobsId" ></app-table>
-
+  <div class="textTittle text-center">SCHEDULER</div>
+  <hr />
+  <div class="text">
+    <div>Started: {{ jobsId.data.schedulerStats.startedAt }}</div>
+    <div>Min Threads: {{ jobsId.data.schedulerStats.minThreads }}</div>
+    <div>Max Threads: {{ jobsId.data.schedulerStats.maxThreads }}</div>
+  </div>
+  <hr />
+  <app-start-all-job (refreshAll)="startAllJob()"></app-start-all-job>
+  <app-table
+    (refreshJob)="handleJobOperation('refreshJob')"
+    (enableJob)="handleJobOperation('enable')"
+    (disableJob)="handleJobOperation('disable')"
+    [jobsId]="jobsId"
+  ></app-table>
 </div>
 
 <ng-template #cargando>
-    <p>Cargando datos...</p>
+  <p>Cargando datos...</p>
 </ng-template>
-

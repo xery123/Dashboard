@@ -3,13 +3,13 @@ export interface IStatusJob {
 }
 
 export interface DataJob {
-  id:               string;
-  status:           string;
-  startedAt:        string;
-  firstRunAt:       string;
-  stoppedAt:        string;
-  nextExecutionAt:  string;
+  jobStatus: string;
+  moduleStatus: string;
+  numberOfRuns: number;
+  startedAt: string;
+  firstRunAt: string;
+  stoppedAt: null;
+  nextExecutionAt: string;
   lastRunStartedAt: string;
-  lastRunEndedAt:   string;
-  numberOfRuns:     number;
+  lastRunEndedAt: string;
 }

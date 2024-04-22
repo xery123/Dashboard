@@ -1,4 +1,9 @@
 <div class="unity">
-  <button type="button" class="btn btn-link">
-  <div class="component" (click)="startAllJob()">START-ALL</div></button>
+  <button
+    type="button"
+    class="btn btn-link"
+    [ngClass]="{ 'loading-cursor': isLoading }"
+  >
+    <div class="component" (click)="startAllJob()">START-ALL</div>
+  </button>
 </div>

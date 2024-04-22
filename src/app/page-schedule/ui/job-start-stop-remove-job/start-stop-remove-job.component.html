@@ -1,11 +1,35 @@
-<div class="unity" *ngIf="jobStatus">
-  <button type="button" class="btn btn-link" [disabled]="jobStatus === 'SCHEDULED'">
-  <div class="component" (click)="startJob()">START</div></button>
-  <div class="component">/</div>
-  <button type="button" class="btn btn-link" [disabled]="jobStatus === 'STOPPED'">
-  <div class="component" (click)="stopJob()">STOP</div></button>
-  <!-- <div class="component">/</div>
-  <button type="button" class="btn btn-link">
-  <div class="component" (click)="removeJob()">REMOVE</div></button> -->
+<div class="unity">
+  <!-- START button -->
+  <button
+    type="button"
+    class="btn btn-link"
+    [ngClass]="{ 'loading-cursor': isLoading }"
+    *ngIf="jobStarted === null"
+    (click)="startJob()"
+    [disabled]="isLoading"
+  >
+    <div class="component">START</div>
+  </button>
+  <!-- STOP button -->
+  <button
+    type="button"
+    class="btn btn-link"
+    [ngClass]="{ 'loading-cursor': isLoading }"
+    *ngIf="jobStarted !== null && jobStatus !== 'STOPPED'"
+    (click)="stopJob()"
+    [disabled]="isLoading"
+  >
+    <div class="component">STOP</div>
+  </button>
+  <!-- REMOVE button -->
+  <button
+    type="button"
+    class="btn btn-link"
+    [ngClass]="{ 'loading-cursor': isLoading }"
+    *ngIf="jobStatus === 'STOPPED' && jobStarted !== null"
+    (click)="removeJob()"
+    [disabled]="isLoading"
+  >
+    <div class="component">REMOVE</div>
+  </button>
 </div>
-

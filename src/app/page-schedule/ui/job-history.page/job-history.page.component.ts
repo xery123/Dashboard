@@ -1,22 +1,25 @@
-
-import { Component,OnInit,inject ,Input} from '@angular/core';
-import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { IHistory,History } from '../../domain/interfaces/history';
+import { Component, OnInit, inject, Input } from '@angular/core';
+import {
+  NgbActiveModal,
+  NgbModal,
+  NgbModalRef,
+} from '@ng-bootstrap/ng-bootstrap';
+import { IHistory, History } from '../../domain/interfaces/history';
 import { CommonModule } from '@angular/common';
-import { TableHistoryComponent } from "../job-history.table/job-history.table.component";
+import { TableHistoryComponent } from '../job-history.table/job-history.table.component';
 import { TableComponent } from '../job-status.table/job-status.table.component';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TokenService } from '../../infrastructure/token';
 import { getIdHistoryUsecase } from '../../application/usecases/getId-history.usecase/getId-history.usecase';
 
 @Component({
-    selector: 'app-history-job',
-    standalone: true,
-    templateUrl: './job-history.page.component.html',
-    styleUrl: './job-history.page.component.css',
-    imports: [CommonModule, TableHistoryComponent,TableComponent]
+  selector: 'app-history-job',
+  standalone: true,
+  templateUrl: './job-history.page.component.html',
+  styleUrl: './job-history.page.component.css',
+  imports: [CommonModule, TableHistoryComponent, TableComponent],
 })
-export class HistoryJobComponent implements OnInit{
+export class HistoryJobComponent implements OnInit {
   activeModal = inject(NgbActiveModal);
 
   @Input()
@@ -31,25 +34,17 @@ export class HistoryJobComponent implements OnInit{
 
   private getIdHistoryUsecase = inject(getIdHistoryUsecase);
 
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private modalService: NgbModal,
-    private tokenService: TokenService) {
-	}
+    private tokenService: TokenService
+  ) {}
 
   ngOnInit(): void {
     if (this.idName) {
-      const url = this.getIdHistoryUsecase.getId(this.idName);
-      const token = this.tokenService.getToken() ;
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      this.http.get<IHistory>(url,{ headers })
-      .subscribe(respuesta => {
-             this.historyT = respuesta.data.history;
-            });
+      this.getIdHistoryUsecase
+        .getId(this.idName)
+        .subscribe((respuesta) => (this.historyT = respuesta.data.history));
+    }
   }
-}}
-
-
-
-
-
-
+}

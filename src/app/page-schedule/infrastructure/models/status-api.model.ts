@@ -1,34 +1,34 @@
 export interface IApiStatus {
-  readonly data: Data;
+  data: Data;
 }
 
 export interface Data {
-  readonly schedulerStats: SchedulerStats;
-  readonly jobsSummary:    JobsSummary;
+  schedulerStats: SchedulerStats;
+  jobsSummary:    JobsSummary;
 }
 
 export interface JobsSummary {
-  readonly [key: string]:       JobAsyncAggregateJobExecution1;
+  [key: string]:       JobAsyncAggregateJobExecution1;
 }
 
 export interface JobAsyncAggregateJobExecution1 {
-  readonly jobStatus:    string;
-  readonly moduleStatus: string;
-  readonly numberOfRuns: number;
-  readonly startedAt:    null | string;
-  readonly firstRunAt:       string;
-  readonly stoppedAt:        null;
-  readonly nextExecutionAt:  string;
-  readonly lastRunStartedAt: string;
-  readonly lastRunEndedAt:   string;
+  jobStatus:    string;
+  moduleStatus: string;
+  numberOfRuns: number;
+  startedAt:    string;
+  firstRunAt:       string;
+  stoppedAt:        null;
+  nextExecutionAt:  string;
+  lastRunStartedAt: string;
+  lastRunEndedAt:   string;
 
 }
 
 export interface SchedulerStats {
-  readonly minThreads:      number;
-  readonly maxThreads:      number;
-  readonly activeThreads:   number;
-  readonly idleThreads:     number;
-  readonly largestPoolSize: number;
-  readonly startedAt:       string;
+  minThreads:      number;
+  maxThreads:      number;
+  activeThreads:   number;
+  idleThreads:     number;
+  largestPoolSize: number;
+  startedAt:       string;
 }

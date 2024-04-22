@@ -6,20 +6,20 @@ import { IStopStatusPort } from '../../application/ports/status-port/start-stop-
 import { TokenService } from '../token';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class postStopStatusAdapter implements IStopStatusPort {
-
-
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private postUrlService: postUrlService,
     private tokenService: TokenService
-  ) { }
+  ) {}
   stopJob(jobId: string): Observable<any> {
     const token = this.tokenService.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const apiUrl = this.postUrlService.getPostUrl();
     const url = `${apiUrl}/stop/${jobId}`;
-    return this.http.delete(url,{ headers });
+    console.log('delete stop');
+    return this.http.delete(url, { headers });
   }
 }

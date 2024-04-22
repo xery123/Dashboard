@@ -6,20 +6,21 @@ import { TokenService } from '../token';
 import { IEnableStatusPort } from '../../application/ports/status-port/enable-disable.port/enablePost-status.port';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class postEnableStatusAdapter implements IEnableStatusPort {
-
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private postUrlService: postUrlService,
     private tokenService: TokenService
-  ) { }
+  ) {}
 
   enableJob(jobId: string): Observable<any> {
     const token = this.tokenService.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const apiUrl = this.postUrlService.getPostUrl();
     const url = `${apiUrl}/enable/${jobId}`;
-    return this.http.get(url,{ headers });
+    console.log('get enable');
+    return this.http.get(url, { headers });
   }
 }
