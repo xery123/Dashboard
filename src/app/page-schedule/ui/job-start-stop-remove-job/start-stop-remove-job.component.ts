@@ -23,8 +23,6 @@ export class StartStopRemoveJobComponent {
 
   private startStopRemoveJobsUsecase = inject(startStopRemoveJobsUsecase);
   @Output() refresh = new EventEmitter<void>();
-  // @Output() refreshStop = new EventEmitter<void>();
-  // @Output() refreshRemove = new EventEmitter<void>();
 
   startJob() {
     this.isLoading = true;

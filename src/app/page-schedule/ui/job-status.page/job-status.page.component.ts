@@ -41,8 +41,7 @@ export default class StatusJobComponent implements OnInit {
     });
     this.startAllJob();
     this.handleJobOperation('refreshJob');
-    this.handleJobOperation('enable');
-    this.handleJobOperation('disable');
+    this.handleJobOperation('enableDisable');
   }
 
   startAllJob() {
@@ -53,7 +52,7 @@ export default class StatusJobComponent implements OnInit {
     });
   }
 
-  handleJobOperation(operation: 'refreshJob' | 'enable' | 'disable') {
+  handleJobOperation(operation: 'refreshJob' | 'enableDisable') {
     this.ngZone.run(() => {
       this.getJobsUsecase.getStatus().subscribe((respuesta) => {
         this.jobsId = respuesta;

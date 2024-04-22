@@ -65,9 +65,7 @@
 
               <div class="divTableCell text-center">
                 <app-start-stop-remove-job
-                  (refreshStart)="onRefresh()"
-                  (refreshStop)="onRefresh()"
-                  (refreshRemove)="onRefresh()"
+                  (refresh)="onRefresh1()"
                   [jobId]="job.key"
                   [jobStatus]="job.value.jobStatus"
                   [jobStarted]="job.value.startedAt"
@@ -75,8 +73,7 @@
               </div>
               <div class="divTableCell text-center">
                 <app-enable-disable-job
-                  (refreshEnable)="onRefresh()"
-                  (refreshDisable)="onRefresh()"
+                  (refreshEnableDisable)="onRefresh2()"
                   [jobId]="job.key"
                   [moduleStatus]="job.value.moduleStatus"
                 ></app-enable-disable-job>

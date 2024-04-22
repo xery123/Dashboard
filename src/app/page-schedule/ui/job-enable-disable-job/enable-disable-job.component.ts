@@ -19,8 +19,7 @@ export class EnableDisableJobComponent {
   isLoading = false;
 
   private enableDisableJobsUsecase = inject(enableDisableJobsUsecase);
-  @Output() refreshEnable = new EventEmitter<void>();
-  @Output() refreshDisable = new EventEmitter<void>();
+  @Output() refreshEnableDisable = new EventEmitter<void>();
 
   enableJob() {
     this.isLoading = true;
@@ -30,7 +29,7 @@ export class EnableDisableJobComponent {
         this.isLoading = false;
       },
     });
-    this.refreshEnable.emit();
+    this.refreshEnableDisable.emit();
   }
 
   disableJob() {
@@ -41,6 +40,6 @@ export class EnableDisableJobComponent {
         this.isLoading = false;
       },
     });
-    this.refreshDisable.emit();
+    this.refreshEnableDisable.emit();
   }
 }

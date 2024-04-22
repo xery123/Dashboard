@@ -10,8 +10,7 @@
   <app-start-all-job (refreshAll)="startAllJob()"></app-start-all-job>
   <app-table
     (refreshJob)="handleJobOperation('refreshJob')"
-    (enableJob)="handleJobOperation('enable')"
-    (disableJob)="handleJobOperation('disable')"
+    (enableDisableJob)="handleJobOperation('enableDisable')"
     [jobsId]="jobsId"
   ></app-table>
 </div>

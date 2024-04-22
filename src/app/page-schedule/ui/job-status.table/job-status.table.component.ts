@@ -46,12 +46,12 @@ export class TableComponent {
   }
 
   @Output() refreshJob = new EventEmitter<void>();
-  @Output() enableJob = new EventEmitter<void>();
-  @Output() disableJob = new EventEmitter<void>();
+  @Output() enableDisableJob = new EventEmitter<void>();
 
-  onRefresh() {
-    this.enableJob.emit();
-    this.disableJob.emit();
+  onRefresh1() {
     this.refreshJob.emit();
+  }
+  onRefresh2() {
+    this.enableDisableJob.emit();
   }
 }
