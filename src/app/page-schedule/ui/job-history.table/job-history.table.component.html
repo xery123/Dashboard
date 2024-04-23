@@ -57,7 +57,7 @@
               <div class="divTableCell text-center">
                 <span
                   *ngIf="
-                    historial.jobExecutionStartedAt && historial.jobExecutedAt
+                    !historial.jobExecutionStartedAt && !historial.jobExecutedAt
                   "
                   (click)="showErrorDetails = true"
                   class="error-link"

@@ -34,11 +34,7 @@ export class HistoryJobComponent implements OnInit {
 
   private getIdHistoryUsecase = inject(getIdHistoryUsecase);
 
-  constructor(
-    private http: HttpClient,
-    private modalService: NgbModal,
-    private tokenService: TokenService
-  ) {}
+  constructor(private http: HttpClient, private modalService: NgbModal) {}
 
   ngOnInit(): void {
     if (this.idName) {

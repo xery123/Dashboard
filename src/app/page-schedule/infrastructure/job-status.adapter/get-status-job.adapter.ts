@@ -3,24 +3,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TokenService } from '../token';
 import { IGetStatusJobPort } from '../../application/ports/status-port/get-status.port/get-status-job.port';
 import { Observable } from 'rxjs';
-import {
-  IStatus,
-  JobAsyncAggregateJobExecution1,
-} from '../../domain/interfaces/status';
 import { IStatusJob } from '../../domain/interfaces/statusJob';
+import { postUrlStatusJob } from '../post-url.StatusJob';
 
 @Injectable({
   providedIn: 'root',
 })
 export class getStatusJobAdapter implements IGetStatusJobPort {
-  private URL_STATUS =
-    'https://testactors2.limber.io/api/v4/jobs/scheduler/status/';
-
-  constructor(private http: HttpClient, private tokenService: TokenService) {}
+  constructor(private http: HttpClient) {}
 
   getStatusJob(id: string): Observable<IStatusJob> {
-    const url = `${this.URL_STATUS}${id}`;
-    const token = this.tokenService.getToken();
+    const apiUrl = postUrlStatusJob.API_URL_STATUS_JOB;
+    const url = `${apiUrl}${id}`;
+    const token = TokenService.TOKEN;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     console.log('get statusJob');
     return this.http.get<IStatusJob>(url, { headers });

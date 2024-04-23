@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { postUrlService } from '../post-url';
+import { postUrlButtons } from '../post-url.Buttons';
 import { IStartAllStatusPort } from '../../application/ports/status-port/start-stop-remove.port/startAllPost-status.port';
 import { TokenService } from '../token';
 
@@ -9,16 +9,12 @@ import { TokenService } from '../token';
   providedIn: 'root',
 })
 export class postStartAllStatusAdapter implements IStartAllStatusPort {
-  constructor(
-    private http: HttpClient,
-    private postUrlService: postUrlService,
-    private tokenService: TokenService
-  ) {}
+  constructor(private http: HttpClient) {}
 
   startAllJob(): Observable<any> {
-    const token = this.tokenService.getToken();
+    const token = TokenService.TOKEN;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    const apiUrl = this.postUrlService.getPostUrl();
+    const apiUrl = postUrlButtons.API_URL_BUTTONS;
     const url = `${apiUrl}/start`;
     console.log('get startAll');
     return this.http.get(url, { headers });
