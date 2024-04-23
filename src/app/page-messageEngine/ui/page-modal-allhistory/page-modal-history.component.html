@@ -1,0 +1,33 @@
+<div class="fondo">
+  <div class="modal-header">
+    <div class="textTittle2">History</div>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="activeModal.dismiss('Cross click')"
+    ></button>
+  </div>
+
+  <div class="modal-body">
+    <div class="textTittle2">Name: {{ queue }}</div>
+    <app-table-history
+      [historyAll]="historyAll"
+      [queue]="queue"
+    ></app-table-history>
+  </div>
+
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="activeModal.close('Close click')"
+    >
+      Close
+    </button>
+  </div>
+
+  <ng-template #cargando>
+    <p>Cargando datos...</p>
+  </ng-template>
+</div>

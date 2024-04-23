@@ -17,7 +17,6 @@ export class getStatusAdapter implements IGetStatusPort {
     const token = TokenService.TOKEN;
     const apiUrl = postUrlStatus.API_URL_STATUS;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
     console.log('get status');
     return this.http
       .get<IApiStatus>(apiUrl, { headers })

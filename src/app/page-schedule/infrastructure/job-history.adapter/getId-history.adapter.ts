@@ -10,16 +10,14 @@ import { postUrlHistory } from '../post-url.History';
   providedIn: 'root',
 })
 export class getidHistoryAdapter implements IHistoryPort {
-  constructor(private http: HttpClient) {
-    console.log('historyService');
-  }
+  constructor(private http: HttpClient) {}
 
   getId(id: string): Observable<IHistory> {
     const apiUrl = postUrlHistory.API_URL_HISTORY;
     const url = `${apiUrl}${id}`;
     const token = TokenService.TOKEN;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    console.log('get statusJob');
+    console.log('get history');
     return this.http.get<IHistory>(url, { headers });
   }
 }

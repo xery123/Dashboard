@@ -1,0 +1,20 @@
+.component {
+  display: table-cell;
+}
+/* Estilos para el botón con apariencia de enlace */
+.btn-link {
+  font-weight: 400;
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.btn-link:hover {
+  color: #0056b3; /* Color más oscuro al pasar el mouse */
+  text-decoration: underline;
+}
+.loading-cursor {
+  cursor: wait; /* Cambia el cursor a un reloj de arena o similar */
+}

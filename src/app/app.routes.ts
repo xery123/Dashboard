@@ -9,6 +9,6 @@ export const routes: Routes = [
   {
     path: 'messenger',
     loadComponent: () =>
-      import('./page-messageEngine/home-page/home-page.component'),
+      import('./page-messageEngine/ui/home-page/home-page.component'),
   },
 ];

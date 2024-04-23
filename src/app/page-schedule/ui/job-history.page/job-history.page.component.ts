@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
 import { TableHistoryComponent } from '../job-history.table/job-history.table.component';
 import { TableComponent } from '../job-status.table/job-status.table.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { TokenService } from '../../infrastructure/token';
 import { getIdHistoryUsecase } from '../../application/usecases/getId-history.usecase/getId-history.usecase';
 
 @Component({
@@ -25,7 +24,6 @@ export class HistoryJobComponent implements OnInit {
   @Input()
   idName: string | undefined;
 
-  @Input()
   historyT: History[] | undefined;
 
   objectKeys(obj: object) {
