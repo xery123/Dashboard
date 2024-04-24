@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  inject,
+} from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TableItemsComponent } from '../table-items/table-items.component';
 import { HttpClient } from '@angular/common/http';
@@ -27,6 +34,14 @@ export class PageModalItemsComponent implements OnInit {
   constructor(private http: HttpClient, private modalService: NgbModal) {}
 
   ngOnInit(): void {
+    if (this.queue) {
+      this.getStatusQueueAdapter
+        .getStatusQueue(this.queue)
+        .subscribe((respuesta) => (this.statusQueue = respuesta.data.items));
+    }
+    this.stopQueueConsumer();
+  }
+  stopQueueConsumer() {
     if (this.queue) {
       this.getStatusQueueAdapter
         .getStatusQueue(this.queue)

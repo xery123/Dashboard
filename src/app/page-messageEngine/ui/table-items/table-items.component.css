@@ -1,16 +1,57 @@
-.divTable { display: table;width: 100%; margin-bottom: 20px; }
-.divTableRow { display: table-row; }
-.divTableHeading { background-color: #c24949; display: table-header-group; }
-.divTableCell,.divTableHead { border: 1px solid #63b8e0; display: table-cell; padding: 3px 10px; }
-.divTableHeading { background-color: #74b4e1; display: table-header-group; font-weight: bold; }
-.divTableHead { background-color: rgba(77, 178, 14, 0.1); font-weight: bold; }
-.divTableFoot { background-color: #bbdbf3; display: table-footer-group; font-weight: bold; }
-.divTableBody { display: table-row-group; }
-.divTableText {  display: table-cell; padding: 3px 10px; }
+.divTable {
+  display: table;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.divTableRow {
+  display: table-row;
+}
 
+.divTableHead {
+  display: table-cell;
+  padding: 3px 10px;
+  font-weight: bold;
+}
 
-.textTittle2 {
-  text-align: left;
-  color: rgb(78, 186, 210);
-  font-size: 20px;
+.divTableCell {
+  border: 1px solid #63b8e0;
+  display: table-cell;
+  padding: 3px 10px;
+}
+.divTableHeading {
+  background-color: #74b4e1;
+  display: table-header-group;
+  font-weight: bold;
+}
+
+.divTableFoot {
+  background-color: #bbdbf3;
+  display: table-footer-group;
+  font-weight: bold;
+}
+.divTableBody {
+  display: table-row-group;
+}
+.divTableText {
+  display: table-cell;
+  padding: 3px 10px;
+}
+
+.fondo {
+  background: rgb(247, 241, 228);
+}
+
+.yes {
+  color: green;
+}
+.done {
+  color: rgba(236, 174, 19, 0.721);
+}
+
+.no {
+  color: red;
+}
+.table-responsive {
+  max-height: 60vh; /* Ajusta este valor según tus necesidades */
+  overflow-y: auto;
 }

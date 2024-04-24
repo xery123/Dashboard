@@ -10,7 +10,13 @@
   </div>
 
   <div class="modal-body">
-    <app-stop-queue-consumer-button></app-stop-queue-consumer-button>
+    @if (queue) {
+    <app-stop-queue-consumer-button
+      (refresh)="stopQueueConsumer()"
+      [queue]="queue"
+    ></app-stop-queue-consumer-button>
+
+    }
     <app-table-items
       [queue]="queue"
       [statusQueue]="statusQueue"

@@ -14,7 +14,7 @@ export class postStartStatusAdapter implements IStartStatusPort {
     const token = TokenService.TOKEN;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const apiUrl = postUrlButtons.API_URL_BUTTONS;
-    const url = `${apiUrl}/start/${jobId}`;
+    const url = `${apiUrl}start/${jobId}`;
     console.log('get start');
     return this.http.get(url, { headers });
   }

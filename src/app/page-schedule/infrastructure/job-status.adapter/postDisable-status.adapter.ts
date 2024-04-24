@@ -15,7 +15,7 @@ export class postDisableStatusAdapter implements IDisableStatusPort {
     const token = TokenService.TOKEN;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const apiUrl = postUrlButtons.API_URL_BUTTONS;
-    const url = `${apiUrl}/disable/${jobId}`;
+    const url = `${apiUrl}disable/${jobId}`;
     console.log('get disable');
     return this.http.get(url, { headers });
   }

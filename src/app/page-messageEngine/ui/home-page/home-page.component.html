@@ -5,16 +5,19 @@
     <!-- SearchBox -->
     <shared-search-box
       (onDebounce)="onSearch($event)"
-      placeholder="Search by type of consumers..."
+      placeholder="Search by type of queues..."
     ></shared-search-box>
   </div>
   <div class="button">
     <div class="col">
-      <app-start-button></app-start-button>
+      <app-start-button
+        (refreshAll)="handleJobOperation('startAllQueue')"
+      ></app-start-button>
     </div>
   </div>
 </div>
 <app-table-message-engine
   [filteredQueues]="filteredQueues"
   [queuesSummary]="queuesSummary"
+  (refreshStatuss)="handleJobOperation('stopQueueConsumer')"
 ></app-table-message-engine>

@@ -8,6 +8,7 @@ import {
   LocalYhonAcurioLimberIoC,
 } from '../../domain/interface/status';
 import { StartButtonComponent } from '../start-button/start-button.component';
+import { StopQueueConsumerComponent } from '../stop-queue-consumers-button/stop-queue-consumers-button.component';
 
 @Component({
   selector: 'app-home-page',
@@ -19,6 +20,7 @@ import { StartButtonComponent } from '../start-button/start-button.component';
     TableMessageEngineComponent,
     SearchBoxComponent,
     StartButtonComponent,
+    StopQueueConsumerComponent,
   ],
 })
 export default class HomePageComponent implements OnInit {
@@ -40,6 +42,15 @@ export default class HomePageComponent implements OnInit {
     });
 
     this.initFilteredQueues();
+    this.handleJobOperation('startAllQueue');
+    this.handleJobOperation('stopQueueConsumer');
+  }
+
+  handleJobOperation(operation: 'startAllQueue' | 'stopQueueConsumer') {
+    this.getStatusAdapter.getStatus().subscribe((data: IStatus) => {
+      this.message = data;
+      this.queuesSummary = Object.values(data.data.queuesSummary);
+    });
   }
 
   filteredQueues: string[] = [];

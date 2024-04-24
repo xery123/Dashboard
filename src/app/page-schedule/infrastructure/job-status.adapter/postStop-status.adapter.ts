@@ -14,7 +14,7 @@ export class postStopStatusAdapter implements IStopStatusPort {
     const token = TokenService.TOKEN;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const apiUrl = postUrlButtons.API_URL_BUTTONS;
-    const url = `${apiUrl}/stop/${jobId}`;
+    const url = `${apiUrl}stop/${jobId}`;
     console.log('delete stop');
     return this.http.delete(url, { headers });
   }

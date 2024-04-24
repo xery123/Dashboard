@@ -15,7 +15,7 @@ export class postEnableStatusAdapter implements IEnableStatusPort {
     const token = TokenService.TOKEN;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const apiUrl = postUrlButtons.API_URL_BUTTONS;
-    const url = `${apiUrl}/enable/${jobId}`;
+    const url = `${apiUrl}enable/${jobId}`;
     console.log('get enable');
     return this.http.get(url, { headers });
   }

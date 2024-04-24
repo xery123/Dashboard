@@ -6,10 +6,7 @@
 .divTableRow {
   display: table-row;
 }
-.divTableHeading {
-  background-color: #c24949;
-  display: table-header-group;
-}
+
 .divTableCell,
 .divTableHead {
   border: 1px solid #63b8e0;

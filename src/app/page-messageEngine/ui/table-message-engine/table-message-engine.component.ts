@@ -1,5 +1,5 @@
 import { PageModalInProgessComponent } from '../page-modal-in-progess/page-modal-in-progess.component';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PageModalItemsComponent } from '../page-modal-items/page-modal-items.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -39,5 +39,11 @@ export class TableMessageEngineComponent {
   handleQueueClick(queue: string, modalComponent: any) {
     this.queue = queue;
     this.openModal(modalComponent);
+  }
+
+  @Output() refreshStatuss = new EventEmitter<void>();
+
+  onRefresh1() {
+    this.refreshStatuss.emit();
   }
 }

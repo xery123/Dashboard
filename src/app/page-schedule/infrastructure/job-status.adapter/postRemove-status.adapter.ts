@@ -14,7 +14,7 @@ export class postRemoveStatusAdapter implements IRemoveStatusPort {
     const token = TokenService.TOKEN;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const apiUrl = postUrlButtons.API_URL_BUTTONS;
-    const url = `${apiUrl}/remove/${jobId}`;
+    const url = `${apiUrl}remove/${jobId}`;
     console.log('get remove');
     return this.http.get(url, { headers });
   }

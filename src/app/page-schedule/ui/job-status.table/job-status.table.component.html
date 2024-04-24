@@ -1,78 +1,76 @@
 <div *ngIf="jobsId; else cargando">
   <div class="container-fluid mt-3">
-    <div class="row justify-content-center">
-      <div class="col-12">
-        <div class="table-responsive">
-          <div class="divTable blueTable">
-            <div class="divTableHeading">
-              <div class="divTableRow">
-                <div class="divTableHead text-center">ID</div>
-                <div class="divTableHead text-center">Last task</div>
-                <div class="divTableHead text-center">Next execution</div>
-                <div class="divTableHead text-center">Number of runs</div>
-                <div class="divTableHead text-center">Status</div>
-                <div class="divTableHead text-center">Job Actions</div>
-                <div class="divTableHead text-center">Module Actions</div>
-              </div>
+    <div class="col-12">
+      <div class="table-responsive">
+        <div class="divTable blueTable">
+          <div class="divTableHeading">
+            <div class="divTableRow">
+              <div class="divTableHead text-center">ID</div>
+              <div class="divTableHead text-center">Last task</div>
+              <div class="divTableHead text-center">Next execution</div>
+              <div class="divTableHead text-center">Number of runs</div>
+              <div class="divTableHead text-center">Status</div>
+              <div class="divTableHead text-center">Job Actions</div>
+              <div class="divTableHead text-center">Module Actions</div>
             </div>
-            <div
-              *ngFor="
-                let job of jobsId.data.jobsSummary | keyvalue;
-                let i = index
-              "
-              class="divTableBody"
-            >
-              <div class="divTableRow">
-                <div class="divTableCell">
-                  <div class="text-center">{{ job.key }}</div>
-                  <div>Started:</div>
-                  <div class="text-center">{{ job.value.startedAt }}</div>
-                  <div>Started First Run:</div>
-                  <div class="text-center">{{ job.value.firstRunAt }}</div>
+          </div>
+          <div
+            *ngFor="
+              let job of jobsId.data.jobsSummary | keyvalue;
+              let i = index
+            "
+            class="divTableBody"
+          >
+            <div class="divTableRow">
+              <div class="divTableCell">
+                <div class="text-center">{{ job.key }}</div>
+                <div>Started:</div>
+                <div class="text-center">{{ job.value.startedAt }}</div>
+                <div>Started First Run:</div>
+                <div class="text-center">{{ job.value.firstRunAt }}</div>
+              </div>
+              <div class="divTableCell text-center">
+                <div>Last Run Started:</div>
+                <div>{{ job.value.lastRunStartedAt }}</div>
+                <div>Last Run Ended:</div>
+                <div>{{ job.value.lastRunEndedAt }}</div>
+              </div>
+              <div class="divTableCell text-center">
+                {{ job.value.nextExecutionAt }}
+              </div>
+              <div class="divTableCell text-center">
+                <div>
+                  <button class="btn btn-link" (click)="obtenerId(job.key)">
+                    {{ job.value.numberOfRuns }}
+                  </button>
                 </div>
-                <div class="divTableCell text-center">
-                  <div>Last Run Started:</div>
-                  <div>{{ job.value.lastRunStartedAt }}</div>
-                  <div>Last Run Ended:</div>
-                  <div>{{ job.value.lastRunEndedAt }}</div>
-                </div>
-                <div class="divTableCell text-center">
-                  {{ job.value.nextExecutionAt }}
-                </div>
-                <div class="divTableCell text-center">
-                  <div>
-                    <button class="btn btn-link" (click)="obtenerId(job.key)">
-                      {{ job.value.numberOfRuns }}
-                    </button>
-                  </div>
-                </div>
-                <div class="divTableCell text-center">
-                  <span *ngIf="job.value.jobStatus === 'STOPPED'" class="no"
-                    >STOPPED</span
-                  >
-                  <span *ngIf="job.value.jobStatus === 'SCHEDULED'" class="yes"
-                    >SCHEDULED</span
-                  >
-                  <span *ngIf="job.value.jobStatus === 'RUNNING'" class="done"
-                    >RUNNING</span
-                  >
-                </div>
-                <div class="divTableCell text-center">
-                  <app-start-stop-remove-job
-                    (refresh)="onRefresh1()"
-                    [jobId]="job.key"
-                    [jobStatus]="job.value.jobStatus"
-                    [jobStarted]="job.value.startedAt"
-                    [moduleStatus]="job.value.moduleStatus"
-                  ></app-start-stop-remove-job>
-                </div>
-                <div class="divTableCell text-center">
-                  <app-enable-disable-job
-                    (refreshEnableDisable)="onRefresh2()"
-                    [jobId]="job.key"
-                    [moduleStatus]="job.value.moduleStatus"
-                  ></app-enable-disable-job>
-                </div>
+              </div>
+              <div class="divTableCell text-center">
+                <span *ngIf="job.value.jobStatus === 'STOPPED'" class="no"
+                  >STOPPED</span
+                >
+                <span *ngIf="job.value.jobStatus === 'SCHEDULED'" class="yes"
+                  >SCHEDULED</span
+                >
+                <span *ngIf="job.value.jobStatus === 'RUNNING'" class="done"
+                  >RUNNING</span
+                >
+              </div>
+              <div class="divTableCell text-center">
+                <app-start-stop-remove-job
+                  (refresh)="onRefresh1()"
+                  [jobId]="job.key"
+                  [jobStatus]="job.value.jobStatus"
+                  [jobStarted]="job.value.startedAt"
+                  [moduleStatus]="job.value.moduleStatus"
+                ></app-start-stop-remove-job>
+              </div>
+              <div class="divTableCell text-center">
+                <app-enable-disable-job
+                  (refreshEnableDisable)="onRefresh2()"
+                  [jobId]="job.key"
+                  [moduleStatus]="job.value.moduleStatus"
+                ></app-enable-disable-job>
               </div>
             </div>
           </div>
@@ -81,6 +79,7 @@
     </div>
   </div>
 </div>
+
 <ng-template #cargando>
   <p>Cargando datos...</p>
 </ng-template>
