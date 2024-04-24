@@ -31,7 +31,7 @@ export class PageModalItemsComponent implements OnInit {
 
   private readonly getStatusQueueAdapter = inject(getStatusQueueAdapter);
 
-  constructor(private http: HttpClient, private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal) {}
 
   ngOnInit(): void {
     if (this.queue) {

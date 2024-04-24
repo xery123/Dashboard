@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TableHistoryComponent } from '../table-allhistory/table-history.component';
-import { HttpClient } from '@angular/common/http';
+
 import { getHistoryAdapter } from '../../infrastructure/adapters/get-history.adapter/get-history.adapter';
 import { DataHistoryQueue } from '../../domain/interface/history-queue';
 
@@ -20,7 +20,6 @@ export class PageModalAllHistoryComponent implements OnInit {
 
   activeModal = inject(NgbActiveModal);
   constructor(
-    private http: HttpClient,
     private modalService: NgbModal,
     private readonly getHistoryAdapter: getHistoryAdapter
   ) {}

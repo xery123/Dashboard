@@ -6,14 +6,8 @@
 .divTableRow {
   display: table-row;
 }
-
+.divTableCell,
 .divTableHead {
-  display: table-cell;
-  padding: 3px 10px;
-  font-weight: bold;
-}
-
-.divTableCell {
   border: 1px solid #63b8e0;
   display: table-cell;
   padding: 3px 10px;
@@ -23,7 +17,11 @@
   display: table-header-group;
   font-weight: bold;
 }
-
+.divTableHead {
+  border: 1px solid #63b8e0;
+  background-color: rgba(77, 178, 14, 0.1);
+  font-weight: bold;
+}
 .divTableFoot {
   background-color: #bbdbf3;
   display: table-footer-group;

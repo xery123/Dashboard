@@ -3,27 +3,36 @@
     <div class="col-12">
       <div class="table-responsive">
         <div class="divTable blueTable">
-          <div class="divTableBody">
-            <ng-container *ngFor="let item of statusQueue; let i = index">
-              <div class="divTableRow">
-                <div class="divTableCell">
-                  <div class="divTableHead text-center">
-                    Name: {{ item.name }}
-                  </div>
-
-                  <div>Created At: {{ item.createdAt }}</div>
-                  <div>Last Execution At: {{ item.lastExecutionAt }}</div>
-                  <div>
-                    Last Message Received At: {{ item.lastMessageReceivedAt }}
-                  </div>
-                  <div>
-                    Number Received Tasks: {{ item.numberReceivedTasks }}
-                  </div>
-                  <div>Reference: {{ item.reference }}</div>
-                </div>
-              </div>
-            </ng-container>
+          <div class="divTableHeading">
+            <div class="divTableRow">
+              <div class="divTableHead text-center">Name</div>
+              <div class="divTableHead text-center">Created</div>
+              <div class="divTableHead text-center">Last Message</div>
+              <div class="divTableHead text-center">Number Tasks</div>
+              <div class="divTableHead text-center">Reference</div>
+            </div>
           </div>
+          @for (item of statusQueue; track $index) {
+          <div class="divTableBody">
+            <div class="divTableRow">
+              <div class="divTableCell text-center">
+                {{ item.name }}
+              </div>
+              <div class="divTableCell text-center">
+                {{ item.createdAt }}
+              </div>
+              <div class="divTableCell text-center">
+                {{ item.lastMessageReceivedAt }}
+              </div>
+              <div class="divTableCell text-center">
+                {{ item.numberReceivedTasks }}
+              </div>
+              <div class="divTableCell text-center">
+                {{ item.reference }}
+              </div>
+            </div>
+          </div>
+          }
         </div>
       </div>
     </div>

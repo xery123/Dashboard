@@ -25,4 +25,15 @@ export class StartButtonComponent {
       },
     });
   }
+  isButtonDisabled = false;
+  disableTimeout: any;
+  disableButtons() {
+    this.isButtonDisabled = true;
+    if (this.disableTimeout) {
+      clearTimeout(this.disableTimeout);
+    }
+    this.disableTimeout = setTimeout(() => {
+      this.isButtonDisabled = false;
+    }, 3000);
+  }
 }

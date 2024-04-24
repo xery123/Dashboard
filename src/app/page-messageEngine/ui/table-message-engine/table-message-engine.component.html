@@ -12,73 +12,82 @@
               <div class="divTableHead text-center">Actions</div>
             </div>
           </div>
-          @for (item of queuesSummary; track $index) { @for (queue of
-          filteredQueues; track $index) {
-          <div class="divTableBody">
-            <div class="divTableRow">
-              <div class="divTableCell text-center">{{ queue }}</div>
-              <div class="divTableCell text-center">
-                <div>
-                  <button
-                    class="btn btn-link"
-                    (click)="
-                      handleQueueClick(item.queueName, modalItemsComponent)
-                    "
-                  >
-                    {{ item.numberConsumers }}
-                  </button>
+          <ng-container *ngFor="let item of queuesSummary; let i = index">
+            <ng-container *ngFor="let queue of filteredQueues; let j = index">
+              <div class="divTableBody" *ngIf="i === j">
+                <div class="divTableRow">
+                  <div class="divTableCell text-center">{{ queue }}</div>
+                  <div class="divTableCell text-center">
+                    <div>
+                      <button
+                        class="btn btn-link"
+                        (click)="
+                          handleQueueClick(item.queueName, modalItemsComponent)
+                        "
+                      >
+                        {{ item.numberConsumers }}
+                      </button>
+                    </div>
+                  </div>
+                  <div class="divTableCell text-center">
+                    <div>
+                      <button
+                        class="btn btn-link"
+                        (click)="
+                          handleQueueClick(
+                            item.queueName,
+                            modalAllHistoryComponent
+                          )
+                        "
+                      >
+                        All History
+                      </button>
+                    </div>
+                    <div *ngIf="historyFinishedClose[i]">
+                      <button
+                        class="btn btn-link"
+                        (click)="
+                          handleQueueClick(
+                            item.queueName,
+                            modalExecutedComponent
+                          )
+                        "
+                      >
+                        Slow executions finished
+                      </button>
+                    </div>
+                    <div *ngIf="historyProgressClose[i]">
+                      <button
+                        class="btn btn-link"
+                        (click)="
+                          handleQueueClick(
+                            item.queueName,
+                            modalInProgressComponent
+                          )
+                        "
+                      >
+                        Slow executions in progress
+                      </button>
+                    </div>
+                  </div>
+                  <div class="divTableCell text-center">
+                    {{ item.moduleStatus }}
+                  </div>
+                  <div class="divTableCell text-center">
+                    <app-stop-queue-consumer-button
+                      (refresh)="onRefresh1()"
+                      [queue]="queue"
+                    ></app-stop-queue-consumer-button>
+                  </div>
                 </div>
               </div>
-              <div class="divTableCell text-center">
-                <div>
-                  <button
-                    class="btn btn-link"
-                    (click)="
-                      handleQueueClick(item.queueName, modalAllHistoryComponent)
-                    "
-                  >
-                    All History
-                  </button>
-                </div>
-                <div>
-                  <button
-                    class="btn btn-link"
-                    (click)="
-                      handleQueueClick(item.queueName, modalExecutedComponent)
-                    "
-                  >
-                    Slow executions finished
-                  </button>
-                </div>
-                <div>
-                  <button
-                    class="btn btn-link"
-                    (click)="
-                      handleQueueClick(item.queueName, modalInProgressComponent)
-                    "
-                  >
-                    Slow executions in progress
-                  </button>
-                </div>
-              </div>
-              <div class="divTableCell text-center">
-                {{ item.moduleStatus }}
-              </div>
-              <div class="divTableCell text-center">
-                <app-stop-queue-consumer-button
-                  (refresh)="onRefresh1()"
-                  [queue]="queue"
-                ></app-stop-queue-consumer-button>
-              </div>
-            </div>
-          </div>
-          } }
+            </ng-container>
+          </ng-container>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 <ng-template #cargando>
   <p>Cargando datos...</p>
 </ng-template>

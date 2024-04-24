@@ -34,16 +34,26 @@ export default class HomePageComponent implements OnInit {
       .getStatus()
       .subscribe((respuesta) => (this.message = respuesta));
 
-    this.initFilteredQueues();
-
     this.getStatusAdapter.getStatus().subscribe((data: IStatus) => {
       this.message = data;
       this.queuesSummary = Object.values(data.data.queuesSummary);
     });
 
     this.initFilteredQueues();
+
     this.handleJobOperation('startAllQueue');
     this.handleJobOperation('stopQueueConsumer');
+  }
+
+  ngAfterViewInit(): void {
+    this.fetchData();
+  }
+  fetchData(): void {
+    this.getStatusAdapter.getStatus().subscribe((data: IStatus) => {
+      this.message = data;
+      this.queuesSummary = Object.values(data.data.queuesSummary);
+      this.initFilteredQueues();
+    });
   }
 
   handleJobOperation(operation: 'startAllQueue' | 'stopQueueConsumer') {
