@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { postUrlButtons } from '../post-url.Buttons';
-import { TokenService } from '../token';
+import { postUrlButtons } from '../environments/post-url.Buttons';
+import { TokenService } from '../environments/token';
 import { IDisableStatusPort } from '../../application/ports/status-port/enable-disable.port/disablePost-status.port';
 
 @Injectable({

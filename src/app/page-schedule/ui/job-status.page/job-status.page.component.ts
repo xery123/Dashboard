@@ -5,6 +5,7 @@ import { getJobsUsecase } from '../../application/usecases/get-jobs.usecase/get-
 import {
   IStatus,
   JobAsyncAggregateJobExecution1,
+  JobsSummary,
 } from '../../domain/interfaces/status';
 import { StartStopRemoveJobComponent } from '../job-start-stop-remove-job/start-stop-remove-job.component';
 import { startAllJobComponent } from '../job-start-all-Job/start-all-Job.component';
@@ -29,18 +30,25 @@ export default class StatusJobComponent implements OnInit {
   private readonly getJobsUsecase = inject(getJobsUsecase);
   @Input() jobId: string = '';
   jobsId: IStatus | undefined;
-  refreshJob: JobAsyncAggregateJobExecution1 | undefined;
+  jobs: { [key: string]: JobAsyncAggregateJobExecution1 } = {};
 
-  constructor(private http: HttpClient, private ngZone: NgZone) {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.getJobsUsecase.getStatus().subscribe((respuesta) => {
       this.jobsId = respuesta;
+      this.extractJobNames();
     });
 
     this.startAllJob();
     this.handleJobOperation('refreshJob');
     this.handleJobOperation('enableDisable');
+  }
+
+  private extractJobNames(): void {
+    if (this.jobsId && this.jobsId.data.jobsSummary) {
+      this.jobs = this.jobsId.data.jobsSummary;
+    }
   }
 
   startAllJob() {

@@ -24,10 +24,13 @@
             <div class="divTableRow">
               <div class="divTableCell">
                 <div class="text-center">{{ job.key }}</div>
-                <div>Started:</div>
-                <div class="text-center">{{ job.value.startedAt }}</div>
-                <div>Started First Run:</div>
-                <div class="text-center">{{ job.value.firstRunAt }}</div>
+                <hr />
+                <div class="text-center">
+                  Started: {{ job.value.startedAt }}
+                </div>
+                <div class="text-center">
+                  Started First Run: {{ job.value.firstRunAt }}
+                </div>
               </div>
               <div class="divTableCell text-center">
                 <div>Last Run Started:</div>
@@ -40,22 +43,52 @@
               </div>
               <div class="divTableCell text-center">
                 <div>
-                  <button class="btn btn-link" (click)="obtenerId(job.key)">
+                  <button
+                    class="btn btn-link"
+                    (click)="handleQueueClick(job.key, modalHistory)"
+                  >
                     {{ job.value.numberOfRuns }}
                   </button>
                 </div>
+                @if(historyFinished[job.key]) {
+                <div
+                  *ngIf="
+                    historyFinished[job.key].length > 0 &&
+                    historyFinished[job.key][0].history.length > 0
+                  "
+                >
+                  <button
+                    class="btn btn-link"
+                    (click)="handleQueueClick(job.key, modalHistoryFinished)"
+                  >
+                    Slow executions finished
+                  </button>
+                </div>
+                } @if(historyProgress[job.key]) {
+                <div
+                  *ngIf="
+                    historyProgress[job.key].length > 0 &&
+                    historyProgress[job.key][0].history.length > 0
+                  "
+                >
+                  <button
+                    class="btn btn-link"
+                    (click)="handleQueueClick(job.key, modalHistoryProgresss)"
+                  >
+                    Slow executions in progress
+                  </button>
+                </div>
+                }
               </div>
               <div class="divTableCell text-center">
-                <span *ngIf="job.value.jobStatus === 'STOPPED'" class="no"
-                  >STOPPED</span
-                >
-                <span *ngIf="job.value.jobStatus === 'SCHEDULED'" class="yes"
-                  >SCHEDULED</span
-                >
-                <span *ngIf="job.value.jobStatus === 'RUNNING'" class="done"
-                  >RUNNING</span
-                >
+                <span [ngSwitch]="job.value.jobStatus">
+                  <span *ngSwitchCase="'STOPPED'" class="no">STOPPED</span>
+                  <span *ngSwitchCase="'SCHEDULED'" class="yes">SCHEDULED</span>
+                  <span *ngSwitchCase="'RUNNING'" class="running">RUNNING</span>
+                  <span *ngSwitchDefault>{{ job.value.jobStatus }}</span>
+                </span>
               </div>
+
               <div class="divTableCell text-center">
                 <app-start-stop-remove-job
                   (refresh)="onRefresh1()"

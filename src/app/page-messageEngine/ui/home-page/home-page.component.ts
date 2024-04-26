@@ -9,6 +9,7 @@ import {
 } from '../../domain/interface/status';
 import { StartButtonComponent } from '../start-button/start-button.component';
 import { StopQueueConsumerComponent } from '../stop-queue-consumers-button/stop-queue-consumers-button.component';
+import { getStatusUsecase } from '../../aplication/usecases/get-status.usecase/get-status.usecase';
 
 @Component({
   selector: 'app-home-page',
@@ -24,17 +25,17 @@ import { StopQueueConsumerComponent } from '../stop-queue-consumers-button/stop-
   ],
 })
 export default class HomePageComponent implements OnInit {
-  private readonly getStatusAdapter = inject(getStatusAdapter);
+  private readonly getStatusUsecase = inject(getStatusUsecase);
 
   message: IStatus | undefined;
   queuesSummary: LocalYhonAcurioLimberIoC[] = [];
 
   ngOnInit(): void {
-    this.getStatusAdapter
+    this.getStatusUsecase
       .getStatus()
       .subscribe((respuesta) => (this.message = respuesta));
 
-    this.getStatusAdapter.getStatus().subscribe((data: IStatus) => {
+    this.getStatusUsecase.getStatus().subscribe((data: IStatus) => {
       this.message = data;
       this.queuesSummary = Object.values(data.data.queuesSummary);
     });
@@ -49,7 +50,7 @@ export default class HomePageComponent implements OnInit {
     this.fetchData();
   }
   fetchData(): void {
-    this.getStatusAdapter.getStatus().subscribe((data: IStatus) => {
+    this.getStatusUsecase.getStatus().subscribe((data: IStatus) => {
       this.message = data;
       this.queuesSummary = Object.values(data.data.queuesSummary);
       this.initFilteredQueues();
@@ -57,7 +58,7 @@ export default class HomePageComponent implements OnInit {
   }
 
   handleJobOperation(operation: 'startAllQueue' | 'stopQueueConsumer') {
-    this.getStatusAdapter.getStatus().subscribe((data: IStatus) => {
+    this.getStatusUsecase.getStatus().subscribe((data: IStatus) => {
       this.message = data;
       this.queuesSummary = Object.values(data.data.queuesSummary);
     });

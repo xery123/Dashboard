@@ -2,13 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { IHistoryQueue } from '../../../domain/interface/history-queue';
 import { Observable } from 'rxjs';
-import { postUrlHistoryQueue } from '../../post-url.historyQueue';
-import { TokenService } from '../../token';
+import { postUrlHistoryQueue } from '../../environments/post-url.historyQueue';
+import { TokenService } from '../../environments/token';
+import { getHistoryPort } from '../../../aplication/ports/get-history.port/get-history.port';
 
 @Injectable({
   providedIn: 'root',
 })
-export class getHistoryAdapter {
+export class getHistoryAdapter implements getHistoryPort {
   constructor(private http: HttpClient) {}
 
   getHistory(id: string): Observable<IHistoryQueue> {

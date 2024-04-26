@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { TokenService } from '../token';
+import { TokenService } from '../environments/token';
 import { IGetStatusJobPort } from '../../application/ports/status-port/get-status.port/get-status-job.port';
 import { Observable } from 'rxjs';
 import { IStatusJob } from '../../domain/interfaces/statusJob';
-import { postUrlStatusJob } from '../post-url.StatusJob';
+import { postUrlStatusJob } from '../environments/post-url.StatusJob';
 
 @Injectable({
   providedIn: 'root',

@@ -3,7 +3,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TableExecutedComponent } from '../table-executed/table-executed.component';
 
 import { DataHistoryFinished } from '../../domain/interface/history-queue-longest-finished';
-import { getHistoryFinishedAdapter } from '../../infrastructure/adapters/get-history-finished.adapter/get-history-finished.adapter';
+import { getHistoryUsecase } from '../../aplication/usecases/get-history.usecase/get-history.usecase';
 
 @Component({
   selector: 'app-page-modal-executed',
@@ -21,11 +21,11 @@ export class PageModalExecutedComponent {
   activeModal = inject(NgbActiveModal);
   constructor(
     private modalService: NgbModal,
-    private readonly getHistoryFinishedAdapter: getHistoryFinishedAdapter
+    private readonly getHistoryUsecase: getHistoryUsecase
   ) {}
   ngOnInit(): void {
     if (this.queue) {
-      this.getHistoryFinishedAdapter
+      this.getHistoryUsecase
         .getHistoryFinished(this.queue)
         .subscribe((respuesta) => (this.historyFinished = respuesta.data));
     }

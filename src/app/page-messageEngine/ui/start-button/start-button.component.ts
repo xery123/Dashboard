@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output, inject } from '@angular/core';
-import { postStartAllQueueAdapter } from '../../infrastructure/adapters/post-startAll-queue.adapter/post-startAll-queue.adapter';
+import { startAllStopUsecase } from '../../aplication/usecases/startAll-stop.usecase/startAll-stop.usecase';
 
 @Component({
   selector: 'app-start-button',
@@ -11,13 +11,13 @@ import { postStartAllQueueAdapter } from '../../infrastructure/adapters/post-sta
 })
 export class StartButtonComponent {
   isLoading = false;
-  private postStartAllQueueAdapter = inject(postStartAllQueueAdapter);
+  private startAllStopUsecase = inject(startAllStopUsecase);
 
   @Output() refreshAll = new EventEmitter<void>();
 
   startAllQueue() {
     this.isLoading = true;
-    this.postStartAllQueueAdapter.startAllQueue().subscribe({
+    this.startAllStopUsecase.startAllQueue().subscribe({
       next: (response) => {
         console.log('queueAll enabled:', response);
         this.refreshAll.emit();

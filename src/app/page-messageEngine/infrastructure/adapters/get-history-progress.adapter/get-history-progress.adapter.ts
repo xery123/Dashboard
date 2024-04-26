@@ -1,14 +1,15 @@
-import { postUrlHistoryQueueProgress } from '../../post-url.historyQueueProgress';
+import { postUrlHistoryQueueProgress } from '../../environments/post-url.historyQueueProgress';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IHistoryProgress } from '../../../domain/interface/history-queue-longest-progress';
-import { TokenService } from '../../token';
+import { TokenService } from '../../environments/token';
+import { getHistoryProgressPort } from '../../../aplication/ports/get-history.port/get-history-progress.port';
 
 @Injectable({
   providedIn: 'root',
 })
-export class getHistoryProgressAdapter {
+export class getHistoryProgressAdapter implements getHistoryProgressPort {
   constructor(private http: HttpClient) {}
 
   getHistoryProgress(id: string): Observable<IHistoryProgress> {

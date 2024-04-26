@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { postUrlButtons } from '../post-url.Buttons';
+import { postUrlButtons } from '../environments/post-url.Buttons';
 import { IStartAllStatusPort } from '../../application/ports/status-port/start-stop-remove.port/startAllPost-status.port';
-import { TokenService } from '../token';
+import { TokenService } from '../environments/token';
 
 @Injectable({
   providedIn: 'root',

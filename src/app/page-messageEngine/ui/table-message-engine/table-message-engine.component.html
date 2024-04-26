@@ -43,7 +43,13 @@
                         All History
                       </button>
                     </div>
-                    <div *ngIf="historyFinishedClose[i]">
+                    @if(historyFinishedClose[item.queueName]) {
+                    <div
+                      *ngIf="
+                        historyFinishedClose[item.queueName].length > 0 &&
+                        historyFinishedClose[item.queueName][0].data.length > 0
+                      "
+                    >
                       <button
                         class="btn btn-link"
                         (click)="
@@ -56,7 +62,13 @@
                         Slow executions finished
                       </button>
                     </div>
-                    <div *ngIf="historyProgressClose[i]">
+                    } @if(historyProgressClose[item.queueName]) {
+                    <div
+                      *ngIf="
+                        historyProgressClose[item.queueName].length > 0 &&
+                        historyProgressClose[item.queueName][0].data.length > 0
+                      "
+                    >
                       <button
                         class="btn btn-link"
                         (click)="
@@ -69,9 +81,19 @@
                         Slow executions in progress
                       </button>
                     </div>
+                    }
                   </div>
                   <div class="divTableCell text-center">
-                    {{ item.moduleStatus }}
+                    <span [ngSwitch]="item.moduleStatus">
+                      <span *ngSwitchCase="'DISABLED'" class="no"
+                        >DISABLED</span
+                      >
+                      <span *ngSwitchCase="'ENABLED'" class="yes">ENABLED</span>
+                      <span *ngSwitchCase="'RUNNING'" class="running"
+                        >RUNNING</span
+                      >
+                      <span *ngSwitchDefault>{{ item.moduleStatus }}</span>
+                    </span>
                   </div>
                   <div class="divTableCell text-center">
                     <app-stop-queue-consumer-button

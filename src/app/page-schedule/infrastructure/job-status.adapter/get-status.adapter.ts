@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-import { TokenService } from '../token';
+import { TokenService } from '../environments/token';
 import { IStatus } from '../../domain/interfaces/status';
 import { IGetStatusPort } from '../../application/ports/status-port/get-status.port/get-status.port';
 import { IApiStatus } from '../models/status-api.model';
-import { postUrlStatus } from '../post-url.Status';
+import { postUrlStatus } from '../environments/post-url.Status';
 
 @Injectable({
   providedIn: 'root',

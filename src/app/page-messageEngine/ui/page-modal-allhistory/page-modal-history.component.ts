@@ -1,9 +1,8 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TableHistoryComponent } from '../table-allhistory/table-history.component';
-
-import { getHistoryAdapter } from '../../infrastructure/adapters/get-history.adapter/get-history.adapter';
 import { DataHistoryQueue } from '../../domain/interface/history-queue';
+import { getHistoryUsecase } from '../../aplication/usecases/get-history.usecase/get-history.usecase';
 
 @Component({
   selector: 'app-page-modal-history',
@@ -21,11 +20,11 @@ export class PageModalAllHistoryComponent implements OnInit {
   activeModal = inject(NgbActiveModal);
   constructor(
     private modalService: NgbModal,
-    private readonly getHistoryAdapter: getHistoryAdapter
+    private readonly getHistoryUsecase: getHistoryUsecase
   ) {}
   ngOnInit(): void {
     if (this.queue) {
-      this.getHistoryAdapter
+      this.getHistoryUsecase
         .getHistory(this.queue)
         .subscribe((respuesta) => (this.historyAll = respuesta.data));
     }

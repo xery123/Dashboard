@@ -1,0 +1,72 @@
+.divTable {
+  display: table;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.divTableRow {
+  display: table-row;
+}
+
+.divTableCell,
+.divTableHead {
+  border: 1px solid #63b8e0;
+  display: table-cell;
+  padding: 3px 10px;
+}
+.divTableHeading {
+  background-color: #74b4e1;
+  display: table-header-group;
+  font-weight: bold;
+}
+.divTableHead {
+  background-color: rgba(77, 178, 14, 0.1);
+  font-weight: bold;
+}
+.divTableFoot {
+  background-color: #bbdbf3;
+  display: table-footer-group;
+  font-weight: bold;
+}
+.divTableBody {
+  display: table-row-group;
+}
+
+.error-link {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.error-link:hover {
+  color: darkblue;
+}
+
+.table-responsive {
+  background: rgb(247, 241, 228);
+  max-height: 60vh; /* Ajusta este valor según tus necesidades */
+  overflow-y: auto;
+}
+.custom-modal-dialog {
+  background: rgb(247, 241, 228);
+  width: 800px;
+  max-width: 100%;
+  height: 600px;
+  max-height: 100%;
+}
+.custom-modal-content {
+  background: rgb(247, 241, 228);
+  height: 100%;
+}
+.custom-modal-header {
+  background: rgb(247, 241, 228);
+  position: relative;
+}
+.custom-close-button {
+  background: rgb(247, 241, 228);
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.custom-table-background {
+  background: rgb(247, 241, 228);
+}

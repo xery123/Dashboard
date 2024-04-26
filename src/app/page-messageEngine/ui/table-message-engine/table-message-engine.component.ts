@@ -18,6 +18,7 @@ import {
   DataHistoryProgress,
   IHistoryProgress,
 } from '../../domain/interface/history-queue-longest-progress';
+import { getHistoryUsecase } from '../../aplication/usecases/get-history.usecase/get-history.usecase';
 
 @Component({
   selector: 'app-table-message-engine',
@@ -32,30 +33,29 @@ export class TableMessageEngineComponent implements OnInit {
   modalInProgressComponent = PageModalInProgessComponent;
   modalAllHistoryComponent = PageModalAllHistoryComponent;
 
-  historyProgressClose: DataHistoryProgress[] = [];
-  historyFinishedClose: DataHistoryFinished[] = [];
+  historyProgressClose: { [key: string]: IHistoryProgress[] } = {};
+  historyFinishedClose: { [key: string]: IHistoryFinished[] } = {};
 
   @Input() queuesSummary: LocalYhonAcurioLimberIoC[] = [];
   @Input() filteredQueues: string[] = [];
   queue: string | undefined;
 
   constructor(
-    private getHistoryProgressAdapter: getHistoryProgressAdapter,
-    private getHistoryFinishedAdapter: getHistoryFinishedAdapter,
+    private getHistoryUsecase: getHistoryUsecase,
     private modalService: NgbModal
   ) {}
   ngOnInit(): void {
     this.filteredQueues.forEach((queue) => {
-      this.getHistoryProgressAdapter
+      this.getHistoryUsecase
         .getHistoryProgress(queue)
-        .subscribe((respuesta: IHistoryProgress) => {
-          this.historyProgressClose.push(...respuesta.data);
+        .subscribe((respuesta: { data: DataHistoryProgress[] }) => {
+          this.historyProgressClose[queue] = [{ data: respuesta.data }];
         });
 
-      this.getHistoryFinishedAdapter
+      this.getHistoryUsecase
         .getHistoryFinished(queue)
-        .subscribe((respuesta: IHistoryFinished) => {
-          this.historyFinishedClose.push(...respuesta.data);
+        .subscribe((respuesta: { data: DataHistoryFinished[] }) => {
+          this.historyFinishedClose[queue] = [{ data: respuesta.data }];
         });
     });
   }

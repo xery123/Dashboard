@@ -2,14 +2,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { IStatus } from '../../../domain/interface/status';
 
-import { postUrlStatus } from '../../post-url.status';
-import { TokenService } from '../../token';
+import { postUrlStatus } from '../../environments/post-url.status';
+import { TokenService } from '../../environments/token';
 import { Observable } from 'rxjs';
+import { getStatusPort } from '../../../aplication/ports/get-status.port/get-status.port';
 
 @Injectable({
   providedIn: 'root',
 })
-export class getStatusAdapter {
+export class getStatusAdapter implements getStatusPort {
   constructor(private http: HttpClient) {}
 
   getStatus(): Observable<IStatus> {

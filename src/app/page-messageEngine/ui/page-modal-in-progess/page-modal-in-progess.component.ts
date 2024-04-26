@@ -1,9 +1,8 @@
 import { Component, Input, inject } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TableInprogressComponent } from '../table-inprogress/TableInprogressComponent';
-
-import { getHistoryProgressAdapter } from '../../infrastructure/adapters/get-history-progress.adapter/get-history-progress.adapter';
 import { DataHistoryProgress } from '../../domain/interface/history-queue-longest-progress';
+import { getHistoryUsecase } from '../../aplication/usecases/get-history.usecase/get-history.usecase';
 
 @Component({
   selector: 'app-page-modal-in-progess',
@@ -21,11 +20,11 @@ export class PageModalInProgessComponent {
   activeModal = inject(NgbActiveModal);
   constructor(
     private modalService: NgbModal,
-    private readonly getHistoryProgressAdapter: getHistoryProgressAdapter
+    private readonly getHistoryUsecase: getHistoryUsecase
   ) {}
   ngOnInit(): void {
     if (this.queue) {
-      this.getHistoryProgressAdapter
+      this.getHistoryUsecase
         .getHistoryProgress(this.queue)
         .subscribe((respuesta) => (this.historyProgress = respuesta.data));
     }

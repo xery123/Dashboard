@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { TokenService } from '../../token';
-import { postUrlStartAllQueue } from '../../post-url.startAll.Queue';
+import { TokenService } from '../../environments/token';
+import { postUrlStartAllQueue } from '../../environments/post-url.startAll.Queue';
+import { startAllQueuePort } from '../../../aplication/ports/startAll-stop.port/post-startAll-queue.port';
 
 @Injectable({
   providedIn: 'root',
 })
-export class postStartAllQueueAdapter {
+export class postStartAllQueueAdapter implements startAllQueuePort {
   constructor(private http: HttpClient) {}
 
   startAllQueue(): Observable<any> {

@@ -1,18 +1,10 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  inject,
-} from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TableItemsComponent } from '../table-items/table-items.component';
-import { HttpClient } from '@angular/common/http';
-import { getStatusQueueAdapter } from '../../infrastructure/adapters/get-status-queue.adapter/get-status-queue.adapter';
 import { Item } from '../../domain/interface/status-queue';
 import { CommonModule } from '@angular/common';
 import { StopQueueConsumerComponent } from '../stop-queue-consumers-button/stop-queue-consumers-button.component';
+import { getStatusUsecase } from '../../aplication/usecases/get-status.usecase/get-status.usecase';
 
 @Component({
   selector: 'app-page-modal-items',
@@ -29,13 +21,13 @@ export class PageModalItemsComponent implements OnInit {
 
   activeModal = inject(NgbActiveModal);
 
-  private readonly getStatusQueueAdapter = inject(getStatusQueueAdapter);
+  private readonly getStatusUsecase = inject(getStatusUsecase);
 
   constructor(private modalService: NgbModal) {}
 
   ngOnInit(): void {
     if (this.queue) {
-      this.getStatusQueueAdapter
+      this.getStatusUsecase
         .getStatusQueue(this.queue)
         .subscribe((respuesta) => (this.statusQueue = respuesta.data.items));
     }
@@ -43,7 +35,7 @@ export class PageModalItemsComponent implements OnInit {
   }
   stopQueueConsumer() {
     if (this.queue) {
-      this.getStatusQueueAdapter
+      this.getStatusUsecase
         .getStatusQueue(this.queue)
         .subscribe((respuesta) => (this.statusQueue = respuesta.data.items));
     }

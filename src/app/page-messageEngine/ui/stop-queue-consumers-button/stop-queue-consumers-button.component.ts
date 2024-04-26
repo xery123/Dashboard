@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { postStopConsumerQueueAdapter } from '../../infrastructure/adapters/post-stopConsumer-queue.adapter/post-stopConsumer-queue.adapter';
+import { startAllStopUsecase } from '../../aplication/usecases/startAll-stop.usecase/startAll-stop.usecase';
 
 @Component({
   selector: 'app-stop-queue-consumer-button',
@@ -13,13 +14,13 @@ export class StopQueueConsumerComponent {
   @Input()
   queue: string = '';
   isLoading = false;
-  private postStopConsumerQueueAdapter = inject(postStopConsumerQueueAdapter);
+  private startAllStopUsecase = inject(startAllStopUsecase);
 
   @Output() refresh = new EventEmitter<void>();
 
   stopQueueConsumer() {
     this.isLoading = true;
-    this.postStopConsumerQueueAdapter.stopConsumerQueue(this.queue).subscribe({
+    this.startAllStopUsecase.stopConsumerQueue(this.queue).subscribe({
       next: (response) => {
         console.log('queueConsumer stop:', response);
         this.refresh.emit();

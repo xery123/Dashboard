@@ -1,0 +1,151 @@
+<div class="container-fluid mt-3">
+  <div class="col-12">
+    <div class="table-responsive">
+      <div class="divTable blueTable">
+        <div class="divTableHeading">
+          <div class="divTableRow">
+            <div class="divTableHead text-center">Started</div>
+            <div class="divTableHead text-center">Executed</div>
+            <div class="divTableHead text-center">Status</div>
+            <div class="divTableHead text-center">Time</div>
+          </div>
+        </div>
+        <div
+          *ngFor="let historial of historyFinished; let i = index"
+          class="divTableBody"
+        >
+          <div class="divTableRow">
+            <div class="divTableCell text-center">
+              {{ historial.jobExecutionStartedAt }}
+            </div>
+            <div class="divTableCell text-center">
+              {{ historial.jobExecutedAt }}
+            </div>
+            <div class="divTableCell text-center">
+              <span
+                [ngStyle]="{
+                  color:
+                    historial.jobExecutionFailedAt ||
+                    historial.exception ||
+                    historial.jobStoppedFailedAt
+                      ? 'red'
+                      : historial.jobExecutionStartedAt &&
+                        !historial.jobExecutedAt
+                      ? 'green'
+                      : historial.jobExecutionStartedAt &&
+                        historial.jobExecutedAt
+                      ? 'green'
+                      : 'black'
+                }"
+              >
+                {{
+                  historial.jobExecutionFailedAt ||
+                  historial.exception ||
+                  historial.jobStoppedFailedAt
+                    ? "KO"
+                    : historial.jobExecutionStartedAt &&
+                      !historial.jobExecutedAt
+                    ? "IN PROGRESS"
+                    : historial.jobExecutionStartedAt && historial.jobExecutedAt
+                    ? "OK"
+                    : ""
+                }}
+              </span>
+            </div>
+            <div class="divTableCell text-center">
+              <span
+                *ngIf="
+                  !historial.jobExecutionStartedAt && !historial.jobExecutedAt
+                "
+                (click)="showErrorDetails = true"
+                class="error-link"
+                >Error</span
+              >
+              <span
+                *ngIf="
+                  historial.jobExecutionStartedAt && historial.jobExecutedAt
+                "
+              >
+                {{ historial.executionTimeInMilliseconds | millisecondsToTime }}
+              </span>
+              <span
+                *ngIf="
+                  historial.jobExecutionStartedAt && !historial.jobExecutedAt
+                "
+              >
+                {{ historial.executionTimeInMilliseconds | millisecondsToTime }}
+              </span>
+            </div>
+
+            <div
+              *ngIf="showErrorDetails"
+              class="modal"
+              tabindex="-1"
+              role="dialog"
+              [ngStyle]="{ display: showErrorDetails ? 'block' : 'none' }"
+            >
+              <div
+                class="modal-dialog modal-dialog-centered custom-modal-dialog"
+                role="document"
+              >
+                <div class="modal-content h-100 custom-modal-content">
+                  <div
+                    class="modal-header position-relative custom-modal-header"
+                  >
+                    <button
+                      type="button"
+                      class="close custom-close-button"
+                      (click)="showErrorDetails = false"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h5 class="modal-title mx-auto">Error Details</h5>
+                  </div>
+                  <div class="modal-body h-100">
+                    <div class="container mt-3 h-100">
+                      <div class="row justify-content-center h-100">
+                        <div class="col-12 h-100">
+                          <div class="table-responsive h-100">
+                            <div class="divTable custom-table-background h-100">
+                              <div class="divTableHeading">
+                                <div class="divTableRow">
+                                  <div class="divTableHead col-3">
+                                    Propiedad
+                                  </div>
+                                  <div class="divTableHead col-9">Valor</div>
+                                </div>
+                              </div>
+                              <div class="divTableBody h-100">
+                                <div class="divTableRow">
+                                  <div class="divTableCell col-3">
+                                    jobStoppedFailedAt
+                                  </div>
+                                  <div class="divTableCell col-9">
+                                    {{ historial.jobStoppedFailedAt }}
+                                  </div>
+                                </div>
+                                <div class="divTableRow">
+                                  <div class="divTableCell col-3">
+                                    exception
+                                  </div>
+                                  <div class="divTableCell col-9">
+                                    {{ historial.exception }}
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="margin"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
