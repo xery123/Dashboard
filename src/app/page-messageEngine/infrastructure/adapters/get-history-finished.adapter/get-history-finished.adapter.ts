@@ -1,9 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IHistoryFinished } from '../../../domain/interface/history-queue-longest-finished';
 import { postUrlHistoryQueueFinished } from '../../environments/post-url.historyQueueFinished';
-import { TokenService } from '../../environments/token';
 import { getHistoryFinishedPort } from '../../../aplication/ports/get-history.port/get-history-finished.port';
 
 @Injectable({
@@ -17,9 +16,7 @@ export class getHistoryFinishedAdapter implements getHistoryFinishedPort {
     const apiUrlFilter =
       postUrlHistoryQueueFinished.API_URL_HISTORY_QUEUE_FINISHED_FILTER;
     const url = `${apiUrl}${id}${apiUrlFilter}`;
-    const token = TokenService.TOKEN;
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     console.log('get statusQueue');
-    return this.http.get<IHistoryFinished>(url, { headers });
+    return this.http.get<IHistoryFinished>(url);
   }
 }

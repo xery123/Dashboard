@@ -1,5 +1,5 @@
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../environments/environment.prod';
 
 export class postUrlButtons {
-  static readonly API_URL_BUTTONS = `${environment.ENVIRONMENT}/api/v4/jobs/scheduler/`;
+  static readonly API_URL_BUTTONS = `${environment.API_URL_ENVIRONMENT}/api/v4/jobs/scheduler/`;
 }

@@ -1,14 +1,18 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './guard/auth.guard';
+import HomePageComponent from './page-messageEngine/ui/home-page/home-page.component';
+import StatusJobComponent from './page-schedule/ui/job-status.page/job-status.page.component';
 
 export const routes: Routes = [
   {
     path: 'scheduler',
-    loadComponent: () =>
-      import('./page-schedule/ui/job-status.page/job-status.page.component'),
+    component: StatusJobComponent,
+    canActivate: [AuthGuard], // Agrega el AuthGuard aquí
   },
+
   {
     path: 'messenger',
-    loadComponent: () =>
-      import('./page-messageEngine/ui/home-page/home-page.component'),
+    component: HomePageComponent,
+    canActivate: [AuthGuard], // Agrega el AuthGuard aquí
   },
 ];

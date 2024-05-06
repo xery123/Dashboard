@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { getStatusAdapter } from '../../infrastructure/adapters/get-status.adapter/get-status.adapter';
 import { Component, OnInit, inject } from '@angular/core';
 import { TableMessageEngineComponent } from '../table-message-engine/table-message-engine.component';
@@ -29,7 +29,9 @@ export default class HomePageComponent implements OnInit {
 
   message: IStatus | undefined;
   queuesSummary: LocalYhonAcurioLimberIoC[] = [];
+  userProfile: any | null = null;
 
+  constructor() {}
   ngOnInit(): void {
     this.getStatusUsecase
       .getStatus()
@@ -45,7 +47,6 @@ export default class HomePageComponent implements OnInit {
     this.handleJobOperation('startAllQueue');
     this.handleJobOperation('stopQueueConsumer');
   }
-
   ngAfterViewInit(): void {
     this.fetchData();
   }

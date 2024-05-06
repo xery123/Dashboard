@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  Inject,
+  Input,
+  OnInit,
+  PLATFORM_ID,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from '../job-status.table/job-status.table.component';
 import { getJobsUsecase } from '../../application/usecases/get-jobs.usecase/get-jobs.usecase';
@@ -10,8 +17,6 @@ import {
 import { StartStopRemoveJobComponent } from '../job-start-stop-remove-job/start-stop-remove-job.component';
 import { startAllJobComponent } from '../job-start-all-Job/start-all-Job.component';
 import { EnableDisableJobComponent } from '../job-enable-disable-job/enable-disable-job.component';
-import { HttpClient } from '@angular/common/http';
-import { NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-status-job',
@@ -31,8 +36,9 @@ export default class StatusJobComponent implements OnInit {
   @Input() jobId: string = '';
   jobsId: IStatus | undefined;
   jobs: { [key: string]: JobAsyncAggregateJobExecution1 } = {};
+  userProfile: any | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.getJobsUsecase.getStatus().subscribe((respuesta) => {

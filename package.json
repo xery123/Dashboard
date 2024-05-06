@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve -c production",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -30,6 +30,8 @@
     "dayjs": "^1.11.10",
     "dayjs-precise-range": "^1.0.1",
     "express": "^4.18.2",
+    "keycloak-angular": "^15.2.1",
+    "keycloak-js": "^24.0.3",
     "moment": "^2.30.1",
     "rxjs": "^7.8.1",
     "tslib": "^2.3.0",
