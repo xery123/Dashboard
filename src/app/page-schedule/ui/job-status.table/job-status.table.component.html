@@ -1,8 +1,8 @@
-<div *ngIf="jobsId; else cargando">
+<div *ngIf="filteredJobs; else cargando">
   <div class="container-fluid mt-3">
     <div class="col-12">
       <div class="table-responsive">
-        <div class="divTable blueTable">
+        <div class="divTable">
           <div class="divTableHeading">
             <div class="divTableRow">
               <div class="divTableHead text-center">ID</div>
@@ -14,66 +14,63 @@
               <div class="divTableHead text-center">Module Actions</div>
             </div>
           </div>
-          <div
-            *ngFor="
-              let job of jobsId.data.jobsSummary | keyvalue;
-              let i = index
-            "
-            class="divTableBody"
+
+          <ng-container
+            *ngFor="let jobId of filteredJobs | keyvalue; let j = index"
           >
             <div class="divTableRow">
               <div class="divTableCell">
-                <div class="text-center">{{ job.key }}</div>
+                <div class="text-center">{{ jobId.key }}</div>
                 <hr />
                 <div class="text-center">
-                  Started: {{ job.value.startedAt }}
+                  Started: {{ jobId.value.startedAt }}
                 </div>
                 <div class="text-center">
-                  Started First Run: {{ job.value.firstRunAt }}
+                  Started First Run: {{ jobId.value.firstRunAt }}
                 </div>
               </div>
               <div class="divTableCell text-center">
                 <div>Last Run Started:</div>
-                <div>{{ job.value.lastRunStartedAt }}</div>
+                <div>{{ jobId.value.lastRunStartedAt }}</div>
                 <div>Last Run Ended:</div>
-                <div>{{ job.value.lastRunEndedAt }}</div>
+                <div>{{ jobId.value.lastRunEndedAt }}</div>
               </div>
               <div class="divTableCell text-center">
-                {{ job.value.nextExecutionAt }}
+                {{ jobId.value.nextExecutionAt }}
               </div>
               <div class="divTableCell text-center">
                 <div>
                   <button
                     class="btn btn-link"
-                    (click)="handleQueueClick(job.key, modalHistory)"
+                    (click)="handleQueueClick(jobId.key, modalHistory)"
                   >
-                    {{ job.value.numberOfRuns }}
+                    {{ jobId.value.numberOfRuns }}
                   </button>
                 </div>
-                @if(historyFinished[job.key]) {
+                @if(historyFinished[jobId.key]) {
                 <div
                   *ngIf="
-                    historyFinished[job.key].length > 0 &&
-                    historyFinished[job.key][0].history.length > 0
+                    historyFinished[jobId.key].length > 0 &&
+                    historyFinished[jobId.key][0].history.length > 0
                   "
                 >
                   <button
                     class="btn btn-link"
-                    (click)="handleQueueClick(job.key, modalHistoryFinished)"
+                    (click)="handleQueueClick(jobId.key, modalHistoryFinished)"
                   >
                     Slow executions finished
                   </button>
                 </div>
-                } @if(historyProgress[job.key]) {
+                } @if(historyProgress[jobId.key]) {
                 <div
                   *ngIf="
-                    historyProgress[job.key].length > 0 &&
-                    historyProgress[job.key][0].history.length > 0
+                    historyProgress[jobId.key].length > 0 &&
+                    historyProgress[jobId.key][0].history.length > 0
                   "
                 >
                   <button
                     class="btn btn-link"
-                    (click)="handleQueueClick(job.key, modalHistoryProgresss)"
+                    (click)="handleQueueClick(jobId.key, modalHistoryProgresss)"
                   >
                     Slow executions in progress
                   </button>
@@ -81,38 +78,37 @@
                 }
               </div>
               <div class="divTableCell text-center">
-                <span [ngSwitch]="job.value.jobStatus">
+                <span [ngSwitch]="jobId.value.jobStatus">
                   <span *ngSwitchCase="'STOPPED'" class="no">STOPPED</span>
                   <span *ngSwitchCase="'SCHEDULED'" class="yes">SCHEDULED</span>
                   <span *ngSwitchCase="'RUNNING'" class="running">RUNNING</span>
-                  <span *ngSwitchDefault>{{ job.value.jobStatus }}</span>
+                  <span *ngSwitchDefault>{{ jobId.value.jobStatus }}</span>
                 </span>
               </div>
 
               <div class="divTableCell text-center">
                 <app-start-stop-remove-job
                   (refresh)="onRefresh1()"
-                  [jobId]="job.key"
-                  [jobStatus]="job.value.jobStatus"
-                  [jobStarted]="job.value.startedAt"
-                  [moduleStatus]="job.value.moduleStatus"
+                  [jobId]="jobId.key"
+                  [jobStatus]="jobId.value.jobStatus"
+                  [jobStarted]="jobId.value.startedAt"
+                  [moduleStatus]="jobId.value.moduleStatus"
                 ></app-start-stop-remove-job>
               </div>
               <div class="divTableCell text-center">
                 <app-enable-disable-job
                   (refreshEnableDisable)="onRefresh2()"
-                  [jobId]="job.key"
-                  [moduleStatus]="job.value.moduleStatus"
+                  [jobId]="jobId.key"
+                  [moduleStatus]="jobId.value.moduleStatus"
                 ></app-enable-disable-job>
               </div>
             </div>
-          </div>
+          </ng-container>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 <ng-template #cargando>
   <p>Cargando datos...</p>
 </ng-template>

@@ -1,23 +1,24 @@
 <div class="fondo">
-  <div class="modal-header">
-    <div class="textTittle2">Job Execution History</div>
-    <button
-      type="button"
-      class="btn-close"
-      aria-label="Close"
-      (click)="activeModal.dismiss('Cross click')"
-    ></button>
-  </div>
+  <div *ngIf="historyFinished; else cargando">
+    <div class="modal-header">
+      <div class="textTittle2">Job Execution History</div>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')"
+      ></button>
+    </div>
 
-  <div class="modal-body">
-    <div class="textTittle2">Name: {{ idName }}</div>
-    <app-table-history-finished
-      *ngIf="historyFinished"
-      [historyFinished]="historyFinished"
-      [idName]="idName"
-    ></app-table-history-finished>
+    <div class="modal-body">
+      <div class="textTittle2">Name: {{ idName }}</div>
+      <app-table-history-finished
+        *ngIf="historyFinished"
+        [historyFinished]="historyFinished"
+        [idName]="idName"
+      ></app-table-history-finished>
+    </div>
   </div>
-
   <div class="modal-footer">
     <button
       type="button"

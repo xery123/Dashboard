@@ -4,13 +4,14 @@ import { TableExecutedComponent } from '../table-executed/table-executed.compone
 
 import { DataHistoryFinished } from '../../domain/interface/history-queue-longest-finished';
 import { getHistoryUsecase } from '../../aplication/usecases/get-history.usecase/get-history.usecase';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-page-modal-executed',
   standalone: true,
   templateUrl: './page-modal-executed.component.html',
   styleUrl: './page-modal-executed.component.css',
-  imports: [TableExecutedComponent],
+  imports: [TableExecutedComponent, CommonModule],
 })
 export class PageModalExecutedComponent {
   @Input()

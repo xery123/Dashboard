@@ -1,23 +1,28 @@
-<div class="textTittle text-center">MESSAGE ENGINE</div>
-<hr />
-<div class="row">
-  <div class="col">
-    <!-- SearchBox -->
-    <shared-search-box
-      (onDebounce)="onSearch($event)"
-      placeholder="Search by type of queues..."
-    ></shared-search-box>
-  </div>
-  <div class="button">
+<div *ngIf="queuesSummary; else cargando">
+  <div class="textTittle text-center">MESSAGE ENGINE</div>
+  <hr />
+  <div class="row">
     <div class="col">
-      <app-start-button
-        (refreshAll)="handleJobOperation('startAllQueue')"
-      ></app-start-button>
+      <!-- SearchBox -->
+      <shared-search-box
+        (onDebounce)="onSearch($event)"
+        placeholder="Search by type of queues..."
+      ></shared-search-box>
+    </div>
+    <div class="button">
+      <div class="col">
+        <app-start-button
+          (refreshAll)="handleJobOperation('startAllQueue')"
+        ></app-start-button>
+      </div>
     </div>
   </div>
+  <app-table-message-engine
+    [filteredQueues]="filteredQueues"
+    [queuesSummary]="queuesSummary"
+    (refreshStatuss)="handleJobOperation('stopQueueConsumer')"
+  ></app-table-message-engine>
 </div>
-<app-table-message-engine
-  [filteredQueues]="filteredQueues"
-  [queuesSummary]="queuesSummary"
-  (refreshStatuss)="handleJobOperation('stopQueueConsumer')"
-></app-table-message-engine>
+<ng-template #cargando>
+  <p>Cargando datos...</p>
+</ng-template>

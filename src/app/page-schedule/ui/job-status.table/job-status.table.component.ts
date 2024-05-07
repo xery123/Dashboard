@@ -46,6 +46,7 @@ export class TableComponent implements OnInit {
   modalHistoryProgresss = PageHistoryProgresssComponent;
   @Input() jobsId: IStatus | undefined;
   @Input() jobs: { [key: string]: JobAsyncAggregateJobExecution1 } = {};
+  @Input() filteredJobs: { [key: string]: JobAsyncAggregateJobExecution1 } = {};
   idName: string | undefined;
 
   constructor(

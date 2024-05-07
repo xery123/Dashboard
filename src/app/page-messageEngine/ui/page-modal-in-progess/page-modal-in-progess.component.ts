@@ -3,13 +3,14 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TableInprogressComponent } from '../table-inprogress/TableInprogressComponent';
 import { DataHistoryProgress } from '../../domain/interface/history-queue-longest-progress';
 import { getHistoryUsecase } from '../../aplication/usecases/get-history.usecase/get-history.usecase';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-page-modal-in-progess',
   standalone: true,
   templateUrl: './page-modal-in-progess.component.html',
   styleUrl: './page-modal-in-progess.component.css',
-  imports: [TableInprogressComponent],
+  imports: [TableInprogressComponent, CommonModule],
 })
 export class PageModalInProgessComponent {
   @Input()

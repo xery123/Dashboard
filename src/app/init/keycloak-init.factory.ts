@@ -1,12 +1,13 @@
 import { KeycloakService } from 'keycloak-angular';
+import { environment } from '../../environments/environment.development';
 
 export function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
       config: {
-        url: 'https://devauth.limber.io/auth',
-        realm: 'limber-main-test',
-        clientId: 'limber_angular_ui',
+        url: `${environment.URL_KEYCLOACK}`,
+        realm: `${environment.REALM_KEYCLOACK}`,
+        clientId: `${environment.CLIENT_ID_KEYCLOACK}`,
       },
       enableBearerInterceptor: true,
       bearerPrefix: 'Bearer',

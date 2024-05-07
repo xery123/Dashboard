@@ -7,12 +7,17 @@
     <div>Max Threads: {{ jobsId.data.schedulerStats.maxThreads }}</div>
   </div>
   <hr />
+  <shared-search-box-id
+    (onDebounce)="onSearch($event)"
+    placeholder="Search by id..."
+  ></shared-search-box-id>
   <app-start-all-job (refreshAll)="startAllJob()"></app-start-all-job>
   <app-table
     (refreshJob)="handleJobOperation('refreshJob')"
     (enableDisableJob)="handleJobOperation('enableDisable')"
     [jobsId]="jobsId"
     [jobs]="jobs"
+    [filteredJobs]="filteredJobs"
   ></app-table>
 </div>
 

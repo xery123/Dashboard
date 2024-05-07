@@ -3,13 +3,14 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TableHistoryComponent } from '../table-allhistory/table-history.component';
 import { DataHistoryQueue } from '../../domain/interface/history-queue';
 import { getHistoryUsecase } from '../../aplication/usecases/get-history.usecase/get-history.usecase';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-page-modal-history',
   standalone: true,
   templateUrl: './page-modal-history.component.html',
   styleUrl: './page-modal-history.component.css',
-  imports: [TableHistoryComponent],
+  imports: [TableHistoryComponent, CommonModule],
 })
 export class PageModalAllHistoryComponent implements OnInit {
   @Input()

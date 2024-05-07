@@ -4,6 +4,7 @@ import HomePageComponent from './page-messageEngine/ui/home-page/home-page.compo
 import StatusJobComponent from './page-schedule/ui/job-status.page/job-status.page.component';
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'scheduler', pathMatch: 'full' },
   {
     path: 'scheduler',
     component: StatusJobComponent,

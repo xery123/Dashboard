@@ -1,29 +1,34 @@
-# Etapa de compilación
+
 FROM node:18-alpine AS build
 
-# Instalar dependencias y compilar la aplicación Angular
+
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
 
-# Definir la variable de entorno API_URL_ENVIRONMENT
-ENV API_URL_ENVIRONMENT=https://testactors2.limber.io
 
-# Reemplazar la variable de entorno en environment.prod.ts
+ENV API_URL_ENVIRONMENT=https://testactors2.limber.io
+ENV URL_KEYCLOACK=https://devauth.limber.io/auth
+ENV REALM_KEYCLOACK=limber-main-test
+ENV CLIENT_ID_KEYCLOACK=limber_angular_ui
+
+
 RUN sed -i "s|process.env\['API_URL_ENVIRONMENT'\] \|\| ''|'$API_URL_ENVIRONMENT'|g" src/environments/environment.prod.ts
+RUN sed -i "s|process.env\['URL_KEYCLOACK'\] \|\| ''|'$URL_KEYCLOACK'|g" src/environments/environment.prod.ts
+RUN sed -i "s|process.env\['REALM_KEYCLOACK'\] \|\| ''|'$REALM_KEYCLOACK'|g" src/environments/environment.prod.ts
+RUN sed -i "s|process.env\['CLIENT_ID_KEYCLOACK'\] \|\| ''|'$CLIENT_ID_KEYCLOACK'|g" src/environments/environment.prod.ts
 
 RUN npm run build
 
-# Etapa de producción
+
 FROM nginx:1.23.3-alpine AS final
 
-# Copiar el dist compilado
+
 WORKDIR /app
 COPY --from=build /app/dist/workers/browser/ /usr/share/nginx/html/
 
-# Copiar la configuración de Nginx
 COPY /nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
