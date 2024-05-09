@@ -35,7 +35,6 @@ import { getIdHistoryUsecase } from '../../application/usecases/getId-history.us
     TableHistoryComponent,
     EnableDisableJobComponent,
     StartStopRemoveJobComponent,
-    StatusJobComponent,
   ],
 })
 export class TableComponent implements OnInit {
@@ -48,6 +47,8 @@ export class TableComponent implements OnInit {
   @Input() jobs: { [key: string]: JobAsyncAggregateJobExecution1 } = {};
   @Input() filteredJobs: { [key: string]: JobAsyncAggregateJobExecution1 } = {};
   idName: string | undefined;
+  selectedInterval: number = 15;
+  private intervalId: any;
 
   constructor(
     private getIdHistoryUsecase: getIdHistoryUsecase,
@@ -55,6 +56,7 @@ export class TableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.executeLogicAtInterval();
     Object.entries(this.jobs).forEach(([key, value]) => {
       this.getIdHistoryUsecase
         .getIdProgress(key)
@@ -79,6 +81,37 @@ export class TableComponent implements OnInit {
         });
     });
   }
+
+  private executeLogicAtInterval() {
+    this.intervalId = setInterval(() => {
+      this.historyProgress = {};
+      this.historyFinished = {};
+      Object.entries(this.jobs).forEach(([key, value]) => {
+        this.getIdHistoryUsecase
+          .getIdProgress(key)
+          .subscribe((respuesta: IHistoryJobProgress) => {
+            if (respuesta && respuesta.data) {
+              if (!this.historyProgress[key]) {
+                this.historyProgress[key] = [];
+              }
+              this.historyProgress[key].push(respuesta.data);
+            }
+          });
+
+        this.getIdHistoryUsecase
+          .getIdFinished(key)
+          .subscribe((respuesta: IHistoryJobFinished) => {
+            if (respuesta && respuesta.data) {
+              if (!this.historyFinished[key]) {
+                this.historyFinished[key] = [];
+              }
+              this.historyFinished[key].push(respuesta.data);
+            }
+          });
+      });
+    }, this.selectedInterval * 1000);
+  }
+
   openModal(modalComponent: any, size: 'sm' | 'lg' | 'xl' = 'lg') {
     const modalRef = this.modalService.open(modalComponent, { size });
     modalRef.componentInstance.idName = this.idName;
@@ -106,5 +139,32 @@ export class TableComponent implements OnInit {
 
   onRefresh2() {
     this.enableDisableJob.emit();
+  }
+  refreshData1() {
+    this.historyProgress = {};
+    this.historyFinished = {};
+    Object.entries(this.jobs).forEach(([key, value]) => {
+      this.getIdHistoryUsecase
+        .getIdProgress(key)
+        .subscribe((respuesta: IHistoryJobProgress) => {
+          if (respuesta && respuesta.data) {
+            if (!this.historyProgress[key]) {
+              this.historyProgress[key] = [];
+            }
+            this.historyProgress[key].push(respuesta.data);
+          }
+        });
+
+      this.getIdHistoryUsecase
+        .getIdFinished(key)
+        .subscribe((respuesta: IHistoryJobFinished) => {
+          if (respuesta && respuesta.data) {
+            if (!this.historyFinished[key]) {
+              this.historyFinished[key] = [];
+            }
+            this.historyFinished[key].push(respuesta.data);
+          }
+        });
+    });
   }
 }

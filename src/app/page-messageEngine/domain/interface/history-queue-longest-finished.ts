@@ -11,4 +11,7 @@ export interface DataHistoryFinished {
   updatedAt: string;
   messageStatus: string;
   messageExecutionTimeInMilliseconds: number;
+  exception: string;
+  messageExecutionFailedAt: string;
+  messageStoppedFailedAt: string;
 }

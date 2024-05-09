@@ -1,18 +1,59 @@
+<div class="header-bar">
+  <div class="header-left">
+    <nav>
+      <a
+        [routerLink]="['/scheduler']"
+        [ngClass]="{ active: isCurrentRoute('/scheduler') }"
+        >SCHEDULER</a
+      >
+      <span> / </span>
+      <a
+        [routerLink]="['/messenger']"
+        [ngClass]="{ active: isCurrentRoute('/messenger') }"
+        >MESSENGER</a
+      >
+    </nav>
+    <shared-search-box-id
+      (onDebounce)="onSearch($event)"
+      placeholder="Search by id..."
+    ></shared-search-box-id>
+  </div>
+  <div class="header-right">
+    <button class="refresh-button" (click)="refreshData()">
+      <i class="fas fa-sync-alt"></i>
+    </button>
+    <select
+      id="interval"
+      [(ngModel)]="selectedInterval"
+      (change)="onIntervalChange($event)"
+    >
+      <option *ngFor="let option of intervalOptions" [value]="option.value">
+        {{ option.label }}
+      </option>
+    </select>
+  </div>
+</div>
 <div *ngIf="jobsId; else cargando">
-  <div class="textTittle text-center">SCHEDULER</div>
-  <hr />
   <div class="text">
     <div>Started: {{ jobsId.data.schedulerStats.startedAt }}</div>
     <div>Min Threads: {{ jobsId.data.schedulerStats.minThreads }}</div>
     <div>Max Threads: {{ jobsId.data.schedulerStats.maxThreads }}</div>
   </div>
   <hr />
-  <shared-search-box-id
-    (onDebounce)="onSearch($event)"
-    placeholder="Search by id..."
-  ></shared-search-box-id>
-  <app-start-all-job (refreshAll)="startAllJob()"></app-start-all-job>
+  <div class="header-left">
+    <app-start-all-job (refreshAll)="startAllJob()"></app-start-all-job>
+    <div class="unity">
+      <button
+        type="button"
+        class="btn btn-link"
+        [ngClass]="{ 'loading-cursor': isLoading }"
+      >
+        <div class="component" (click)="stopAllJobs()">STOP-ALL</div>
+      </button>
+    </div>
+  </div>
   <app-table
+    (refreshEventEmitter)="handleRefreshEvent()"
     (refreshJob)="handleJobOperation('refreshJob')"
     (enableDisableJob)="handleJobOperation('enableDisable')"
     [jobsId]="jobsId"
@@ -20,7 +61,6 @@
     [filteredJobs]="filteredJobs"
   ></app-table>
 </div>
-
 <ng-template #cargando>
   <p>Cargando datos...</p>
 </ng-template>

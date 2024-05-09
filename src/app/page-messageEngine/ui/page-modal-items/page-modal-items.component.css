@@ -1,8 +1,27 @@
-.fondo {
-	background: rgb(247, 241, 228);
-}
 .textTittle2 {
   text-align: left;
   color: rgb(78, 186, 210);
-  font-size: 30px;
+  font-size: 20;
+}
+.fondo {
+  background: rgb(247, 241, 228);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header .refresh-button-container {
+  display: flex;
+}
+
+.refresh-button {
+  background: rgb(247, 241, 228);
+  color: rgb(78, 186, 210);
+  padding: 5px;
+  border: none;
+  border-radius: none;
+  height: 40px;
 }

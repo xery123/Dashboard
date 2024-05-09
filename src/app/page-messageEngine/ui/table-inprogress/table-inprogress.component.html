@@ -7,6 +7,8 @@
             <div class="divTableRow">
               <div class="divTableHead text-center">Task</div>
               <div class="divTableHead text-center">Started</div>
+              <div class="divTableHead text-center">Executed</div>
+              <div class="divTableHead text-center">Status</div>
               <div class="divTableHead text-center">Time</div>
             </div>
           </div>
@@ -18,6 +20,43 @@
               </div>
               <div class="divTableCell text-center">
                 {{ historial.messageExecutionStartedAt }}
+              </div>
+              <div class="divTableCell text-center">
+                {{ historial.messageExecutedAt }}
+              </div>
+              <div class="divTableCell text-center">
+                <span
+                  [ngStyle]="{
+                    color:
+                      historial.messageExecutionFailedAt ||
+                      historial.exception ||
+                      historial.messageStoppedFailedAt
+                        ? 'red'
+                        : historial.messageExecutionStartedAt &&
+                          !historial.messageExecutedAt
+                        ? 'green'
+                        : historial.messageExecutionStartedAt &&
+                          historial.messageExecutedAt
+                        ? 'green'
+                        : 'black'
+                  }"
+                >
+                  {{
+                    historial.messageExecutionFailedAt ||
+                    historial.exception ||
+                    historial.messageStoppedFailedAt
+                      ? "KO"
+                      : (historial.messageExecutionStartedAt &&
+                          !historial.messageExecutedAt) ||
+                        (!historial.messageExecutionStartedAt &&
+                          !historial.messageExecutedAt)
+                      ? "IN PROGRESS"
+                      : historial.messageExecutionStartedAt &&
+                        historial.messageExecutedAt
+                      ? "OK"
+                      : ""
+                  }}
+                </span>
               </div>
               <div class="divTableCell text-center">
                 {{

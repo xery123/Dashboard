@@ -1,5 +1,12 @@
 import { PageModalInProgessComponent } from '../page-modal-in-progess/page-modal-in-progess.component';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  inject,
+} from '@angular/core';
 import { PageModalItemsComponent } from '../page-modal-items/page-modal-items.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LocalYhonAcurioLimberIoC } from '../../domain/interface/status';
@@ -8,8 +15,7 @@ import { TableItemsComponent } from '../table-items/table-items.component';
 import { PageModalExecutedComponent } from '../page-modal-executed/page-modal-executed.component';
 import { PageModalAllHistoryComponent } from '../page-modal-allhistory/page-modal-history.component';
 import { StopQueueConsumerComponent } from '../stop-queue-consumers-button/stop-queue-consumers-button.component';
-import { getHistoryProgressAdapter } from '../../infrastructure/adapters/get-history-progress.adapter/get-history-progress.adapter';
-import { getHistoryFinishedAdapter } from '../../infrastructure/adapters/get-history-finished.adapter/get-history-finished.adapter';
+
 import {
   DataHistoryFinished,
   IHistoryFinished,
@@ -39,12 +45,19 @@ export class TableMessageEngineComponent implements OnInit {
   @Input() queuesSummary: LocalYhonAcurioLimberIoC[] = [];
   @Input() filteredQueues: string[] = [];
   queue: string | undefined;
+  selectedInterval: number = 15;
+  private intervalId: any;
 
-  constructor(
-    private getHistoryUsecase: getHistoryUsecase,
-    private modalService: NgbModal
-  ) {}
+  private readonly getHistoryUsecase = inject(getHistoryUsecase);
+  constructor(private modalService: NgbModal) {}
+
   ngOnInit(): void {
+    this.executeLogicAtInterval();
+    setTimeout(() => {
+      this.init();
+    }, 1000);
+  }
+  private init() {
     this.filteredQueues.forEach((queue) => {
       this.getHistoryUsecase
         .getHistoryProgress(queue)
@@ -59,8 +72,43 @@ export class TableMessageEngineComponent implements OnInit {
         });
     });
   }
+  private executeLogicAtInterval() {
+    this.intervalId = setInterval(() => {
+      this.historyProgressClose = {};
+      this.historyFinishedClose = {};
+      this.filteredQueues.forEach((queue) => {
+        this.getHistoryUsecase
+          .getHistoryProgress(queue)
+          .subscribe((respuesta: { data: DataHistoryProgress[] }) => {
+            this.historyProgressClose[queue] = [{ data: respuesta.data }];
+          });
 
-  openModal(modalComponent: any, size: 'sm' | 'lg' | 'xl' = 'lg') {
+        this.getHistoryUsecase
+          .getHistoryFinished(queue)
+          .subscribe((respuesta: { data: DataHistoryFinished[] }) => {
+            this.historyFinishedClose[queue] = [{ data: respuesta.data }];
+          });
+      });
+    }, this.selectedInterval * 1000);
+  }
+  refreshData() {
+    this.historyProgressClose = {};
+    this.historyFinishedClose = {};
+    this.filteredQueues.forEach((queue) => {
+      this.getHistoryUsecase
+        .getHistoryProgress(queue)
+        .subscribe((respuesta: { data: DataHistoryProgress[] }) => {
+          this.historyProgressClose[queue] = [{ data: respuesta.data }];
+        });
+
+      this.getHistoryUsecase
+        .getHistoryFinished(queue)
+        .subscribe((respuesta: { data: DataHistoryFinished[] }) => {
+          this.historyFinishedClose[queue] = [{ data: respuesta.data }];
+        });
+    });
+  }
+  openModal(modalComponent: any, size: 'sm' | 'lg' | 'xl' = 'xl') {
     const modalRef = this.modalService.open(modalComponent, { size });
     modalRef.componentInstance.queue = this.queue;
   }

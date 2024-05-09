@@ -16,7 +16,7 @@ export class getHistoryFinishedAdapter implements getHistoryFinishedPort {
     const apiUrlFilter =
       postUrlHistoryQueueFinished.API_URL_HISTORY_QUEUE_FINISHED_FILTER;
     const url = `${apiUrl}${id}${apiUrlFilter}`;
-    console.log('get statusQueue');
+    console.log('get historyFinished');
     return this.http.get<IHistoryFinished>(url);
   }
 }

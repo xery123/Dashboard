@@ -41,4 +41,11 @@ export class HistoryJobComponent implements OnInit {
         .subscribe((respuesta) => (this.historyT = respuesta.data.history));
     }
   }
+  refreshData() {
+    if (this.idName) {
+      this.getIdHistoryUsecase
+        .getId(this.idName)
+        .subscribe((respuesta) => (this.historyT = respuesta.data.history));
+    }
+  }
 }

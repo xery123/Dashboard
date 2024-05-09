@@ -1,23 +1,57 @@
-<div *ngIf="queuesSummary; else cargando">
-  <div class="textTittle text-center">MESSAGE ENGINE</div>
-  <hr />
-  <div class="row">
-    <div class="col">
-      <!-- SearchBox -->
-      <shared-search-box
-        (onDebounce)="onSearch($event)"
-        placeholder="Search by type of queues..."
-      ></shared-search-box>
-    </div>
-    <div class="button">
-      <div class="col">
-        <app-start-button
-          (refreshAll)="handleJobOperation('startAllQueue')"
-        ></app-start-button>
-      </div>
+<div class="header-bar">
+  <div class="header-left">
+    <nav>
+      <a
+        [routerLink]="['/scheduler']"
+        [ngClass]="{ active: isCurrentRoute('/scheduler') }"
+        >SCHEDULER</a
+      >
+      <span> / </span>
+      <a
+        [routerLink]="['/messenger']"
+        [ngClass]="{ active: isCurrentRoute('/messenger') }"
+        >MESSENGER</a
+      >
+    </nav>
+    <shared-search-box
+      (onDebounce)="onSearch($event)"
+      placeholder="Search by queue..."
+    ></shared-search-box>
+  </div>
+
+  <div class="header-right">
+    <button class="refresh-button" (click)="refreshData()">
+      <i class="fas fa-sync-alt"></i>
+    </button>
+    <select
+      id="interval"
+      [(ngModel)]="selectedInterval"
+      (change)="onIntervalChange($event)"
+    >
+      <option *ngFor="let option of intervalOptions" [value]="option.value">
+        {{ option.label }}
+      </option>
+    </select>
+  </div>
+</div>
+<div *ngIf="filteredQueues; else cargando">
+  <div class="header-left">
+    <app-start-button
+      (refreshAll)="handleJobOperation('startAllQueue')"
+    ></app-start-button>
+    <div class="unity">
+      <button
+        type="button"
+        class="btn btn-link"
+        [ngClass]="{ 'loading-cursor': isLoading }"
+      >
+        <div class="component" (click)="stopAllQueues()">STOP-ALL</div>
+      </button>
     </div>
   </div>
+
   <app-table-message-engine
+    (refreshEventEmitter)="handleRefreshEvent()"
     [filteredQueues]="filteredQueues"
     [queuesSummary]="queuesSummary"
     (refreshStatuss)="handleJobOperation('stopQueueConsumer')"

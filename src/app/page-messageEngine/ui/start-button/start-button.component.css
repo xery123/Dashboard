@@ -1,5 +1,12 @@
+.text2 {
+  text-align: left;
+  margin-bottom: 0.2rem;
+  margin-left: 3rem;
+  color: rgb(78, 186, 210);
+}
+
 .unity button {
-  margin-left: 6%; /* Ajusta este valor según el espacio deseado */
+  margin-left: 40px; /* Ajusta este valor según el espacio deseado */
 }
 .component {
   display: table-cell;

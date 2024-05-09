@@ -16,7 +16,7 @@ export class getHistoryProgressAdapter implements getHistoryProgressPort {
     const apiUrlFilter =
       postUrlHistoryQueueProgress.API_URL_HISTORY_QUEUE_PROGRESS_FILTER;
     const url = `${apiUrl}${id}${apiUrlFilter}`;
-    console.log('get statusQueue');
+    console.log('get historyProgress');
     return this.http.get<IHistoryProgress>(url);
   }
 }

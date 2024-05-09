@@ -30,4 +30,11 @@ export class PageModalAllHistoryComponent implements OnInit {
         .subscribe((respuesta) => (this.historyAll = respuesta.data));
     }
   }
+  refreshData() {
+    if (this.queue) {
+      this.getHistoryUsecase
+        .getHistory(this.queue)
+        .subscribe((respuesta) => (this.historyAll = respuesta.data));
+    }
+  }
 }

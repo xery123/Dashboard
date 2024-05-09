@@ -50,6 +50,9 @@
   color: red;
 }
 .table-responsive {
-  max-height: 55vh; /* Ajusta este valor según tus necesidades */
+  max-height: 68vh;
   overflow-y: auto;
+}
+.number-of-runs {
+  width: 17%;
 }

@@ -45,4 +45,13 @@ export class PageHistoryFinishedComponent implements OnInit {
         );
     }
   }
+  refreshData() {
+    if (this.idName) {
+      this.getIdHistoryUsecase
+        .getIdFinished(this.idName)
+        .subscribe(
+          (respuesta) => (this.historyFinished = respuesta.data.history)
+        );
+    }
+  }
 }

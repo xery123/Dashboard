@@ -49,4 +49,13 @@ export class PageHistoryProgresssComponent implements OnInit {
         );
     }
   }
+  refreshData() {
+    if (this.idName) {
+      this.getIdHistoryUsecase
+        .getIdProgress(this.idName)
+        .subscribe(
+          (respuesta) => (this.historyProgress = respuesta.data.history)
+        );
+    }
+  }
 }

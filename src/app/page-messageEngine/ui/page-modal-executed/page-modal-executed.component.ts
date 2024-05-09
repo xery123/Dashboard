@@ -31,4 +31,11 @@ export class PageModalExecutedComponent {
         .subscribe((respuesta) => (this.historyFinished = respuesta.data));
     }
   }
+  refreshData() {
+    if (this.queue) {
+      this.getHistoryUsecase
+        .getHistoryFinished(this.queue)
+        .subscribe((respuesta) => (this.historyFinished = respuesta.data));
+    }
+  }
 }

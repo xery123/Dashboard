@@ -7,14 +7,14 @@
             <div class="divTableRow">
               <div class="divTableHead text-center">Queues</div>
               <div class="divTableHead text-center">Number of Consumers</div>
-              <div class="divTableHead text-center">Executions</div>
+              <div class="divTableHead text-center executions">Executions</div>
               <div class="divTableHead text-center">Module Status</div>
               <div class="divTableHead text-center">Actions</div>
             </div>
           </div>
           <ng-container *ngFor="let item of queuesSummary; let i = index">
             <ng-container *ngFor="let queue of filteredQueues; let j = index">
-              <div class="divTableBody" *ngIf="i === j">
+              <div class="divTableBody">
                 <div class="divTableRow">
                   <div class="divTableCell text-center">{{ queue }}</div>
                   <div class="divTableCell text-center">
@@ -29,7 +29,7 @@
                       </button>
                     </div>
                   </div>
-                  <div class="divTableCell text-center">
+                  <div class="divTableCell text-center executions">
                     <div>
                       <button
                         class="btn btn-link"
@@ -99,6 +99,7 @@
                     <app-stop-queue-consumer-button
                       (refresh)="onRefresh1()"
                       [queue]="queue"
+                      [numberConsumers]="item.numberConsumers"
                     ></app-stop-queue-consumer-button>
                   </div>
                 </div>

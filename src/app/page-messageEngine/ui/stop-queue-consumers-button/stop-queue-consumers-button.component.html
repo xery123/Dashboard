@@ -3,7 +3,7 @@
     type="button"
     class="btn btn-link"
     [ngClass]="{ 'loading-cursor': isLoading, isButtonDisabled }"
-    [disabled]="isLoading || isButtonDisabled"
+    [disabled]="isLoading || isButtonDisabled || numberConsumers == 0"
   >
     <div class="component" (click)="stopQueueConsumer(); disableButtons()">
       STOP

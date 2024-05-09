@@ -55,3 +55,6 @@
   max-height: 60vh; /* Ajusta este valor según tus necesidades */
   overflow-y: auto;
 }
+.executions {
+  width: 17%;
+}

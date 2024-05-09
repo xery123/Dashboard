@@ -18,13 +18,6 @@ h1 {
   margin-left: 3rem;
   color: rgb(78, 186, 210);
 }
-.textTittle {
-  text-align: left;
-  margin-bottom: 0.2rem;
-  margin-left: 3rem;
-  color: rgb(78, 186, 210);
-  font-size: 40px;
-}
 
 .unity {
   display: table-row;
@@ -33,7 +26,91 @@ h1 {
 .component {
   display: table-cell;
 }
+.textTittle {
+  text-align: left;
+  margin-bottom: 0.2rem;
+  margin-left: 3rem;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+}
 
-.button {
-  cursor: pointer;
+option {
+  background: rgb(48, 151, 174);
+  color: black;
+}
+.header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgb(48, 151, 174);
+  color: #fff;
+  padding: 10px;
+}
+
+#interval {
+  background: rgb(48, 151, 174);
+  color: black;
+  padding: 5px;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  height: 40px;
+}
+.header-left {
+  display: flex;
+  align-items: center;
+}
+.header-right {
+  display: flex;
+  align-items: center;
+}
+.refresh-button {
+  background: rgb(48, 151, 174);
+  color: black;
+  padding: 5px;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  height: 40px;
+}
+.header-left nav a {
+  color: black;
+
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.header-left nav a.active {
+  color: black;
+  font-weight: bold;
+  pointer-events: none;
+  cursor: default;
+  font-size: 20px;
+}
+.header-left nav span {
+  color: black;
+  /* margin: 0 8px; */
+  font-size: 20px;
+}
+.unity button {
+  margin-left: 40px;
+}
+.component {
+  display: table-cell;
+}
+
+.btn-link {
+  font-weight: 400;
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.btn-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+.loading-cursor {
+  cursor: wait;
 }

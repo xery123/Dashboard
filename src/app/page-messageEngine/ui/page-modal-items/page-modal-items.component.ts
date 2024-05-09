@@ -31,9 +31,9 @@ export class PageModalItemsComponent implements OnInit {
         .getStatusQueue(this.queue)
         .subscribe((respuesta) => (this.statusQueue = respuesta.data.items));
     }
-    this.stopQueueConsumer();
   }
-  stopQueueConsumer() {
+
+  refreshData() {
     if (this.queue) {
       this.getStatusUsecase
         .getStatusQueue(this.queue)

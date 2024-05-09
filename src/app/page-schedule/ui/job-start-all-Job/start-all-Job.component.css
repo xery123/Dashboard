@@ -6,12 +6,12 @@
 }
 
 .unity button {
-  margin-left: 40px; /* Ajusta este valor según el espacio deseado */
+  margin-left: 40px;
 }
 .component {
   display: table-cell;
 }
-/* Estilos para el botón con apariencia de enlace */
+
 .btn-link {
   font-weight: 400;
   color: #007bff;
@@ -22,9 +22,9 @@
 }
 
 .btn-link:hover {
-  color: #0056b3; /* Color más oscuro al pasar el mouse */
+  color: #0056b3;
   text-decoration: underline;
 }
 .loading-cursor {
-  cursor: wait; /* Cambia el cursor a un reloj de arena o similar */
+  cursor: wait;
 }

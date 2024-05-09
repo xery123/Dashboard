@@ -15,7 +15,7 @@ export class getHistoryAdapter implements getHistoryPort {
     const apiUrl = postUrlHistoryQueue.API_URL_HISTORY_QUEUE;
     const apiUrlFilter = postUrlHistoryQueue.API_URL_HISTORY_QUEUE_FILTER;
     const url = `${apiUrl}${id}${apiUrlFilter}`;
-    console.log('get statusQueue');
+    console.log('get history');
     return this.http.get<IHistoryQueue>(url);
   }
 }

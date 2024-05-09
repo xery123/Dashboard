@@ -13,6 +13,8 @@ import { startAllStopUsecase } from '../../aplication/usecases/startAll-stop.use
 export class StopQueueConsumerComponent {
   @Input()
   queue: string = '';
+  @Input()
+  numberConsumers: number = 0;
   isLoading = false;
   private startAllStopUsecase = inject(startAllStopUsecase);
 

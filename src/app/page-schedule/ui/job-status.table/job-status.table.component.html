@@ -8,7 +8,9 @@
               <div class="divTableHead text-center">ID</div>
               <div class="divTableHead text-center">Last task</div>
               <div class="divTableHead text-center">Next execution</div>
-              <div class="divTableHead text-center">Number of runs</div>
+              <div class="divTableHead text-center number-of-runs">
+                Number of runs
+              </div>
               <div class="divTableHead text-center">Status</div>
               <div class="divTableHead text-center">Job Actions</div>
               <div class="divTableHead text-center">Module Actions</div>
@@ -38,7 +40,7 @@
               <div class="divTableCell text-center">
                 {{ jobId.value.nextExecutionAt }}
               </div>
-              <div class="divTableCell text-center">
+              <div class="divTableCell text-center number-of-runs">
                 <div>
                   <button
                     class="btn btn-link"

@@ -30,4 +30,11 @@ export class PageModalInProgessComponent {
         .subscribe((respuesta) => (this.historyProgress = respuesta.data));
     }
   }
+  refreshData() {
+    if (this.queue) {
+      this.getHistoryUsecase
+        .getHistoryProgress(this.queue)
+        .subscribe((respuesta) => (this.historyProgress = respuesta.data));
+    }
+  }
 }

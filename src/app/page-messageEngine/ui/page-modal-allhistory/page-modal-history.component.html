@@ -1,13 +1,18 @@
 <div class="fondo">
   <div *ngIf="queue; else cargando">
     <div class="modal-header">
-      <div class="textTittle2">History</div>
-      <button
-        type="button"
-        class="btn-close"
-        aria-label="Close"
-        (click)="activeModal.dismiss('Cross click')"
-      ></button>
+      <div class="textTittle2">All history</div>
+      <div class="refresh-button-container">
+        <button class="refresh-button" (click)="refreshData()">
+          <i class="fas fa-sync-alt"></i>
+        </button>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="activeModal.dismiss('Cross click')"
+        ></button>
+      </div>
     </div>
 
     <div class="modal-body">
