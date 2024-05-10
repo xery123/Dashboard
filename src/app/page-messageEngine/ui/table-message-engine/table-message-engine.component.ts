@@ -75,6 +75,7 @@ export class TableMessageEngineComponent implements OnInit {
   private executeLogicAtInterval() {
     this.intervalId = setInterval(() => {
       this.historyProgressClose = {};
+      this.historyFinishedClose = {};
 
       this.filteredQueues.forEach((queue) => {
         this.getHistoryUsecase

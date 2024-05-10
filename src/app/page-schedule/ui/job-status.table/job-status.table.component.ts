@@ -10,17 +10,14 @@ import {
 } from '../../domain/interfaces/status';
 import { EnableDisableJobComponent } from '../job-enable-disable-job/enable-disable-job.component';
 import { StartStopRemoveJobComponent } from '../job-start-stop-remove-job/start-stop-remove-job.component';
-import StatusJobComponent from '../job-status.page/job-status.page.component';
 import { PageHistoryFinishedComponent } from '../job-history-finished.page/job-history-finished.component';
 import { PageHistoryProgresssComponent } from '../job-history-progress.page/job-history-progress.component';
 import {
   DataF,
-  HistoryFinished,
   IHistoryJobFinished,
 } from '../../domain/interfaces/historyJobFinished';
 import {
   DataP,
-  HistoryProgress,
   IHistoryJobProgress,
 } from '../../domain/interfaces/historyJobProgress';
 import { getIdHistoryUsecase } from '../../application/usecases/getId-history.usecase/getId-history.usecase';
@@ -142,7 +139,7 @@ export class TableComponent implements OnInit {
   }
   refreshData1() {
     this.historyProgress = {};
-
+    this.historyFinished = {};
     Object.entries(this.jobs).forEach(([key, value]) => {
       this.getIdHistoryUsecase
         .getIdProgress(key)
