@@ -1,5 +1,7 @@
-import { environment } from '../../../../environments/environment.development';
+import { EnvironmentService } from '../../../select environment/select-environment.service';
 
-export class postUrlStopConsumerQueue {
-  static readonly API_URL_STOP_CONSUMER_QUEUE = `${environment.API_URL_ENVIRONMENT}/api/v4/jobs/messenger/queue/stop-consumers/`;
+export class PostUrlStopConsumerQueue {
+  static PostUrlStopConsumerQueue(EnvironmentService: EnvironmentService) {
+    return `${EnvironmentService.selectedApiUrl}/api/v4/jobs/messenger/queue/stop-consumers/`;
+  }
 }

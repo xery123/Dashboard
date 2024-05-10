@@ -1,5 +1,7 @@
-import { environment } from '../../../../environments/environment.development';
+import { EnvironmentService } from '../../../select environment/select-environment.service';
 
 export class postUrlStartAllQueue {
-  static readonly API_URL_START_ALL_QUEUE = `${environment.API_URL_ENVIRONMENT}/api/v4/jobs/messenger/`;
+  static postUrlStartAllQueue(EnvironmentService: EnvironmentService) {
+    return `${EnvironmentService.selectedApiUrl}/api/v4/jobs/messenger/`;
+  }
 }

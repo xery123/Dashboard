@@ -45,7 +45,7 @@ export class TableMessageEngineComponent implements OnInit {
   @Input() queuesSummary: LocalYhonAcurioLimberIoC[] = [];
   @Input() filteredQueues: string[] = [];
   queue: string | undefined;
-  selectedInterval: number = 15;
+  selectedInterval: number = 30;
   private intervalId: any;
 
   private readonly getHistoryUsecase = inject(getHistoryUsecase);
@@ -75,7 +75,7 @@ export class TableMessageEngineComponent implements OnInit {
   private executeLogicAtInterval() {
     this.intervalId = setInterval(() => {
       this.historyProgressClose = {};
-      this.historyFinishedClose = {};
+
       this.filteredQueues.forEach((queue) => {
         this.getHistoryUsecase
           .getHistoryProgress(queue)

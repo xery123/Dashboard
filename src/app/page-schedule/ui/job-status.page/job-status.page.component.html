@@ -19,9 +19,8 @@
     ></shared-search-box-id>
   </div>
   <div class="header-right">
-    <button class="refresh-button" (click)="refreshData()">
-      <i class="fas fa-sync-alt"></i>
-    </button>
+    <app-selected-api-box></app-selected-api-box>
+    <app-refresh-box (refreshClick)="refreshData()"></app-refresh-box>
     <select
       id="interval"
       [(ngModel)]="selectedInterval"
@@ -31,8 +30,10 @@
         {{ option.label }}
       </option>
     </select>
+    >
   </div>
 </div>
+
 <div *ngIf="jobsId; else cargando">
   <div class="text">
     <div>Started: {{ jobsId.data.schedulerStats.startedAt }}</div>

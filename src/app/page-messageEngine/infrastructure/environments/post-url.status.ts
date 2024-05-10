@@ -1,5 +1,7 @@
-import { environment } from '../../../../environments/environment.development';
+import { EnvironmentService } from '../../../select environment/select-environment.service';
 
 export class postUrlStatus {
-  static readonly API_URL_STATUS = `${environment.API_URL_ENVIRONMENT}/api/v4/jobs/messenger/status`;
+  static postUrlStatus(EnvironmentService: EnvironmentService) {
+    return `${EnvironmentService.selectedApiUrl}/api/v4/jobs/messenger/status`;
+  }
 }

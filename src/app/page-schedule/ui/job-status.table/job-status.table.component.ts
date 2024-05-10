@@ -47,7 +47,7 @@ export class TableComponent implements OnInit {
   @Input() jobs: { [key: string]: JobAsyncAggregateJobExecution1 } = {};
   @Input() filteredJobs: { [key: string]: JobAsyncAggregateJobExecution1 } = {};
   idName: string | undefined;
-  selectedInterval: number = 15;
+  selectedInterval: number = 30;
   private intervalId: any;
 
   constructor(
@@ -142,7 +142,7 @@ export class TableComponent implements OnInit {
   }
   refreshData1() {
     this.historyProgress = {};
-    this.historyFinished = {};
+
     Object.entries(this.jobs).forEach(([key, value]) => {
       this.getIdHistoryUsecase
         .getIdProgress(key)

@@ -9,7 +9,7 @@ RUN npm ci
 COPY . .
 
 
-ENV API_URL_ENVIRONMENT=https://testactors2.limber.io
+ENV API_URL_ENVIRONMENT=test=https://testactors2.limber.io,https://test2.limber.io,https://testactors4.limber.io;app=https://app2.limber.io,https://app2.limber.io,https://app4.limber.io
 ENV URL_KEYCLOACK=https://devauth.limber.io/auth
 ENV REALM_KEYCLOACK=limber-main-test
 ENV CLIENT_ID_KEYCLOACK=limber_angular_ui

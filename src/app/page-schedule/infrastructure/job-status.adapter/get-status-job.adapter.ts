@@ -4,15 +4,18 @@ import { IGetStatusJobPort } from '../../application/ports/status-port/get-statu
 import { Observable } from 'rxjs';
 import { IStatusJob } from '../../domain/interfaces/statusJob';
 import { postUrlStatusJob } from '../environments/post-url.StatusJob';
-
+import { EnvironmentService } from '../../../select environment/select-environment.service';
 @Injectable({
   providedIn: 'root',
 })
 export class getStatusJobAdapter implements IGetStatusJobPort {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private EnvironmentService: EnvironmentService
+  ) {}
 
   getStatusJob(id: string): Observable<IStatusJob> {
-    const apiUrl = postUrlStatusJob.API_URL_STATUS_JOB;
+    const apiUrl = postUrlStatusJob.postUrlStatusJob(this.EnvironmentService);
     const url = `${apiUrl}${id}`;
     console.log('get statusJob');
     return this.http.get<IStatusJob>(url);

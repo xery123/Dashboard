@@ -24,6 +24,9 @@ import { FormsModule } from '@angular/forms';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { catchError, filter, finalize, map, of } from 'rxjs';
 import { startStopRemoveJobsUsecase } from '../../application/usecases/start-stop-remove-jobs.usecase/start-stop-remove-jobs.usecase';
+import { EnvironmentService } from '../../../select environment/select-environment.service';
+import { SelectedApiBoxComponent } from '../selected-api-box/selected-api-box.component';
+import { RefreshBoxComponent } from '../refresh-box/refresh-box.component';
 
 @Component({
   selector: 'app-status-job',
@@ -39,6 +42,8 @@ import { startStopRemoveJobsUsecase } from '../../application/usecases/start-sto
     EnableDisableJobComponent,
     SearchBoxComponent,
     RouterModule,
+    SelectedApiBoxComponent,
+    RefreshBoxComponent,
   ],
 })
 export default class StatusJobComponent implements OnInit, OnDestroy {

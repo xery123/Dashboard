@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { startAllStopUsecase } from '../../aplication/usecases/startAll-stop.usecase/startAll-stop.usecase';
 import { catchError, finalize, of } from 'rxjs';
+import { RefreshBoxComponent } from '../refresh-box/refresh-box.component';
+import { SelectedApiBoxComponent } from '../selected-api-box/selected-api-box.component';
 
 @Component({
   selector: 'app-home-page',
@@ -28,6 +30,8 @@ import { catchError, finalize, of } from 'rxjs';
     StartButtonComponent,
     StopQueueConsumerComponent,
     RouterModule,
+    RefreshBoxComponent,
+    SelectedApiBoxComponent,
   ],
 })
 export default class HomePageComponent implements OnInit {

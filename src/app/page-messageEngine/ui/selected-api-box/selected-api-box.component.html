@@ -1,0 +1,9 @@
+<select
+  id="interval"
+  [(ngModel)]="selectedUrlString"
+  (ngModelChange)="onUrlChange($event)"
+>
+  <ng-container *ngFor="let url of availableUrls">
+    <option [value]="url.url">{{ url.name }}: {{ url.url }}</option>
+  </ng-container>
+</select>
