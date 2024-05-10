@@ -17,6 +17,8 @@
   background-color: #74b4e1;
   display: table-header-group;
   font-weight: bold;
+  position: sticky;
+  top: 0;
 }
 .divTableHead {
   background-color: rgba(77, 178, 14, 0.1);
@@ -50,7 +52,7 @@
   color: red;
 }
 .table-responsive {
-  max-height: 68vh;
+  max-height: 70vh;
   overflow-y: auto;
 }
 .number-of-runs {
