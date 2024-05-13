@@ -24,7 +24,7 @@ import { FormsModule } from '@angular/forms';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { catchError, filter, finalize, map, of } from 'rxjs';
 import { startStopRemoveJobsUsecase } from '../../application/usecases/start-stop-remove-jobs.usecase/start-stop-remove-jobs.usecase';
-import { EnvironmentService } from '../../../select environment/select-environment.service';
+
 import { SelectedApiBoxComponent } from '../selected-api-box/selected-api-box.component';
 import { RefreshBoxComponent } from '../refresh-box/refresh-box.component';
 
@@ -48,6 +48,7 @@ import { RefreshBoxComponent } from '../refresh-box/refresh-box.component';
 })
 export default class StatusJobComponent implements OnInit, OnDestroy {
   private readonly getJobsUsecase = inject(getJobsUsecase);
+  private startStopRemoveJobsUsecase = inject(startStopRemoveJobsUsecase);
   @Input() jobId: string = '';
   jobsId: IStatus | undefined;
   jobs: { [key: string]: JobAsyncAggregateJobExecution1 } = {};
@@ -77,7 +78,7 @@ export default class StatusJobComponent implements OnInit, OnDestroy {
   isCurrentRoute(route: string): boolean {
     return this.currentRoute.includes(route);
   }
-  private startStopRemoveJobsUsecase = inject(startStopRemoveJobsUsecase);
+
   @ViewChild(TableComponent) tableComponent!: TableComponent;
   ngOnInit(): void {
     this.executeLogicAtInterval();
@@ -174,16 +175,15 @@ export default class StatusJobComponent implements OnInit, OnDestroy {
     this.getJobsUsecase.getStatus().subscribe((respuesta: IStatus) => {
       this.jobsId = respuesta;
       this.extractJobNames();
+      this.filterJobs();
+      this.initFilteredJobs();
     });
   }
 
   refreshData() {
-    this.filteredJobsStopAll = [];
     this.getJobsUsecase.getStatus().subscribe((respuesta: IStatus) => {
       this.jobsId = respuesta;
       this.extractJobNames();
-      this.filterJobs();
-      this.initFilteredJobs();
     });
     this.handleRefreshEvent();
   }

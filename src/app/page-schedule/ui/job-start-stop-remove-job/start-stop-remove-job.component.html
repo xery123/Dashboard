@@ -6,7 +6,12 @@
     [ngClass]="{ 'loading-cursor': isLoading }"
     *ngIf="jobStarted === null && moduleStatus !== 'DISABLED'"
     (click)="startJob(); disableButtons()"
-    [disabled]="isLoading || moduleStatus === 'DISABLED' || isButtonDisabled"
+    [disabled]="
+      isLoading ||
+      moduleStatus === 'DISABLED' ||
+      isButtonDisabled ||
+      jobStatus === 'SCHEDULED'
+    "
   >
     <div class="component">START</div>
   </button>
