@@ -1,34 +1,50 @@
+import { S_GET_HISTORY_FINISHED_PROVIDER_USECASE } from './scheduler/application/usecases/handlers/query/get-history-finished.query.handler';
 import { APP_INITIALIZER, ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
 import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
 import {
   HTTP_INTERCEPTORS,
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
-import { GET_STATUS_JOB_API_PROVIDER } from './page-schedule/infrastructure/providers/get-status-job-api.provider';
-import { HISTORY_API_PROVIDER } from './page-schedule/infrastructure/providers/get-history-api.provider';
-import { POST_REMOVE_STATUS_API_PROVIDER } from './page-schedule/infrastructure/providers/postRemove-status-api.provider';
-import { POST_STARTALL_STATUS_API_PROVIDER } from './page-schedule/infrastructure/providers/postAllStart-status-api.provider';
-import { POST_START_STATUS_API_PROVIDER } from './page-schedule/infrastructure/providers/postStart-status-api.provider';
-import { POST_STOP_STATUS_API_PROVIDER } from './page-schedule/infrastructure/providers/postStop-status-api.provider';
 
-import { POST_ENABLE_STATUS_API_PROVIDER } from './page-schedule/infrastructure/providers/postEnable-status-api.provider';
-import { POST_DISABLE_STATUS_API_PROVIDER } from './page-schedule/infrastructure/providers/postDisable-status-api.provider';
-import { GET_STATUS_API_PROVIDER } from './page-schedule/infrastructure/providers/get-status-api.provider';
-import { GET_HISTORY_FINISHED_PROVIDER } from './page-messageEngine/infrastructure/providers/get-history.provider/get-history-finished.provider';
-import { GET_HISTORY_PROGRESS_PROVIDER } from './page-messageEngine/infrastructure/providers/get-history.provider/get-history-progress.provider';
-import { GET_HISTORY_PROVIDER } from './page-messageEngine/infrastructure/providers/get-history.provider/get-history.provider';
-import { GET_STATUS_QUEUE_PROVIDER } from './page-messageEngine/infrastructure/providers/get-status.provider/get-status-queue.provider';
-import { GET_STATUS_PROVIDER } from './page-messageEngine/infrastructure/providers/get-status.provider/get-status.provider';
-import { START_ALL_QUEUE_PROVIDER } from './page-messageEngine/infrastructure/providers/startAll-stop.provider/post-startAll-queue.provider';
-import { STOP_CONSUMER_QUEUE_PROVIDER } from './page-messageEngine/infrastructure/providers/startAll-stop.provider/post-stopConsumer-queue.provider';
-import { HISTORY_JOB_FINISHED_API_PROVIDER } from './page-schedule/infrastructure/providers/get-history-job-finished-api.provider';
-import { HISTORY_JOB_PROGRESS_API_PROVIDER } from './page-schedule/infrastructure/providers/get-history-job-progress-api.provider';
 import { KeycloakBearerInterceptor, KeycloakService } from 'keycloak-angular';
 import { initializeKeycloak } from './init/keycloak-init.factory';
+import { GET_HISTORY_PROGRESS_PROVIDER_USECASE } from './messenger/aplication/usecases/handlers/query/get-history-progress.query.handler';
+import { GET_HISTORY_PROVIDER_USECASE } from './messenger/aplication/usecases/handlers/query/get-history.query.handler';
+import { START_ALL_QUEUE_PROVIDER_USECASE } from './messenger/aplication/usecases/handlers/comand/start-all.comand.handler';
+import { STOP_CONSUMER_QUEUE_PROVIDER_USECASE } from './messenger/aplication/usecases/handlers/comand/stop-consumer.comand.handler';
+import { GET_STATUS_PROVIDER_USECASE } from './messenger/aplication/usecases/handlers/query/get-status.query.handler';
+import { GET_STATUS_QUEUE_PROVIDER_USECASE } from './messenger/aplication/usecases/handlers/query/get-status-queue.query.handler';
+import { GET_HISTORY_FINISHED_PROVIDER } from './messenger/infrastructure/adapters/get-history-finished.adapter';
+import { GET_HISTORY_PROVIDER } from './messenger/infrastructure/adapters/get-history.adapter';
+import { GET_HISTORY_PROGRESS_PROVIDER } from './messenger/infrastructure/adapters/get-history-progress.adapter';
+import { GET_STATUS_QUEUE_PROVIDER } from './messenger/infrastructure/adapters/get-status-queue.adapter';
+import { GET_STATUS_PROVIDER } from './messenger/infrastructure/adapters/get-status.adapter';
+import { START_ALL_QUEUE_PROVIDER } from './messenger/infrastructure/adapters/post-start-all-queue.adapter';
+import { STOP_CONSUMER_QUEUE_PROVIDER } from './messenger/infrastructure/adapters/post-stop-consumer-queue.adapter';
+import { S_ENABLE_MODULE_PROVIDER_USECASE } from './scheduler/application/usecases/handlers/comand/enable.comand.handler';
+import { S_GET_HISTORY_PROGRESS_PROVIDER_USECASE } from './scheduler/application/usecases/handlers/query/get-history-progress.query.handler';
+import { S_GET_HISTORY_PROVIDER_USECASE } from './scheduler/application/usecases/handlers/query/get-history.query.handler';
+import { S_GET_STATUS_JOB_PROVIDER_USECASE } from './scheduler/application/usecases/handlers/query/get-status-job.query.handler';
+import { S_GET_STATUS_PROVIDER_USECASE } from './scheduler/application/usecases/handlers/query/get-status.query.handler';
+import { S_REMOVE_PROVIDER_USECASE } from './scheduler/application/usecases/handlers/comand/remove.comand.handler';
+import { S_START_ALL_PROVIDER_USECASE } from './scheduler/application/usecases/handlers/comand/start-all.comand.handler';
+import { S_START_PROVIDER_USECASE } from './scheduler/application/usecases/handlers/comand/start.comand.handler';
+import { S_STOP_PROVIDER_USECASE } from './scheduler/application/usecases/handlers/comand/stop.comand.handler';
+import { S_REMOVE_STATUS_API_PROVIDER } from './scheduler/infrastructure/adapters/remove-status.adapter';
+import { S_START_ALL_STATUS_API_PROVIDER } from './scheduler/infrastructure/adapters/start-all-status.adapter';
+import { S_START_STATUS_API_PROVIDER } from './scheduler/infrastructure/adapters/start-status.adapter';
+import { S_STOP_STATUS_API_PROVIDER } from './scheduler/infrastructure/adapters/stop-status.adapter';
+import { HISTORY_JOB_PROGRESS_API_PROVIDER } from './scheduler/infrastructure/adapters/get-id-history-job-progress.adapter';
+import { HISTORY_JOB_FINISHED_API_PROVIDER } from './scheduler/infrastructure/adapters/get-id-history-job-finished.adapter';
+import { GET_STATUS_API_PROVIDER } from './scheduler/infrastructure/adapters/get-status.adapter';
+import { GET_STATUS_JOB_API_PROVIDER } from './scheduler/infrastructure/adapters/get-status-job.adapter';
+import { HISTORY_API_PROVIDER } from './scheduler/infrastructure/adapters/get-id-history.adapter';
+import { GET_HISTORY_FINISHED_PROVIDER_USECASE } from './messenger/aplication/usecases/handlers/query/get-history-finished.query.handler';
+import { S_DISABLE_MODULE_PROVIDER_USECASE } from './scheduler/application/usecases/handlers/comand/disable.comand.handler';
+import { DISABLE_MODULE_PROVIDER } from './scheduler/infrastructure/adapters/disable-status.adapter';
+import { ENABLE_MODULE_PROVIDER } from './scheduler/infrastructure/adapters/enable-status.adapter';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -50,13 +66,15 @@ export const appConfig: ApplicationConfig = {
       multi: true,
     },
     GET_STATUS_JOB_API_PROVIDER,
+    DISABLE_MODULE_PROVIDER,
+    ENABLE_MODULE_PROVIDER,
     HISTORY_API_PROVIDER,
-    POST_REMOVE_STATUS_API_PROVIDER,
-    POST_STARTALL_STATUS_API_PROVIDER,
-    POST_START_STATUS_API_PROVIDER,
-    POST_STOP_STATUS_API_PROVIDER,
-    POST_ENABLE_STATUS_API_PROVIDER,
-    POST_DISABLE_STATUS_API_PROVIDER,
+    S_REMOVE_STATUS_API_PROVIDER,
+    S_START_ALL_STATUS_API_PROVIDER,
+    S_START_STATUS_API_PROVIDER,
+    S_STOP_STATUS_API_PROVIDER,
+    S_REMOVE_STATUS_API_PROVIDER,
+    S_START_STATUS_API_PROVIDER,
     GET_STATUS_API_PROVIDER,
     GET_HISTORY_FINISHED_PROVIDER,
     GET_HISTORY_PROGRESS_PROVIDER,
@@ -67,5 +85,23 @@ export const appConfig: ApplicationConfig = {
     STOP_CONSUMER_QUEUE_PROVIDER,
     HISTORY_JOB_FINISHED_API_PROVIDER,
     HISTORY_JOB_PROGRESS_API_PROVIDER,
+    GET_HISTORY_PROGRESS_PROVIDER_USECASE,
+    GET_HISTORY_FINISHED_PROVIDER_USECASE,
+    GET_HISTORY_PROVIDER_USECASE,
+    START_ALL_QUEUE_PROVIDER_USECASE,
+    STOP_CONSUMER_QUEUE_PROVIDER_USECASE,
+    GET_STATUS_PROVIDER_USECASE,
+    GET_STATUS_QUEUE_PROVIDER_USECASE,
+    S_DISABLE_MODULE_PROVIDER_USECASE,
+    S_ENABLE_MODULE_PROVIDER_USECASE,
+    S_GET_HISTORY_FINISHED_PROVIDER_USECASE,
+    S_GET_HISTORY_PROGRESS_PROVIDER_USECASE,
+    S_GET_HISTORY_PROVIDER_USECASE,
+    S_GET_STATUS_JOB_PROVIDER_USECASE,
+    S_GET_STATUS_PROVIDER_USECASE,
+    S_REMOVE_PROVIDER_USECASE,
+    S_START_ALL_PROVIDER_USECASE,
+    S_START_PROVIDER_USECASE,
+    S_STOP_PROVIDER_USECASE,
   ],
 };
