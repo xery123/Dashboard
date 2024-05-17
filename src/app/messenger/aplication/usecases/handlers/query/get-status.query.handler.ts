@@ -1,10 +1,9 @@
 import { Observable } from 'rxjs';
 import { Inject, Injectable, InjectionToken, Provider } from '@angular/core';
-
-import { Status } from '../../../../domain/status';
 import { getStatusPort } from '../../../ports/get-status.port';
 import { getStatusUsecase } from '../../get-status.usecase';
 import { GET_STATUS } from '../../../../infrastructure/adapters/get-status.adapter';
+import { Status } from '../../../../domain/aggregates/status';
 
 @Injectable({
   providedIn: 'root',

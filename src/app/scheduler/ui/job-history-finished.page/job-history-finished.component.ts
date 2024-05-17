@@ -5,9 +5,9 @@ import { TableHistoryComponent } from '../job-history.table/job-history.table.co
 import { TableComponent } from '../job-status.table/job-status.table.component';
 import { HttpClient } from '@angular/common/http';
 import { TableHistoryFinishedComponent } from '../job-history-finished.table/job-history-finished.table.component';
-import { HistoryFinished } from '../../domain/historyJobFinished';
 import { GET_HISTORY_FINISHED_USECASE } from '../../application/usecases/handlers/query/get-history-finished.query.handler';
 import { getHistoryFinishedUsecase } from '../../application/usecases/get-history-finished.usecase';
+import { HistoryEntitie } from '../../domain/entities/history';
 
 @Component({
   selector: 'app-history-job-finished',
@@ -27,7 +27,7 @@ export class PageHistoryFinishedComponent implements OnInit {
   @Input()
   idName: string | undefined;
 
-  historyFinished: HistoryFinished[] | undefined;
+  historyFinished: HistoryEntitie[] | undefined;
 
   objectKeys(obj: object) {
     return Object.keys(obj);

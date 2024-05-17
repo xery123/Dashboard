@@ -2,9 +2,9 @@ import { Observable } from 'rxjs';
 
 import { Inject, Injectable, InjectionToken, Provider } from '@angular/core';
 import { historyJobFinishedPort } from '../../../ports/history-job-finished.port';
-import { HistoryJobFinished } from '../../../../domain/historyJobFinished';
 import { getHistoryFinishedUsecase } from '../../get-history-finished.usecase';
 import { HISTORY_JOB_FINISHED_SERVICE } from '../../../../infrastructure/adapters/get-id-history-job-finished.adapter';
+import { HistoryAggregate } from '../../../../domain/aggregates/history';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ export class GetHistoryFinishedQuery implements getHistoryFinishedUsecase {
     private historyJobFinishedPort: historyJobFinishedPort
   ) {}
 
-  handle(id: string): Observable<HistoryJobFinished> {
+  handle(id: string): Observable<HistoryAggregate> {
     return this.historyJobFinishedPort.execute(id);
   }
 }

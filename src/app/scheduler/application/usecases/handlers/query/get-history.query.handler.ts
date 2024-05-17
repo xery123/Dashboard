@@ -1,10 +1,10 @@
 import { Observable } from 'rxjs';
 
-import { History } from '../../../../domain/history';
 import { Inject, Injectable, InjectionToken, Provider } from '@angular/core';
 import { historyPort } from '../../../ports/history.port';
 import { getHistoryUsecase } from '../../get-history.usecase';
 import { HISTORY_SERVICE } from '../../../../infrastructure/adapters/get-id-history.adapter';
+import { HistoryAggregate } from '../../../../domain/aggregates/history';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ import { HISTORY_SERVICE } from '../../../../infrastructure/adapters/get-id-hist
 export class GetHistoryQuery implements getHistoryUsecase {
   constructor(@Inject(HISTORY_SERVICE) private historyPort: historyPort) {}
 
-  handle(id: string): Observable<History> {
+  handle(id: string): Observable<HistoryAggregate> {
     return this.historyPort.execute(id);
   }
 }

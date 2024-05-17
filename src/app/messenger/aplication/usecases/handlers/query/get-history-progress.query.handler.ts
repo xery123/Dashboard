@@ -1,10 +1,9 @@
 import { Inject, Injectable, InjectionToken, Provider } from '@angular/core';
 import { Observable } from 'rxjs';
-
-import { HistoryProgress } from '../../../../domain/history-queue-longest-progress';
 import { getHistoryProgressPort } from '../../../ports/get-history-progress.port';
 import { getHistoryProgressUsecase } from '../../get-history-progress.usecase';
 import { GET_HISTORY_PROGRESS } from '../../../../infrastructure/adapters/get-history-progress.adapter';
+import { HistoryAggregate } from '../../../../domain/aggregates/history';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +14,7 @@ export class GetHistoryProgressQuery implements getHistoryProgressUsecase {
     private getHistoryProgressPort: getHistoryProgressPort
   ) {}
 
-  handle(id: string): Observable<HistoryProgress> {
+  handle(id: string): Observable<HistoryAggregate> {
     return this.getHistoryProgressPort.execute(id);
   }
 }

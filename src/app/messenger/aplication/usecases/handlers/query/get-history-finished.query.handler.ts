@@ -1,9 +1,9 @@
 import { Inject, Injectable, InjectionToken, Provider } from '@angular/core';
 import { Observable } from 'rxjs';
 import { getHistoryFinishedUsecase } from '../../get-history-finished.usecase';
-import { HistoryFinished } from '../../../../domain/history-queue-longest-finished';
 import { getHistoryFinishedPort } from '../../../ports/get-history-finished.port';
 import { GET_HISTORY_FINISHED } from '../../../../infrastructure/adapters/get-history-finished.adapter';
+import { HistoryAggregate } from '../../../../domain/aggregates/history';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +14,7 @@ export class GetHistoryFinishedQuery implements getHistoryFinishedUsecase {
     private getHistoryFinishedPort: getHistoryFinishedPort
   ) {}
 
-  handle(id: string): Observable<HistoryFinished> {
+  handle(id: string): Observable<HistoryAggregate> {
     return this.getHistoryFinishedPort.execute(id);
   }
 }

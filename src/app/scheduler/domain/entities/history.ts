@@ -1,12 +1,4 @@
-export interface HistoryJobFinished {
-  data: DataF;
-}
-
-export interface DataF {
-  history: HistoryFinished[];
-}
-
-export interface HistoryFinished {
+export interface HistoryEntitie {
   jobExecutionStartedAt: string;
   jobExecutedAt: string;
   exception: string;

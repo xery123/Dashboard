@@ -11,7 +11,7 @@ interface EnvironmentUrl {
   providedIn: 'root',
 })
 export class EnvironmentService {
-  a: string = '';
+  a:string='';
   private _selectedApiUrl: string = '';
   private _availableUrls: { name: EnvironmentName; url: string }[] = [];
 

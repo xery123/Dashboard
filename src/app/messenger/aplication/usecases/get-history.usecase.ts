@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { HistoryQueue } from '../../domain/history-queue';
+import { HistoryAggregate } from '../../domain/aggregates/history';
 
 export interface getHistoryUsecase {
-  handle(id: string): Observable<HistoryQueue>;
+  handle(id: string): Observable<HistoryAggregate>;
 }

@@ -1,10 +1,9 @@
 import { Inject, Injectable, InjectionToken, Provider } from '@angular/core';
 import { Observable } from 'rxjs';
-
-import { HistoryQueue } from '../../../../domain/history-queue';
 import { getHistoryPort } from '../../../ports/get-history.port';
 import { getHistoryUsecase } from '../../get-history.usecase';
 import { GET_HISTORY } from '../../../../infrastructure/adapters/get-history.adapter';
+import { HistoryAggregate } from '../../../../domain/aggregates/history';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +14,7 @@ export class GetHistoryQuery implements getHistoryUsecase {
     private getHistoryPort: getHistoryPort
   ) {}
 
-  handle(id: string): Observable<HistoryQueue> {
+  handle(id: string): Observable<HistoryAggregate> {
     return this.getHistoryPort.execute(id);
   }
 }

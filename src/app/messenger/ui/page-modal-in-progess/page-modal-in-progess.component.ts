@@ -1,11 +1,11 @@
 import { Component, Inject, Input, inject } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TableInprogressComponent } from '../table-inprogress/TableInprogressComponent';
-import { DataHistoryProgress } from '../../domain/history-queue-longest-progress';
 import { CommonModule } from '@angular/common';
 import { GET_HISTORY_PROGRESS_USECASE } from '../../aplication/usecases/handlers/query/get-history-progress.query.handler';
 
 import { getHistoryProgressUsecase } from '../../aplication/usecases/get-history-progress.usecase';
+import { HistoryEntitie } from '../../domain/entities/history';
 
 @Component({
   selector: 'app-page-modal-in-progess',
@@ -18,7 +18,7 @@ export class PageModalInProgessComponent {
   @Input()
   queue: string | undefined;
 
-  historyProgress: DataHistoryProgress[] | undefined;
+  historyProgress: HistoryEntitie[] | undefined;
 
   activeModal = inject(NgbActiveModal);
   constructor(

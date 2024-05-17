@@ -1,22 +1,18 @@
 import { CommonModule } from '@angular/common';
-
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { TableMessageEngineComponent } from '../table-message-engine/table-message-engine.component';
-import { Status, LocalYhonAcurioLimberIoC } from '../../domain/status';
 import { StartButtonComponent } from '../start-button/start-button.component';
 import { StopQueueConsumerComponent } from '../stop-queue-consumers-button/stop-queue-consumers-button.component';
-
 import { FormsModule } from '@angular/forms';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
-
 import { catchError, finalize, of } from 'rxjs';
-
 import { getStatusUsecase } from '../../aplication/usecases/get-status.usecase';
 import { STOP_CONSUMER_QUEUE_USECASE } from '../../aplication/usecases/handlers/comand/stop-consumer.comand.handler';
 import { GET_STATUS_USECASE } from '../../aplication/usecases/handlers/query/get-status.query.handler';
 import { stopUsecase } from '../../aplication/usecases/stop-consumer.usecase';
-
 import { SharedModule } from '../../../shared module/modules/shared.module';
+import { queues } from '../../domain/entities/status';
+import { Status } from '../../domain/aggregates/status';
 
 @Component({
   selector: 'app-home-page',
@@ -36,7 +32,7 @@ import { SharedModule } from '../../../shared module/modules/shared.module';
 })
 export default class HomePageComponent implements OnInit {
   message: Status | undefined;
-  queuesSummary: LocalYhonAcurioLimberIoC[] = [];
+  queuesSummary: queues[] = [];
   userProfile: any | null = null;
   intervalOptions: { value: number; label: string }[] = [
     { value: 5, label: '5 s' },

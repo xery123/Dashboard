@@ -1,11 +1,11 @@
 import { Component, Inject, Input, OnInit, inject } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TableItemsComponent } from '../table-items/table-items.component';
-import { Item } from '../../domain/status-queue';
 import { CommonModule } from '@angular/common';
 import { StopQueueConsumerComponent } from '../stop-queue-consumers-button/stop-queue-consumers-button.component';
 import { GET_STATUS_QUEUE_USECASE } from '../../aplication/usecases/handlers/query/get-status-queue.query.handler';
 import { getStatusQueueUsecase } from '../../aplication/usecases/get-status-queue.query.handler';
+import { Item } from '../../domain/entities/status-queue';
 
 @Component({
   selector: 'app-page-modal-items',

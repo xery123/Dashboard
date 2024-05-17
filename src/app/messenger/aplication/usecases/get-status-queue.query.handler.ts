@@ -1,6 +1,5 @@
 import { Observable } from 'rxjs';
-import { StatusQueue } from '../../domain/status-queue';
-import { Status } from '../../domain/status';
+import { StatusQueue } from '../../domain/aggregates/status_queue';
 
 export interface getStatusQueueUsecase {
   handle(id: string): Observable<StatusQueue>;

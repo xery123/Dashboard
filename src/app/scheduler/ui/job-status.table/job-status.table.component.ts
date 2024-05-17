@@ -11,17 +11,17 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HistoryJobComponent } from '../job-history.page/job-history.page.component';
 
 import { TableHistoryComponent } from '../job-history.table/job-history.table.component';
-import { Status, JobAsyncAggregateJobExecution1 } from '../../domain/status';
 import { EnableDisableJobComponent } from '../job-enable-disable-job/enable-disable-job.component';
 import { StartStopRemoveJobComponent } from '../job-start-stop-remove-job/start-stop-remove-job.component';
 import { PageHistoryFinishedComponent } from '../job-history-finished.page/job-history-finished.component';
 import { PageHistoryProgresssComponent } from '../job-history-progress.page/job-history-progress.component';
-import { DataF, HistoryJobFinished } from '../../domain/historyJobFinished';
-import { DataP, HistoryJobProgress } from '../../domain/historyJobProgress';
 import { GET_HISTORY_FINISHED_USECASE } from '../../application/usecases/handlers/query/get-history-finished.query.handler';
 import { getHistoryFinishedUsecase } from '../../application/usecases/get-history-finished.usecase';
 import { GET_HISTORY_PROGRESS_USECASE } from '../../application/usecases/handlers/query/get-history-progress.query.handler';
 import { getHistoryProgressUsecase } from '../../application/usecases/get-history-progress.usecase';
+import { JobAsyncAggregateJobExecution1 } from '../../domain/entities/status';
+import { Status } from '../../domain/aggregates/status';
+import { Data, HistoryAggregate } from '../../domain/aggregates/history';
 
 @Component({
   selector: 'app-table',
@@ -36,8 +36,8 @@ import { getHistoryProgressUsecase } from '../../application/usecases/get-histor
   ],
 })
 export class TableComponent implements OnInit {
-  historyProgress: { [key: string]: DataP[] } = {};
-  historyFinished: { [key: string]: DataF[] } = {};
+  historyProgress: { [key: string]: Data[] } = {};
+  historyFinished: { [key: string]: Data[] } = {};
   modalHistory = HistoryJobComponent;
   modalHistoryFinished = PageHistoryFinishedComponent;
   modalHistoryProgresss = PageHistoryProgresssComponent;
@@ -61,7 +61,7 @@ export class TableComponent implements OnInit {
     Object.entries(this.jobs).forEach(([key, value]) => {
       this.getHistoryProgressUsecase
         .handle(key)
-        .subscribe((respuesta: HistoryJobProgress) => {
+        .subscribe((respuesta: HistoryAggregate) => {
           if (respuesta && respuesta.data) {
             if (!this.historyProgress[key]) {
               this.historyProgress[key] = [];
@@ -72,7 +72,7 @@ export class TableComponent implements OnInit {
 
       this.getHistoryFinishedUsecase
         .handle(key)
-        .subscribe((respuesta: HistoryJobFinished) => {
+        .subscribe((respuesta: HistoryAggregate) => {
           if (respuesta && respuesta.data) {
             if (!this.historyFinished[key]) {
               this.historyFinished[key] = [];
@@ -90,7 +90,7 @@ export class TableComponent implements OnInit {
       Object.entries(this.jobs).forEach(([key, value]) => {
         this.getHistoryProgressUsecase
           .handle(key)
-          .subscribe((respuesta: HistoryJobProgress) => {
+          .subscribe((respuesta: HistoryAggregate) => {
             if (respuesta && respuesta.data) {
               if (!this.historyProgress[key]) {
                 this.historyProgress[key] = [];
@@ -101,7 +101,7 @@ export class TableComponent implements OnInit {
 
         this.getHistoryFinishedUsecase
           .handle(key)
-          .subscribe((respuesta: HistoryJobFinished) => {
+          .subscribe((respuesta: HistoryAggregate) => {
             if (respuesta && respuesta.data) {
               if (!this.historyFinished[key]) {
                 this.historyFinished[key] = [];
@@ -147,7 +147,7 @@ export class TableComponent implements OnInit {
     Object.entries(this.jobs).forEach(([key, value]) => {
       this.getHistoryProgressUsecase
         .handle(key)
-        .subscribe((respuesta: HistoryJobProgress) => {
+        .subscribe((respuesta: HistoryAggregate) => {
           if (respuesta && respuesta.data) {
             if (!this.historyProgress[key]) {
               this.historyProgress[key] = [];
@@ -158,7 +158,7 @@ export class TableComponent implements OnInit {
 
       this.getHistoryFinishedUsecase
         .handle(key)
-        .subscribe((respuesta: HistoryJobFinished) => {
+        .subscribe((respuesta: HistoryAggregate) => {
           if (respuesta && respuesta.data) {
             if (!this.historyFinished[key]) {
               this.historyFinished[key] = [];

@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, InjectionToken, Provider } from '@angular/core';
-import { Status } from '../../domain/status';
 
 import { ENDPOINTS } from '../end points/end-points';
 import { Observable } from 'rxjs';
 import { getStatusPort } from '../../aplication/ports/get-status.port';
 import { EnvironmentService } from '../../../select environment/select-environment.service';
+import { Status } from '../../domain/aggregates/status';
 
 @Injectable({
   providedIn: 'root',

@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { HistoryProgress } from '../../domain/history-queue-longest-progress';
+import { HistoryAggregate } from '../../domain/aggregates/history';
 
 export interface getHistoryProgressPort {
-  execute(id: string): Observable<HistoryProgress>;
+  execute(id: string): Observable<HistoryAggregate>;
 }

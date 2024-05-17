@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from '../job-status.table/job-status.table.component';
-import { Status, JobAsyncAggregateJobExecution1 } from '../../domain/status';
 import { StartStopRemoveJobComponent } from '../job-start-stop-remove-job/start-stop-remove-job.component';
 import { startAllJobComponent } from '../job-start-all-Job/start-all-Job.component';
 import { EnableDisableJobComponent } from '../job-enable-disable-job/enable-disable-job.component';
@@ -22,6 +21,8 @@ import { stopUsecase } from '../../application/usecases/stop-job.usecase';
 import { GET_STATUS_USECASE } from '../../application/usecases/handlers/query/get-status.query.handler';
 import { getStatusUsecase } from '../../application/usecases/get-status.usecase';
 import { SharedModule } from '../../../shared module/modules/shared.module';
+import { JobAsyncAggregateJobExecution1 } from '../../domain/entities/status';
+import { Status } from '../../domain/aggregates/status';
 
 @Component({
   selector: 'app-status-job',

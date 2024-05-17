@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { HistoryJobFinished } from '../../domain/historyJobFinished';
+import { HistoryAggregate } from '../../domain/aggregates/history';
 
 export interface historyJobFinishedPort {
-  execute(id: string): Observable<HistoryJobFinished>;
+  execute(id: string): Observable<HistoryAggregate>;
 }

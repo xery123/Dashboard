@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { DataHistoryQueue } from '../../domain/history-queue';
 import { MillisecondsToTimePipe } from '../TimePipes/milisegundos-hhmmss';
 import { CommonModule } from '@angular/common';
+import { HistoryEntitie } from '../../domain/entities/history';
 
 @Component({
   selector: 'app-table-history',
@@ -15,5 +15,5 @@ export class TableHistoryComponent {
   queue: string | undefined;
 
   @Input()
-  historyAll: DataHistoryQueue[] | undefined;
+  historyAll: HistoryEntitie[] | undefined;
 }

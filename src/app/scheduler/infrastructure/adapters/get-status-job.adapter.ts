@@ -1,11 +1,11 @@
 import { Injectable, InjectionToken, Provider } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { StatusJob } from '../../domain/statusJob';
 
 import { EnvironmentService } from '../../../select environment/select-environment.service';
 import { ENDPOINTS } from '../end points/end-points';
 import { getStatusJobPort } from '../../application/ports/get-status-job.port';
+import { StatusJob } from '../../domain/aggregates/status-job';
 @Injectable({
   providedIn: 'root',
 })

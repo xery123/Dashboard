@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { DataHistoryProgress } from '../../domain/history-queue-longest-progress';
 import { MillisecondsToTimePipe } from '../TimePipes/milisegundos-hhmmss';
 import { CommonModule } from '@angular/common';
+import { HistoryEntitie } from '../../domain/entities/history';
 
 @Component({
   selector: 'app-table-inprogress',
@@ -15,5 +15,5 @@ export class TableInprogressComponent {
   queue: string | undefined;
 
   @Input()
-  historyProgress: DataHistoryProgress[] | undefined;
+  historyProgress: HistoryEntitie[] | undefined;
 }

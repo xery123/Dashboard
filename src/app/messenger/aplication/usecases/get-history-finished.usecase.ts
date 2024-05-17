@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { HistoryFinished } from '../../domain/history-queue-longest-finished';
+import { HistoryAggregate } from '../../domain/aggregates/history';
 
 export interface getHistoryFinishedUsecase {
-  handle(id: string): Observable<HistoryFinished>;
+  handle(id: string): Observable<HistoryAggregate>;
 }

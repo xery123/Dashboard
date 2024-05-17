@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { MillisecondsToTimePipe } from '../TimePipes/milisegundos-hhmmss';
-import { HistoryFinished } from '../../domain/historyJobFinished';
+import { HistoryEntitie } from '../../domain/entities/history';
 
 @Component({
   selector: 'app-table-history-finished',
@@ -12,7 +12,7 @@ import { HistoryFinished } from '../../domain/historyJobFinished';
 })
 export class TableHistoryFinishedComponent {
   @Input()
-  historyFinished: HistoryFinished[] | undefined;
+  historyFinished: HistoryEntitie[] | undefined;
 
   @Input()
   idName: string | undefined;

@@ -1,10 +1,10 @@
 import { Component, Inject, Input, OnInit, inject } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TableHistoryComponent } from '../table-allhistory/table-history.component';
-import { DataHistoryQueue } from '../../domain/history-queue';
 import { CommonModule } from '@angular/common';
 import { GET_HISTORY_USECASE } from '../../aplication/usecases/handlers/query/get-history.query.handler';
 import { getHistoryUsecase } from '../../aplication/usecases/get-history.usecase';
+import { HistoryEntitie } from '../../domain/entities/history';
 
 @Component({
   selector: 'app-page-modal-history',
@@ -17,7 +17,7 @@ export class PageModalAllHistoryComponent implements OnInit {
   @Input()
   queue: string | undefined;
 
-  historyAll: DataHistoryQueue[] | undefined;
+  historyAll: HistoryEntitie[] | undefined;
 
   activeModal = inject(NgbActiveModal);
   constructor(

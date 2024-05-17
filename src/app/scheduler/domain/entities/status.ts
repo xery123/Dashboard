@@ -1,16 +1,3 @@
-export interface Status {
-  data: Data;
-}
-
-export interface Data {
-  schedulerStats: SchedulerStats;
-  jobsSummary: JobsSummary;
-}
-
-export interface JobsSummary {
-  [key: string]: JobAsyncAggregateJobExecution1;
-}
-
 export interface JobAsyncAggregateJobExecution1 {
   jobStatus: string;
   moduleStatus: string;

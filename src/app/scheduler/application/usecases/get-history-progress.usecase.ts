@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { HistoryJobProgress } from '../../domain/historyJobProgress';
+import { HistoryAggregate } from '../../domain/aggregates/history';
 
 export interface getHistoryProgressUsecase {
-  handle(id: string): Observable<HistoryJobProgress>;
+  handle(id: string): Observable<HistoryAggregate>;
 }

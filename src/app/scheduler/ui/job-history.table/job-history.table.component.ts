@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { History } from '../../domain/history';
 import { MillisecondsToTimePipe } from '../TimePipes/milisegundos-hhmmss';
+import { HistoryEntitie } from '../../domain/entities/history';
 
 @Component({
   selector: 'app-table-history',
@@ -12,7 +12,7 @@ import { MillisecondsToTimePipe } from '../TimePipes/milisegundos-hhmmss';
 })
 export class TableHistoryComponent {
   @Input()
-  historyT: History[] | undefined;
+  historyT: HistoryEntitie[] | undefined;
 
   @Input()
   idName: string | undefined;

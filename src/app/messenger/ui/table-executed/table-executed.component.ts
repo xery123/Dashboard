@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { DataHistoryFinished } from '../../domain/history-queue-longest-finished';
-
 import { MillisecondsToTimePipe } from '../TimePipes/milisegundos-hhmmss';
 import { CommonModule } from '@angular/common';
+import { HistoryEntitie } from '../../domain/entities/history';
 
 @Component({
   selector: 'app-table-executed',
@@ -16,5 +15,5 @@ export class TableExecutedComponent {
   queue: string | undefined;
 
   @Input()
-  historyFinished: DataHistoryFinished[] | undefined;
+  historyFinished: HistoryEntitie[] | undefined;
 }

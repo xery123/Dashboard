@@ -1,7 +1,3 @@
-export interface StatusJob {
-  dataJob: DataJob;
-}
-
 export interface DataJob {
   jobStatus: string;
   moduleStatus: string;

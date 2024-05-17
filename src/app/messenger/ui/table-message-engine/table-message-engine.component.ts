@@ -9,24 +9,18 @@ import {
 } from '@angular/core';
 import { PageModalItemsComponent } from '../page-modal-items/page-modal-items.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { LocalYhonAcurioLimberIoC } from '../../domain/status';
 import { CommonModule } from '@angular/common';
 import { TableItemsComponent } from '../table-items/table-items.component';
 import { PageModalExecutedComponent } from '../page-modal-executed/page-modal-executed.component';
 import { PageModalAllHistoryComponent } from '../page-modal-allhistory/page-modal-history.component';
 import { StopQueueConsumerComponent } from '../stop-queue-consumers-button/stop-queue-consumers-button.component';
-import {
-  DataHistoryFinished,
-  HistoryFinished,
-} from '../../domain/history-queue-longest-finished';
-import {
-  DataHistoryProgress,
-  HistoryProgress,
-} from '../../domain/history-queue-longest-progress';
 import { GET_HISTORY_PROGRESS_USECASE } from '../../aplication/usecases/handlers/query/get-history-progress.query.handler';
 import { GET_HISTORY_FINISHED_USECASE } from '../../aplication/usecases/handlers/query/get-history-finished.query.handler';
 import { getHistoryProgressUsecase } from '../../aplication/usecases/get-history-progress.usecase';
 import { getHistoryFinishedUsecase } from '../../aplication/usecases/get-history-finished.usecase';
+import { HistoryAggregate } from '../../domain/aggregates/history';
+import { queues } from '../../domain/entities/status';
+import { HistoryEntitie } from '../../domain/entities/history';
 
 @Component({
   selector: 'app-table-message-engine',
@@ -41,10 +35,10 @@ export class TableMessageEngineComponent implements OnInit {
   modalInProgressComponent = PageModalInProgessComponent;
   modalAllHistoryComponent = PageModalAllHistoryComponent;
 
-  historyProgressClose: { [key: string]: HistoryProgress[] } = {};
-  historyFinishedClose: { [key: string]: HistoryFinished[] } = {};
+  historyProgressClose: { [key: string]: HistoryAggregate[] } = {};
+  historyFinishedClose: { [key: string]: HistoryAggregate[] } = {};
 
-  @Input() queuesSummary: LocalYhonAcurioLimberIoC[] = [];
+  @Input() queuesSummary: queues[] = [];
   @Input() filteredQueues: string[] = [];
   queue: string | undefined;
   selectedInterval: number = 30;
@@ -68,13 +62,13 @@ export class TableMessageEngineComponent implements OnInit {
     this.filteredQueues.forEach((queue) => {
       this.getHistoryProgressUsecase
         .handle(queue)
-        .subscribe((respuesta: { data: DataHistoryProgress[] }) => {
+        .subscribe((respuesta: { data: HistoryEntitie[] }) => {
           this.historyProgressClose[queue] = [{ data: respuesta.data }];
         });
 
       this.getHistoryFinishedUsecase
         .handle(queue)
-        .subscribe((respuesta: { data: DataHistoryFinished[] }) => {
+        .subscribe((respuesta: { data: HistoryEntitie[] }) => {
           this.historyFinishedClose[queue] = [{ data: respuesta.data }];
         });
     });
@@ -87,13 +81,13 @@ export class TableMessageEngineComponent implements OnInit {
       this.filteredQueues.forEach((queue) => {
         this.getHistoryProgressUsecase
           .handle(queue)
-          .subscribe((respuesta: { data: DataHistoryProgress[] }) => {
+          .subscribe((respuesta: { data: HistoryEntitie[] }) => {
             this.historyProgressClose[queue] = [{ data: respuesta.data }];
           });
 
         this.getHistoryFinishedUsecase
           .handle(queue)
-          .subscribe((respuesta: { data: DataHistoryFinished[] }) => {
+          .subscribe((respuesta: { data: HistoryEntitie[] }) => {
             this.historyFinishedClose[queue] = [{ data: respuesta.data }];
           });
       });
@@ -105,13 +99,13 @@ export class TableMessageEngineComponent implements OnInit {
     this.filteredQueues.forEach((queue) => {
       this.getHistoryProgressUsecase
         .handle(queue)
-        .subscribe((respuesta: { data: DataHistoryProgress[] }) => {
+        .subscribe((respuesta: { data: HistoryEntitie[] }) => {
           this.historyProgressClose[queue] = [{ data: respuesta.data }];
         });
 
       this.getHistoryFinishedUsecase
         .handle(queue)
-        .subscribe((respuesta: { data: DataHistoryFinished[] }) => {
+        .subscribe((respuesta: { data: HistoryEntitie[] }) => {
           this.historyFinishedClose[queue] = [{ data: respuesta.data }];
         });
     });

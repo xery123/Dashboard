@@ -2,9 +2,9 @@ import { Inject, Injectable, InjectionToken, Provider } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { getStatusJobPort } from '../../../ports/get-status-job.port';
-import { StatusJob } from '../../../../domain/statusJob';
 import { getStatusJobUsecase } from '../../get-status-job.usecase';
 import { GET_STATUS_JOB_SERVICE } from '../../../../infrastructure/adapters/get-status-job.adapter';
+import { StatusJob } from '../../../../domain/aggregates/status-job';
 
 @Injectable({
   providedIn: 'root',

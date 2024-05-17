@@ -2,9 +2,9 @@ import { Observable } from 'rxjs';
 
 import { Inject, Injectable, InjectionToken, Provider } from '@angular/core';
 import { historyJobProgressPort } from '../../../ports/history-job-progress.port';
-import { HistoryJobProgress } from '../../../../domain/historyJobProgress';
 import { getHistoryProgressUsecase } from '../../get-history-progress.usecase';
 import { HISTORY_JOB_PROGRESS_SERVICE } from '../../../../infrastructure/adapters/get-id-history-job-progress.adapter';
+import { HistoryAggregate } from '../../../../domain/aggregates/history';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ export class GetHistoryProgressQuery implements getHistoryProgressUsecase {
     private historyJobProgressPort: historyJobProgressPort
   ) {}
 
-  handle(id: string): Observable<HistoryJobProgress> {
+  handle(id: string): Observable<HistoryAggregate> {
     return this.historyJobProgressPort.execute(id);
   }
 }

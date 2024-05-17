@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { History } from '../../domain/history';
+
 import { MillisecondsToTimePipe } from '../TimePipes/milisegundos-hhmmss';
-import { HistoryProgress } from '../../domain/historyJobProgress';
+import { HistoryEntitie } from '../../domain/entities/history';
 
 @Component({
   selector: 'app-table-history-progress',
@@ -13,7 +13,7 @@ import { HistoryProgress } from '../../domain/historyJobProgress';
 })
 export class TableHistoryProgressComponent {
   @Input()
-  historyProgress: HistoryProgress[] | undefined;
+  historyProgress: HistoryEntitie[] | undefined;
 
   @Input()
   idName: string | undefined;

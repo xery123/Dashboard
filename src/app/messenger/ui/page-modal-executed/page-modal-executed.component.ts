@@ -1,12 +1,10 @@
 import { Component, Inject, Input, inject } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TableExecutedComponent } from '../table-executed/table-executed.component';
-
-import { DataHistoryFinished } from '../../domain/history-queue-longest-finished';
-import { getHistoryUsecase } from '../../aplication/usecases/get-history.usecase';
 import { CommonModule } from '@angular/common';
 import { GET_HISTORY_FINISHED_USECASE } from '../../aplication/usecases/handlers/query/get-history-finished.query.handler';
 import { getHistoryFinishedUsecase } from '../../aplication/usecases/get-history-finished.usecase';
+import { HistoryEntitie } from '../../domain/entities/history';
 
 @Component({
   selector: 'app-page-modal-executed',
@@ -19,7 +17,7 @@ export class PageModalExecutedComponent {
   @Input()
   queue: string | undefined;
 
-  historyFinished: DataHistoryFinished[] | undefined;
+  historyFinished: HistoryEntitie[] | undefined;
 
   activeModal = inject(NgbActiveModal);
   constructor(
