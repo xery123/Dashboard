@@ -12,17 +12,16 @@ import { Status, JobAsyncAggregateJobExecution1 } from '../../domain/status';
 import { StartStopRemoveJobComponent } from '../job-start-stop-remove-job/start-stop-remove-job.component';
 import { startAllJobComponent } from '../job-start-all-Job/start-all-Job.component';
 import { EnableDisableJobComponent } from '../job-enable-disable-job/enable-disable-job.component';
-import { SearchBoxComponent } from '../search-box/search-box.component';
+
 import { FormsModule } from '@angular/forms';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { catchError, finalize, of } from 'rxjs';
 
-import { SelectedApiBoxComponent } from '../selected-api-box/selected-api-box.component';
-import { RefreshBoxComponent } from '../refresh-box/refresh-box.component';
 import { STOP_USECASE } from '../../application/usecases/handlers/comand/stop.comand.handler';
 import { stopUsecase } from '../../application/usecases/stop-job.usecase';
 import { GET_STATUS_USECASE } from '../../application/usecases/handlers/query/get-status.query.handler';
 import { getStatusUsecase } from '../../application/usecases/get-status.usecase';
+import { SharedModule } from '../../../shared module/modules/shared.module';
 
 @Component({
   selector: 'app-status-job',
@@ -36,10 +35,8 @@ import { getStatusUsecase } from '../../application/usecases/get-status.usecase'
     startAllJobComponent,
     StartStopRemoveJobComponent,
     EnableDisableJobComponent,
-    SearchBoxComponent,
     RouterModule,
-    SelectedApiBoxComponent,
-    RefreshBoxComponent,
+    SharedModule,
   ],
 })
 export default class StatusJobComponent implements OnInit, OnDestroy {

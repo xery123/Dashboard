@@ -2,10 +2,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-refresh-box',
-  standalone: true,
-  imports: [],
   templateUrl: './refresh-box.component.html',
-  styleUrl: './refresh-box.component.css',
+  styleUrls: ['./refresh-box.component.css'],
 })
 export class RefreshBoxComponent {
   @Output() refreshClick = new EventEmitter();

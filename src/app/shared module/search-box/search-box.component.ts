@@ -1,25 +1,16 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Subject, Subscription, debounceTime } from 'rxjs';
+import { Subject, debounceTime } from 'rxjs';
 
 @Component({
-  selector: 'shared-search-box-id',
+  selector: 'shared-search-box',
   templateUrl: './search-box.component.html',
-  standalone: true,
-  styleUrl: './search-box.component.css',
-  imports: [FormsModule],
+  styleUrls: ['./search-box.component.css'],
 })
 export class SearchBoxComponent implements OnInit {
   private debouncer: Subject<string> = new Subject<string>();
-
-  @Input()
-  public placeholder: string = '';
-
-  @Output()
-  public onValue = new EventEmitter<string>();
-
-  @Output()
-  public onDebounce = new EventEmitter<string>();
+  @Input() public placeholder: string = '';
+  @Output() public onValue = new EventEmitter<string>();
+  @Output() public onDebounce = new EventEmitter<string>();
 
   ngOnInit(): void {
     this.debouncer.pipe(debounceTime(300)).subscribe((value) => {

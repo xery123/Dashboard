@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { TableMessageEngineComponent } from '../table-message-engine/table-message-engine.component';
-import { SearchBoxComponent } from '../search-box/search-box.component';
 import { Status, LocalYhonAcurioLimberIoC } from '../../domain/status';
 import { StartButtonComponent } from '../start-button/start-button.component';
 import { StopQueueConsumerComponent } from '../stop-queue-consumers-button/stop-queue-consumers-button.component';
@@ -11,13 +10,13 @@ import { FormsModule } from '@angular/forms';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 
 import { catchError, finalize, of } from 'rxjs';
-import { RefreshBoxComponent } from '../refresh-box/refresh-box.component';
-import { SelectedApiBoxComponent } from '../selected-api-box/selected-api-box.component';
 
 import { getStatusUsecase } from '../../aplication/usecases/get-status.usecase';
 import { STOP_CONSUMER_QUEUE_USECASE } from '../../aplication/usecases/handlers/comand/stop-consumer.comand.handler';
 import { GET_STATUS_USECASE } from '../../aplication/usecases/handlers/query/get-status.query.handler';
 import { stopUsecase } from '../../aplication/usecases/stop-consumer.usecase';
+
+import { SharedModule } from '../../../shared module/modules/shared.module';
 
 @Component({
   selector: 'app-home-page',
@@ -27,13 +26,12 @@ import { stopUsecase } from '../../aplication/usecases/stop-consumer.usecase';
   imports: [
     CommonModule,
     TableMessageEngineComponent,
-    SearchBoxComponent,
     FormsModule,
     StartButtonComponent,
     StopQueueConsumerComponent,
     RouterModule,
-    RefreshBoxComponent,
-    SelectedApiBoxComponent,
+
+    SharedModule,
   ],
 })
 export default class HomePageComponent implements OnInit {

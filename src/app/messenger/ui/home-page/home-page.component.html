@@ -20,10 +20,8 @@
   </div>
 
   <div class="header-right">
-    <app-selected-api-box-messenger></app-selected-api-box-messenger>
-    <app-refresh-box-messenger
-      (refreshClick)="refreshData()"
-    ></app-refresh-box-messenger>
+    <app-selected-api-box></app-selected-api-box>
+    <app-refresh-box (refreshClick)="refreshData()"></app-refresh-box>
     <select
       id="interval"
       [(ngModel)]="selectedInterval"

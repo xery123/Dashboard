@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { EnvironmentService } from '../../../select environment/select-environment.service';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { EnvironmentService } from '../../select environment/select-environment.service';
 
 interface UrlObject {
   name: 'test' | 'app';
@@ -10,8 +8,6 @@ interface UrlObject {
 
 @Component({
   selector: 'app-selected-api-box',
-  standalone: true,
-  imports: [FormsModule, CommonModule],
   templateUrl: './selected-api-box.component.html',
   styleUrls: ['./selected-api-box.component.css'],
 })
